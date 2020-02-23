@@ -9,7 +9,7 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 
-export default {
+export default { //导出模块
   name: 'Home',
   components: {
     HelloWorld
