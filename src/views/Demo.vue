@@ -1,4 +1,4 @@
-<template>
+<!--<template>
 <div>
   <b-button size="sm" @click="toggle">
     {{ show ? 'Hide' : 'Show' }} Alert
@@ -48,4 +48,24 @@ export default {
         }
     }
 }
+</script>-->
+
+<template>
+  <div class="demo">
+    <img alt="Vue logo" src="../assets/logo.png">
+    <Button/>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+import Button from '@/components/Button.vue'
+
+export default { //导出模块
+  name: 'Demo',
+  components: {
+    Button
+  }
+}
 </script>
+
