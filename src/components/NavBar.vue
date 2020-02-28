@@ -1,7 +1,9 @@
 <template>
     <div>
     <BNavbar toggleable="lg" type="dark" variant="info">
-        <BNavbarBrand href="#">NavBar</BNavbarBrand>
+        <BNavbarBrand href="#">
+            <img v-bind:src="brandImage" class="d-inline-block align-top">
+        </BNavbarBrand>
 
         <BNavbarToggle target="nav-collapse"></BNavbarToggle>
 
@@ -9,17 +11,20 @@
         <BNavbarNav>
             <BNavItem href="#">Link</BNavItem>
             <BNavItem href="#">Disabled</BNavItem>
+            <BNavItem v-for="menu in menuItem" v-bind:key="menu" v-bind:to="menu.to">
+                {{ menu.text }}
+            </BNavItem>
         </BNavbarNav>
 
         <!-- Right aligned nav items -->
         <BNavbarNav class="ml-auto">
-            <BNavForm>
-            <BFormInput size="sm" class="mr-sm-2" placeholder="Search"></BFormInput>
+            <BNavForm v-show="isShowSearch">
+            <BFormInput size="sm" class="mr-sm-2" placeholder="Search" v-model="searchValue"></BFormInput>
             <BButton size="sm" class="my-2 my-sm-0" type="submit">Search</BButton>
             </BNavForm>
 
             <BNavItemDropdown text="Lang" right>
-            <BDropdownItem href="#">EN</BDropdownItem>
+            <BDropdownItem href="#">CN</BDropdownItem>
             <BDropdownItem href="#">ES</BDropdownItem>
             <BDropdownItem href="#">RU</BDropdownItem>
             <BDropdownItem href="#">FA</BDropdownItem>
@@ -46,22 +51,37 @@ import { BNavbar,BNavbarNav,BNavbarBrand,BNavbarToggle,BCollapse,BButton,
 BNavItem,BNavText,BNavForm,BNavItemDropdown,BFormInput,BDropdownItem
 } from 'bootstrap-vue';
 
+export class MenuItem {
+    constructor(text: string,to: string) { 
+        this.text = text;
+        this.to = to;
+    }  
+ 
+    text: string;
+    to: string;
+}
+
 @Component({
     components: {
         BNavbar,BNavbarNav,BNavbarBrand,BNavbarToggle,BCollapse,BButton,
 BNavItem,BNavText,BNavForm,BNavItemDropdown,BFormInput,BDropdownItem
     }
 })
+export default class NavBar extends Vue {   
 
-export default class NavBar extends Vue {
-    name = "BootstrapVue";
-    show = true;
+    @Prop(String) brandImage?: string;
+    //菜单列表
+    @Prop() menuList?: MenuItem[];
+    
+    //搜索组件
+    @Prop(Boolean) isShowSearch = true;
+    searchValue?: string;
 
-    //@Prop() private msg!: string;
-    @Watch('show')
+    //@Prop(Boolean) isCollapsed: boolean = false;
+    /*@Watch('show')
     onShowChanged(newValue: string, oldValue: string) {
         console.log('Alert is now ' + (newValue ? 'visible' : 'hidden'))
-    }
+    }*/
 
     //计算属性
     /*get ValA(){
@@ -69,13 +89,8 @@ export default class NavBar extends Vue {
         }*/
 
     //methods
-    toggle() {
-        console.log('Toggle button clicked')
-        this.show = !this.show
-    }
-
-    dismissed() {
+    /*dismissed() {
         console.log('Alert dismissed')
-    }
+    }*/
 }
 </script>
