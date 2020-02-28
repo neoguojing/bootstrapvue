@@ -52,7 +52,6 @@ export default {
 
 <template>
   <div class="demo">
-    <img alt="Vue logo" src="../assets/logo.png">
     <Button/>
   </div>
 </template>
