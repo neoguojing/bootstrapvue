@@ -63,7 +63,7 @@ export default class NNavBar extends Vue {
     @Prop(String) brandImage!: string;
 
     //菜单列表
-    @Prop(Array) menuList: any[];
+    @Prop(Array) menuList?: any[];
     
     //搜索组件
     searchValue?: string;

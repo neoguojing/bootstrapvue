@@ -1,18 +1,58 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <NTable 
+      id="my-table"
+      :items="items"
+      :perPage="perPage"
+      :currentPage="currentPage"
+    ></NTable>
+    <NPagination
+      :rows="rows" 
+      :perPage="perPage" 
+      target="my-table" 
+      v-on:pageChanged="setCurrentPage"
+    ></NPagination>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import NPagination from '@/components/NPagination.vue'
+import NTable from '@/components/NTable.vue'
 
 export default { //导出模块
   name: 'Home',
   components: {
-    HelloWorld
-  }
+    NPagination,
+    NTable
+  },
+  data() {
+      return {
+        perPage: 3,
+        currentPage: 1,
+        items: [
+          { id: 1, 姓: 'Fred', 名: 'Flintstone' },
+          { id: 2, 姓: 'Wilma', 名: 'Flintstone' },
+          { id: 3, 姓: 'Barney', 名: 'Rubble' },
+          { id: 4, 姓: 'Betty', 名: 'Rubble' },
+          { id: 5, 姓: 'Pebbles', 名: 'Flintstone' },
+          { id: 6, 姓: 'Bamm Bamm', 名: 'Rubble' },
+          { id: 7, 姓: 'The Great', 名: 'Gazzoo' },
+          { id: 8, 姓: 'Rockhead', 名: 'Slate' },
+          { id: 9, 姓: 'Pearl', 名: 'Slaghoople' }
+        ]
+      }
+    },
+    computed: {
+      rows() {
+        return this.items.length
+      }
+    },
+    methods:{
+      setCurrentPage(val){
+        console.log("setCurrentPage:",val)
+        this.currentPage = val
+      }
+    }
 }
 </script>
