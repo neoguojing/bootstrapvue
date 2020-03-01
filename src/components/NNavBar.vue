@@ -1,27 +1,28 @@
 <template>
     <div>
-    <BNavbar toggleable="lg" type="dark" variant="info">
+    <BNavbar toggleable="lg" type="dark" v-bind:variant="theme">
         <BNavbarBrand href="#">
-            <!--<img v-bind:src="brandImage" class="d-inline-block align-top">-->
+            <img v-bind:src="brandImage" class="d-inline-block align-top">
         </BNavbarBrand>
 
         <BNavbarToggle target="nav-collapse"></BNavbarToggle>
 
         <BCollapse id="nav-collapse" is-nav>
         <BNavbarNav>
-            <BNavItem href="#">Link</BNavItem>
-            <BNavItem href="#">Disabled</BNavItem>
-            <!--<BNavItem v-for="menu in menuItem" v-bind:key="menu" v-bind:to="menu.to">
+            <BNavItem href="#" to="/">Vue</BNavItem>
+            <BNavItem href="#" to="/demo">Demo</BNavItem>
+            <BNavItem href="#" to="/about">About</BNavItem>
+            <!--<BNavItem v-for="menu in menuList" v-bind:key="menu" v-bind:to="menu.to">
                 {{ menu.text }}
             </BNavItem>-->
         </BNavbarNav>
 
         <!-- Right aligned nav items -->
         <BNavbarNav class="ml-auto">
-            <!--<BNavForm v-show="isShowSearch">
-            <BFormInput size="sm" class="mr-sm-2" placeholder="Search" v-model="searchValue"></BFormInput>
-            <BButton size="sm" class="my-2 my-sm-0" type="submit">Search</BButton>
-            </BNavForm>-->
+            <BNavForm>
+                <BFormInput size="sm" class="mr-sm-2" placeholder="Search" v-model="searchValue"></BFormInput>
+                <BButton size="sm" class="my-2 my-sm-0" type="submit">Search</BButton>
+            </BNavForm>
 
             <BNavItemDropdown text="Lang" right>
             <BDropdownItem href="#">CN</BDropdownItem>
@@ -58,13 +59,13 @@ BNavItem,BNavText,BNavForm,BNavItemDropdown,BFormInput,BDropdownItem
     }
 })
 export default class NNavBar extends Vue {   
+    @Prop(String) theme!: string;
+    @Prop(String) brandImage!: string;
 
-    @Prop(String) brandImage?: string;
     //菜单列表
-    @Prop() menuList?: any[];
+    @Prop(Array) menuList: any[];
     
     //搜索组件
-    @Prop(Boolean) isShowSearch = true;
     searchValue?: string;
 
     //@Prop(Boolean) isCollapsed: boolean = false;

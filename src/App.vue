@@ -1,34 +1,41 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/demo">Demo</router-link> |
-      <router-link to="/vue">VueHome</router-link> |
-      <router-link to="/about">About</router-link> 
-    </div>
-    <router-view/>
-  </div>
+  <BContainer fluid>
+    <BRow>
+      <BCol>
+        <NNavBar theme="primary"/>
+      </BCol>
+    </BRow>
+    <BRow>
+      <BCol>
+        <BCard no-body>
+          <router-view/>
+        </BCard>
+      </BCol>
+    </BRow>
+  </BContainer>
+  
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+// @ is an alias to /src
+import NNavBar from '@/components/NNavBar.vue'
+import { BContainer,BRow,BCol } from 'bootstrap-vue';
+import { BCard  } from 'bootstrap-vue';
 
-#nav {
-  padding: 30px;
+const menus =[
+    {text:"vue",to:"/vue"},
+    {text:"demo",to:"/demo"},
+    {text:"about",to:"/about"}
+]
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default { //导出模块
+  name: 'Index',
+  components: {
+    NNavBar
+  },
+  data: function(){
+    return menus;
   }
 }
-</style>
+</script>

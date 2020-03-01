@@ -1,26 +1,18 @@
 <template>
   <div class="home">
-    <NNavBar isShowSearch="true" v-bind:menuList="menus"/>
+    <img alt="Vue logo" src="../assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import NNavBar from '@/components/NNavBar.vue'
-
-const menus = [
-      {text:"vue",to:"/vue"},
-      {text:"demo",to:"/demo"},
-      {text:"about",to:"/about"}
-]
+import HelloWorld from '@/components/HelloWorld.vue'
 
 export default { //导出模块
   name: 'Home',
   components: {
-    NNavBar
-  },
-  data: function () {
-    return menus
+    HelloWorld
   }
 }
 </script>
