@@ -1,22 +1,31 @@
 <template>
   <div class="home">
-    <NTable 
-      id="my-table"
-      :items="items"
-      :perPage="perPage"
-      :currentPage="currentPage"
-    ></NTable>
-    <NPagination
-      :rows="rows" 
-      :perPage="perPage" 
-      target="my-table" 
-      v-on:pageChanged="setCurrentPage"
-    ></NPagination>
+    <BRow>
+      <BCol>
+        <NTable 
+          id="my-table"
+          :items="items"
+          :perPage="perPage"
+          :currentPage="currentPage"
+        ></NTable>
+    </BCol>
+    </BRow>
+    <BRow>
+      <BCol>
+        <NPagination
+          :rows="rows" 
+          :perPage="perPage" 
+          target="my-table" 
+          v-on:pageChanged="setCurrentPage"
+        ></NPagination>
+    </BCol>
+    </BRow>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import { BRow,BCol } from 'bootstrap-vue';
 import NPagination from '@/components/NPagination.vue'
 import NTable from '@/components/NTable.vue'
 

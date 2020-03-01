@@ -2,7 +2,11 @@
   <BContainer fluid>
     <BRow>
       <BCol>
-        <NNavBar theme="primary"/>
+        <NNavBar 
+          theme="primary" 
+          :menuList="menus"
+          isSearchShow=false
+        />
       </BCol>
     </BRow>
     <BRow>
@@ -22,20 +26,19 @@ import NNavBar from '@/components/NNavBar.vue'
 import { BContainer,BRow,BCol } from 'bootstrap-vue';
 import { BCard  } from 'bootstrap-vue';
 
-const menus =[
-    {text:"vue",to:"/vue"},
-    {text:"demo",to:"/demo"},
-    {text:"about",to:"/about"}
-]
-
-
 export default { //导出模块
   name: 'Index',
   components: {
     NNavBar
   },
   data: function(){
-    return menus;
+    return {
+      menus:[
+        {text:"Vue",to:"/"},
+        {text:"Demo",to:"/demo"},
+        {text:"About",to:"/about"}
+      ]
+    }
   }
 }
 </script>

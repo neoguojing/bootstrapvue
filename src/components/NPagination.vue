@@ -4,6 +4,7 @@
     :per-page="perPage"
     :aria-controls="target"
     @input="mCurrentPage"
+    align="center"
 ></BPagination>
 </template>
 

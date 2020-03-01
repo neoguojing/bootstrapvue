@@ -9,17 +9,14 @@
 
         <BCollapse id="nav-collapse" is-nav>
         <BNavbarNav>
-            <BNavItem href="#" to="/">Vue</BNavItem>
-            <BNavItem href="#" to="/demo">Demo</BNavItem>
-            <BNavItem href="#" to="/about">About</BNavItem>
-            <!--<BNavItem v-for="menu in menuList" v-bind:key="menu" v-bind:to="menu.to">
+            <BNavItem v-for="menu in menuList" v-bind:key="menu" v-bind:to="menu.to">
                 {{ menu.text }}
-            </BNavItem>-->
+            </BNavItem>
         </BNavbarNav>
 
         <!-- Right aligned nav items -->
         <BNavbarNav class="ml-auto">
-            <BNavForm>
+            <BNavForm v-show="isSearchShow">
                 <BFormInput size="sm" class="mr-sm-2" placeholder="Search" v-model="searchValue"></BFormInput>
                 <BButton size="sm" class="my-2 my-sm-0" type="submit">Search</BButton>
             </BNavForm>
@@ -66,6 +63,7 @@ export default class NNavBar extends Vue {
     @Prop(Array) menuList?: any[];
     
     //搜索组件
+    @Prop(Boolean) isSearchShow?: boolean;
     searchValue?: string;
 
     //@Prop(Boolean) isCollapsed: boolean = false;
