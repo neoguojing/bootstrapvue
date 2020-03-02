@@ -4,8 +4,9 @@
       <BCol>
         <NNavBar 
           theme="primary" 
-          :menuList="menus"
+          :menuList="menus" 
           isSearchShow=false
+          @search="handleSearch"
         />
       </BCol>
     </BRow>
@@ -38,6 +39,11 @@ export default { //导出模块
         {text:"Demo",to:"/demo"},
         {text:"About",to:"/about"}
       ]
+    }
+  },
+  methods:{
+    handleSearch(val){
+      console.log("handleSearch:",val)
     }
   }
 }
