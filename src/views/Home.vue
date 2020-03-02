@@ -2,6 +2,19 @@
   <div class="home">
     <BRow>
       <BCol>
+        <NCarousel 
+          id="my-slide"
+          :interval="400"
+          :imgWidth="1024"
+          :imgHeight="480"
+          :imgList="imgList"
+          @curSlide="getCurrentSlide"
+        ></NCarousel>
+    </BCol>
+    </BRow>
+
+    <BRow>
+      <BCol>
         <NTable 
           id="my-table"
           :items="items"
@@ -28,12 +41,14 @@
 import { BRow,BCol } from 'bootstrap-vue';
 import NPagination from '@/components/NPagination.vue'
 import NTable from '@/components/NTable.vue'
+import NCarousel from '@/components/NCarousel.vue'
 
 export default { //导出模块
   name: 'Home',
   components: {
     NPagination,
-    NTable
+    NTable,
+    NCarousel
   },
   data() {
       return {
@@ -49,6 +64,23 @@ export default { //导出模块
           { id: 7, 姓: 'The Great', 名: 'Gazzoo' },
           { id: 8, 姓: 'Rockhead', 名: 'Slate' },
           { id: 9, 姓: 'Pearl', 名: 'Slaghoople' }
+        ],
+        imgList:[
+          {
+              caption:"First slide",
+              text:"Nulla vitae elit libero, a pharetra augue mollis interdum.",
+              src:"https://picsum.photos/1024/480/?image=52"
+          },
+          {
+              caption:"",
+              text:"",
+              src:"https://picsum.photos/1024/480/?image=54"
+          },
+          {
+              caption:"",
+              text:"",
+              src:"https://picsum.photos/1024/480/?image=55"
+          }
         ]
       }
     },
@@ -61,6 +93,9 @@ export default { //导出模块
       setCurrentPage(val){
         console.log("setCurrentPage:",val)
         this.currentPage = val
+      },
+      getCurrentSlide(val){
+        console.log("getCurrentSlide:",val)
       }
     }
 }

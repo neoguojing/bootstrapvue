@@ -46,7 +46,7 @@
 
 import { Component, Prop, Vue,Emit,Inject,Provide,Watch,Model } from 'vue-property-decorator';
 import { BNavbar,BNavbarNav,BNavbarBrand,BNavbarToggle,BCollapse,BButton,
-BNavItem,BNavText,BNavForm,BNavItemDropdown,BFormInput,BDropdownItem
+         BNavItem,BNavText,BNavForm,BNavItemDropdown,BFormInput,BDropdownItem
 } from 'bootstrap-vue';
 
 
@@ -61,8 +61,18 @@ event：
 */
 @Component({
     components: {
-        BNavbar,BNavbarNav,BNavbarBrand,BNavbarToggle,BCollapse,BButton,
-BNavItem,BNavText,BNavForm,BNavItemDropdown,BFormInput,BDropdownItem
+        BNavbar,
+        BNavbarNav,
+        BNavbarBrand,
+        BNavbarToggle,
+        BCollapse,
+        BButton,
+        BNavItem,
+        BNavText,
+        BNavForm,
+        BNavItemDropdown,
+        BFormInput,
+        BDropdownItem
     }
 })
 export default class NNavBar extends Vue {   
@@ -86,20 +96,9 @@ export default class NNavBar extends Vue {
         console.log('emitSearchValue emit',val);
     }
 
-    //@Prop(Boolean) isCollapsed: boolean = false;
-    /*@Watch('show')
-    onShowChanged(newValue: string, oldValue: string) {
-        console.log('Alert is now ' + (newValue ? 'visible' : 'hidden'))
-    }*/
-
     //计算属性
     /*get ValA(){
             return 1;
         }*/
-
-    //methods
-    /*dismissed() {
-        console.log('Alert dismissed')
-    }*/
 }
 </script>
