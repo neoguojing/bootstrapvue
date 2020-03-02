@@ -33,6 +33,16 @@
         ></NPagination>
     </BCol>
     </BRow>
+
+    <BRow>
+      <BCol>
+        <NPageTable
+          :items="items" 
+          :perPage="perPage" 
+          id="my-page-table" 
+        ></NPageTable>
+    </BCol>
+    </BRow>
   </div>
 </template>
 
@@ -42,13 +52,15 @@ import { BRow,BCol } from 'bootstrap-vue';
 import NPagination from '@/components/NPagination.vue'
 import NTable from '@/components/NTable.vue'
 import NCarousel from '@/components/NCarousel.vue'
+import NPageTable from '@/components/NPageTable.vue'
 
 export default { //导出模块
   name: 'Home',
   components: {
     NPagination,
     NTable,
-    NCarousel
+    NCarousel,
+    NPageTable
   },
   data() {
       return {
