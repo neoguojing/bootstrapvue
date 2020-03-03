@@ -15,6 +15,21 @@
 
     <BRow>
       <BCol>
+        <NModal 
+          btnName="my-table"
+          modalTitle="对话框"
+          @show="handleModalEnvet"
+          @hidden="handleModalEnvet"
+          @close="handleModalEnvet"
+          @cancel="handleModalEnvet"
+          @ok="handleModalEnvet"
+          btnSize="lg"
+        ></NModal>
+    </BCol>
+    </BRow>
+
+    <BRow>
+      <BCol>
         <NTable 
           id="my-table"
           :items="items"
@@ -53,6 +68,7 @@ import NPagination from '@/components/NPagination.vue'
 import NTable from '@/components/NTable.vue'
 import NCarousel from '@/components/NCarousel.vue'
 import NPageTable from '@/components/NPageTable.vue'
+import NModal from '@/components/NModal.vue'
 
 export default { //导出模块
   name: 'Home',
@@ -60,7 +76,8 @@ export default { //导出模块
     NPagination,
     NTable,
     NCarousel,
-    NPageTable
+    NPageTable,
+    NModal
   },
   data() {
       return {
@@ -108,6 +125,9 @@ export default { //导出模块
       },
       getCurrentSlide(val){
         console.log("getCurrentSlide:",val)
+      },
+      handleModalEnvet(val){
+        console.log("handleModalEnvet:",val)
       }
     }
 }
