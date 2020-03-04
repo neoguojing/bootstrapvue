@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin-top:10px;">
     <BNavbar toggleable="lg" type="dark" v-bind:variant="theme">
         <BNavbarBrand href="#">
             <img v-bind:src="brandImage" class="d-inline-block align-top">
