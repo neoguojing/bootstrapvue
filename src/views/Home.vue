@@ -4,7 +4,6 @@
       <BCol>
         <NCarousel 
           id="my-slide"
-          :interval="400"
           :imgWidth="1024"
           :imgHeight="480"
           :imgList="imgList"
@@ -13,7 +12,7 @@
       </BCol>
     </BRow>
 
-    <BRow>
+    <BRow style="margin-top:10px;">
       <BCol cols="9">
         <b-card no-body>
           <b-tabs card fill>
@@ -89,8 +88,49 @@
       </BCol>
 
       <BCol cols="3">
-        <b-calendar locale="zh">
-        </b-calendar>
+        <BRow>
+          <BCol>
+            <b-calendar locale="zh">
+            </b-calendar>
+          </BCol>
+        </BRow>
+        <BRow>
+          <BCol>
+            <b-card no-body class="mb-1">
+              <b-card-header header-tag="header" class="p-1" role="tab">
+                <b-button block href="#" v-b-toggle.accordion-1 variant="info">Accordion 1</b-button>
+              </b-card-header>
+              <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                <b-card-body>
+                  <b-card-text>I start opened because <code>visible</code> is <code>true</code></b-card-text>
+                  <b-card-text>{{ text }}</b-card-text>
+                </b-card-body>
+              </b-collapse>
+            </b-card>
+
+            <b-card no-body class="mb-1">
+              <b-card-header header-tag="header" class="p-1" role="tab">
+                <b-button block href="#" v-b-toggle.accordion-2 variant="info">Accordion 2</b-button>
+              </b-card-header>
+              <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+                <b-card-body>
+                  <b-card-text>{{ text }}</b-card-text>
+                </b-card-body>
+              </b-collapse>
+            </b-card>
+
+            <b-card no-body class="mb-1">
+              <b-card-header header-tag="header" class="p-1" role="tab">
+                <b-button block href="#" v-b-toggle.accordion-3 variant="info">Accordion 3</b-button>
+              </b-card-header>
+              <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
+                <b-card-body>
+                  <b-card-text>{{ text }}</b-card-text>
+                </b-card-body>
+              </b-collapse>
+            </b-card>
+          </BCol>
+        </BRow>
       </BCol>
     </BRow>
 
@@ -99,7 +139,7 @@
 
 <script>
 // @ is an alias to /src
-import { BRow,BCol,BCard,BTab,BTabs,BCardText,BCalendar  } from 'bootstrap-vue';
+import { BRow,BCol,BCard,BTab,BTabs,BCardText,BCalendar,BCollapse,BCardBody,BCardHeader,BButton  } from 'bootstrap-vue';
 import NPagination from '@/components/NPagination.vue'
 import NTable from '@/components/NTable.vue'
 import NCarousel from '@/components/NCarousel.vue'
@@ -118,12 +158,14 @@ export default { //导出模块
     BCard,
     BTabs,
     BCardText,
-    BCalendar
+    BCalendar,
+    BCollapse,BCardBody,BCardHeader,BButton
   },
   data() {
       return {
         perPage: 3,
         currentPage: 1,
+        text:"ddddddddddddddddd",
         items: [
           { id: 1, 姓: 'Fred', 名: 'Flintstone' },
           { id: 2, 姓: 'Wilma', 名: 'Flintstone' },

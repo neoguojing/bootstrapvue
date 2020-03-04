@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top:20px;">
     <b-carousel
       :id="id"
       v-model="slide"
@@ -34,7 +34,7 @@ import { BCarousel,BCarouselSlide } from 'bootstrap-vue';
 })
 export default class NCarousel extends Vue {
     @Prop(String) id?: string;
-    @Prop(Number) interval?: number;
+    @Prop({default: 4000}) interval?: number;
     @Prop({default: '#ababab'}) background!: string; //表头
     @Prop(Number) imgWidth?: number;
     @Prop(Number) imgHeight?: number;

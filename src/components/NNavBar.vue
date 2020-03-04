@@ -28,14 +28,19 @@
             <BDropdownItem href="#">FA</BDropdownItem>
             </BNavItemDropdown>
 
-            <BNavItemDropdown right>
-            <!-- Using 'button-content' slot -->
-            <template v-slot:button-content>
-                <em>User</em>
-            </template>
-            <BDropdownItem href="#">Profile</BDropdownItem>
-            <BDropdownItem href="#">Sign Out</BDropdownItem>
+            <BNavItem v-if="isLogin != true" to="/login" right>
+                SignIn
+            </BNavItem>
+
+            <BNavItem v-if="isLogin != true"  to="/register" right>
+                SignUp
+            </BNavItem>
+
+            <BNavItemDropdown v-if="isLogin == true" :text="User" right>
+                <BDropdownItem href="#">Profile</BDropdownItem>
+                <BDropdownItem href="#">Sign Out</BDropdownItem>
             </BNavItemDropdown>
+
         </BNavbarNav>
         </BCollapse>
     </BNavbar>
@@ -96,9 +101,6 @@ export default class NNavBar extends Vue {
         console.log('emitSearchValue emit',val);
     }
 
-    //计算属性
-    /*get ValA(){
-            return 1;
-        }*/
+    @Prop({default: false}) isLogin!: boolean;
 }
 </script>
