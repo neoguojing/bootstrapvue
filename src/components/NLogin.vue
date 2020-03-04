@@ -99,7 +99,7 @@ export default class NLogin extends Vue {
        return this.loginData.account.length >= this.nameLength? true:false
     }
     
-    get passwordState(): boolean{
+    get passwordState(): boolean|null{
         if (this.loginData.password == "") {
             return null;
         }
@@ -135,7 +135,11 @@ export default class NLogin extends Vue {
         }
     }
     ////////////////////////////////////////////
-    @Prop({default: 4}) nameLength?: number;
+    constructor(){
+        super();
+        this.nameLength = 4;
+    }
+    @Prop({default: 4}) nameLength: number;
     /////////////////////////////////////////////
     checkPassword(): boolean{
         const patten=new RegExp("/^[A-Za-z][A-Za-z0-9]{7,99}(?<=[^A-Z].*)(?<=[^a-z].*)(?<=[^0-9].*)$/");

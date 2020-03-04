@@ -50,15 +50,26 @@ data:
     }
 })
 export default class NPageTable extends Vue {
+    constructor(){
+      super();
+      this.id = "my-page-table"
+      this.items = [];
+      this.perPage = 10;
+      this.currentPage = 1;
+    }
+
     @Prop(String) id?: string;
     @Prop(Array) items?: any[];
     @Prop(Number) perPage?: number;
 
     /////////////////////////////////////////////
-    currentPage = 1;
+    currentPage: number;
 
     ///////////////////////////////////////////
-    get totalRows(): number{
+    get totalRows(): number|undefined{
+        if (this.items == undefined) {
+            return undefined;
+        }
         return this.items.length
     }
 
