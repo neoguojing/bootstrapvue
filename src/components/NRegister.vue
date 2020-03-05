@@ -48,7 +48,7 @@
             <b-col cols="4">
             </b-col>
             <b-col cols="4">
-                <b-form-group label="gender">
+                <b-form-group>
                     <b-form-radio-group
                         v-model="selectedGender"
                         :options="genders"
@@ -173,7 +173,9 @@
         <b-row>
             <b-col cols="4">
             </b-col>
-            <b-col cols="4">
+            <b-col cols="3">
+            </b-col>
+            <b-col cols="1">
                <b-button 
                     variant="primary" 
                     @click="onSubmit" 
@@ -204,6 +206,7 @@ import { BFormGroup,BButton,BFormInput,BFormCheckbox,BRow,BCol,BFormRadioGroup,B
     }
 })
 export default class NRegister extends Vue {
+    //todo 上传图片单独分开
     /////////////////////////////////////////////
     registerData = {
         userName : "",
@@ -214,6 +217,12 @@ export default class NRegister extends Vue {
         tel:"",
         birthday:""
     }
+
+    selectedGender = 0;
+    genders = [
+        { text: 'Male', value: 1 },
+        { text: 'Female', value: 0 }
+    ]
     
     confirmPassword = "";
     ///////////////////////////////////////////
@@ -224,11 +233,11 @@ export default class NRegister extends Vue {
        return this.registerData.userName.length >= this.nameLength? true:false
     }
 
-    get emailNameState(): boolean|null {
+    get emailState(): boolean|null {
         if (this.registerData.email == "") {
             return null;
         }
-       const patten=new RegExp("/^[A-Za-z][A-Za-z0-9]{7,99}(?<=[^A-Z].*)(?<=[^a-z].*)(?<=[^0-9].*)$/");
+        const patten = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         return patten.test(this.registerData.email);
     }
 
@@ -236,7 +245,7 @@ export default class NRegister extends Vue {
         if (this.registerData.tel == "") {
             return null;
         }
-       const patten=new RegExp("/^[A-Za-z][A-Za-z0-9]{7,99}(?<=[^A-Z].*)(?<=[^a-z].*)(?<=[^0-9].*)$/");
+        const patten =/^[1][3,4,5,7,8][0-9]{9}$/;
         return patten.test(this.registerData.tel);
     }
 
@@ -260,7 +269,7 @@ export default class NRegister extends Vue {
         if (this.registerData.password == "") {
             return null;
         }
-        const patten=new RegExp("/^[A-Za-z][A-Za-z0-9]{7,99}(?<=[^A-Z].*)(?<=[^a-z].*)(?<=[^0-9].*)$/");
+        const patten = /^[A-Za-z][A-Za-z0-9]{7,99}(?<=[^A-Z].*)(?<=[^a-z].*)(?<=[^0-9].*)$/;
         return patten.test(this.registerData.password);
     }
 
@@ -275,11 +284,10 @@ export default class NRegister extends Vue {
     }
 
     get btnState(): boolean{
-        if (this.registerData.userName == "" || this.registerData.password == "") {
-            return false;
-        }
-
-        if (this.passwordState && this.userNameState) {
+  
+        if (this.passwordState && this.userNameState && 
+            this.picState && this.telState && this.emailState &&
+            this.birthdayState && this.confirmPasswordState) {
             return true;
         }
 
@@ -305,7 +313,7 @@ export default class NRegister extends Vue {
         }
     }
 
-    get confirmPaaswordFeedback(): string {
+    get confirmPasswordFeedback(): string {
         if (this.confirmPassword == '') {
             return 'Please confirm password';
         } else if(!this.confirmPasswordState) {
@@ -318,7 +326,7 @@ export default class NRegister extends Vue {
     get emailFeedback(): string {
         if (this.registerData.email == '') {
             return 'Please enter email';
-        } else if(!this.registerData.email) {
+        } else if(!this.emailState) {
             return 'invalid email';
         } else {
             return "";
@@ -328,7 +336,7 @@ export default class NRegister extends Vue {
     get telFeedback(): string {
         if (this.registerData.tel == '') {
             return 'Please enter tel';
-        } else if(!this.registerData.tel) {
+        } else if(!this.telState) {
             return 'invalid tel';
         } else {
             return "";
