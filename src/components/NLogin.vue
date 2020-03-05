@@ -141,10 +141,6 @@ export default class NLogin extends Vue {
     }
     @Prop({default: 4}) nameLength: number;
     /////////////////////////////////////////////
-    checkPassword(): boolean{
-        const patten=new RegExp("/^[A-Za-z][A-Za-z0-9]{7,99}(?<=[^A-Z].*)(?<=[^a-z].*)(?<=[^0-9].*)$/");
-        return patten.test(this.loginData.password);
-    }
     onSubmit(){
         this.emitSubmit();
     }
