@@ -8,15 +8,17 @@
                     id="account-group"
                     label-for="account"
                     :invalid-feedback="accountFeedback"
-                    :state="false"
+                    :state="accountGroupState"
                 >
                 <b-form-input 
                     id="account" 
                     type="text" 
                     placeholder="Enter your account"
                     v-model="loginData.account" 
-                    :state="accountState" trim/>
-                </b-form-group>
+                    :state="accountState" 
+                    trim
+                    @input="accountGroupState=false"
+                /></b-form-group>
             </b-col>
             <b-col cols="4">
             </b-col>
@@ -30,15 +32,17 @@
                     id="password-group"
                     label-for="password"
                     :invalid-feedback="passwordFeedback"
-                    :state="false"
+                    :state="passwordGroupState"
                 >
                 <b-form-input 
                     id="password" 
                     type="password" 
                     placeholder="Enter your password"
                     v-model="loginData.password" 
-                    :state="passwordState" trim/>
-                </b-form-group>
+                    :state="passwordState" 
+                    trim
+                    @input="passwordGroupState=false"
+                /></b-form-group>
             </b-col>
             <b-col cols="4">
             </b-col>
@@ -84,13 +88,23 @@ import { BFormGroup,BButton,BFormInput,BFormCheckbox,BRow,BCol } from 'bootstrap
     }
 })
 export default class NLogin extends Vue {
+    constructor(){
+        super();
+        this.accountGroupState = null;
+        this.passwordGroupState = null;
+        this.nameLength = 4;
+    }
+    //////////////////////////////////////
+
+    @Prop({default: 4}) nameLength: number;
     /////////////////////////////////////////////
     loginData = {
         account : "",
         password : "",
         isRemember : 0
     }
-    
+    accountGroupState: boolean|null
+    passwordGroupState: boolean|null
     ///////////////////////////////////////////
     get accountState(): boolean|null {
         if (this.loginData.account == "") {
@@ -134,12 +148,6 @@ export default class NLogin extends Vue {
             return '';
         }
     }
-    ////////////////////////////////////////////
-    constructor(){
-        super();
-        this.nameLength = 4;
-    }
-    @Prop({default: 4}) nameLength: number;
     /////////////////////////////////////////////
     onSubmit(){
         this.emitSubmit();

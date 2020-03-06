@@ -3,6 +3,7 @@
     <BRow>
       <BCol>
         <NNavBar 
+          brandImage="assets/logo.png"
           theme="primary" 
           :menuList="menus" 
           isSearchShow=false

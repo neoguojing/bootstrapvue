@@ -52,9 +52,6 @@ data:
 export default class NPageTable extends Vue {
     constructor(){
       super();
-      this.id = "my-page-table"
-      this.items = [];
-      this.perPage = 10;
       this.currentPage = 1;
     }
 
