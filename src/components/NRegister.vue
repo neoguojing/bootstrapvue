@@ -8,14 +8,16 @@
                     id="userName-group"
                     label-for="userName"
                     :invalid-feedback="userNameFeedback"
-                    :state="false"
+                    :state="userNameGroupState"
                 >
                 <b-form-input 
                     id="userName" 
                     type="text" 
                     placeholder="Enter your userName"
                     v-model="registerData.userName" 
-                    :state="userNameState" trim/>
+                    :state="userNameState" 
+                    @input="userNameGroupState=false"
+                    trim/>
                 </b-form-group>
             </b-col>
             <b-col cols="4">
@@ -30,7 +32,7 @@
                     id="pic-group"
                     label-for="pic"
                     :invalid-feedback="picFeedback"
-                    :state="false"
+                    :state="picGroupState"
                 >
                 <b-form-file
                     id="pic" 
@@ -39,6 +41,7 @@
                     v-model="registerData.pic" 
                     :state="picState"
                     accept="image/jpeg, image/png, image/gif"
+                    @input="picGroupState=false"
                 /></b-form-group>
             </b-col>
             <b-col cols="4">
@@ -69,14 +72,16 @@
                     id="email-group"
                     label-for="email"
                     :invalid-feedback="emailFeedback"
-                    :state="false"
+                    :state="emailGroupState"
                 >
                 <b-form-input 
                     id="email" 
                     type="email" 
                     placeholder="Enter your email"
                     v-model="registerData.email" 
-                    :state="emailState" trim/>
+                    :state="emailState" 
+                    @input="emailGroupState=false"
+                    trim/>
                 </b-form-group>
             </b-col>
             <b-col cols="4">
@@ -91,14 +96,16 @@
                     id="tel-group"
                     label-for="tel"
                     :invalid-feedback="telFeedback"
-                    :state="false"
+                    :state="telGroupState"
                 >
                 <b-form-input 
                     id="tel" 
                     type="tel" 
                     placeholder="Enter your telephone"
                     v-model="registerData.tel" 
-                    :state="telState" trim/>
+                    :state="telState" 
+                    @input="telGroupState=false"
+                    trim/>
                 </b-form-group>
             </b-col>
             <b-col cols="4">
@@ -113,14 +120,16 @@
                     id="birthday-group"
                     label-for="birthday"
                     :invalid-feedback="birthdayFeedback"
-                    :state="false"
+                    :state="birthdayGroupState"
                 >
                 <b-form-input 
                     id="birthday" 
                     type="date" 
                     placeholder="Select your birthday"
                     v-model="registerData.birthday" 
-                    :state="birthdayState"/>
+                    :state="birthdayState"
+                    @input="birthdayGroupState=false"
+                    />
                 </b-form-group>
             </b-col>
             <b-col cols="4">
@@ -135,14 +144,16 @@
                     id="password-group"
                     label-for="password"
                     :invalid-feedback="passwordFeedback"
-                    :state="false"
+                    :state="passwordGroupState"
                 >
                 <b-form-input 
                     id="password" 
                     type="password" 
                     placeholder="Enter your password"
                     v-model="registerData.password" 
-                    :state="passwordState" trim/>
+                    :state="passwordState" 
+                    @input="passwordGroupState=false"
+                    trim/>
                 </b-form-group>
             </b-col>
             <b-col cols="4">
@@ -157,14 +168,16 @@
                     id="confirm-password-group"
                     label-for="confirm-password"
                     :invalid-feedback="confirmPasswordFeedback"
-                    :state="false"
+                    :state="confirmGroupState"
                 >
                 <b-form-input 
                     id="confirm-password" 
                     type="password" 
                     placeholder="Confirm your password"
                     v-model="confirmPassword" 
-                    :state="confirmPasswordState" trim/>
+                    :state="confirmPasswordState" 
+                    @input="confirmGroupState=false"
+                    trim/>
                 </b-form-group>
             </b-col>
             <b-col cols="4">
@@ -212,6 +225,14 @@ export default class NRegister extends Vue {
     constructor(){
         super()
         this.nameLength = 4;
+
+        this.userNameGroupState=null;
+        this.passwordGroupState=null;
+        this.picGroupState=null;
+        this.telGroupState=null;
+        this.emailGroupState=null;
+        this.birthdayGroupState=null;
+        this.confirmGroupState=null;
     }
     ///////////////////////////////////////////
     @Prop({default: 4}) nameLength: number;
@@ -233,6 +254,14 @@ export default class NRegister extends Vue {
     ]
     
     confirmPassword = "";
+
+    userNameGroupState: boolean|null
+    passwordGroupState: boolean|null
+    picGroupState: boolean|null
+    telGroupState: boolean|null
+    emailGroupState: boolean|null
+    birthdayGroupState: boolean|null
+    confirmGroupState: boolean|null
     ///////////////////////////////////////////
     get userNameState(): boolean|null {
         if (this.registerData.userName == "") {

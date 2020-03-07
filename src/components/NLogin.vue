@@ -50,26 +50,36 @@
         <b-row>
             <b-col cols="4">
             </b-col>
-            <b-col cols="3">
+            <b-col cols="2">
                 <b-form-checkbox
                     id="mem"
                     v-model="loginData.isRemember"
                     name="mempasswd"
                     value="1"
                     unchecked-value="0"
-                >rememer password</b-form-checkbox>
+                >Remeber password</b-form-checkbox>
             </b-col>
-            <b-col cols="1">
-                <b-button 
+            <b-col cols="2">
+                <b-link to="/forgetPassword">Forget password</b-link>
+            </b-col>
+            
+            <b-col cols="4">
+            </b-col>
+        </b-row>
+
+        <b-row style="margin-top:10px;">
+            <b-col cols="6">
+            </b-col>
+            <b-col cols="2">
+                <b-button block
                     variant="primary" 
                     @click="onSubmit" 
                     :disabled="!btnState"
-                >submit</b-button>
+                >Log In</b-button>
             </b-col>
             <b-col cols="4">
             </b-col>
         </b-row>
-        
   </div>
 </template>
 

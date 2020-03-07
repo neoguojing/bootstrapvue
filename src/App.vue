@@ -3,7 +3,7 @@
     <BRow>
       <BCol>
         <NNavBar 
-          brandImage="../assets/logo.png"
+          :brandImage="Logo"
           theme="primary" 
           :menuList="menus" 
           isSearchShow=false
@@ -11,11 +11,9 @@
         />
       </BCol>
     </BRow>
-    <BRow>
+    <BRow >
       <BCol>
-        <BCard no-body>
-          <router-view/>
-        </BCard>
+        <router-view class="full-height"/>
       </BCol>
     </BRow>
   </BContainer>
@@ -25,8 +23,8 @@
 <script>
 // @ is an alias to /src
 import NNavBar from '@/components/NNavBar.vue'
+import Logo from '@/assets/logo.png'
 import { BContainer,BRow,BCol } from 'bootstrap-vue';
-import { BCard  } from 'bootstrap-vue';
 
 export default { //导出模块
   name: 'Index',
@@ -49,3 +47,13 @@ export default { //导出模块
   }
 }
 </script>
+<style scoped>
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.full-height {
+  height: 100%;
+}
+</style>

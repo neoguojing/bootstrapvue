@@ -12,16 +12,16 @@
                 </b-jumbotron>
             </b-col>
         </b-row>
-        <b-row class="nav">
+        <b-row>
             <b-col cols="5">
             </b-col>
             <b-col cols="2">
                 <b-button-group block>
-                <b-button  variant="primary" 
+                <b-button pill variant="primary" 
                     @click="onPrev" 
                     :disabled="isPrevActive!=true"
                 >Prev</b-button>
-                <b-button variant="primary" 
+                <b-button pill variant="primary" 
                     @click="onNext" 
                 >{{ submitBtnName }}</b-button>
                 </b-button-group>
@@ -114,9 +114,3 @@ export default class NJumbotron extends Vue {
     }
 }
 </script>
-
-<style scoped>
-    .nav{
-        bottom: 10px;
-    }
-</style>
