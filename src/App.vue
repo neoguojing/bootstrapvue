@@ -3,7 +3,7 @@
     <BRow>
       <BCol>
         <NNavBar 
-          brandImage="assets/logo.png"
+          brandImage="../assets/logo.png"
           theme="primary" 
           :menuList="menus" 
           isSearchShow=false
@@ -38,7 +38,7 @@ export default { //导出模块
       menus:[
         {text:"Vue",to:"/"},
         {text:"Demo",to:"/demo"},
-        {text:"About",to:"/about"}
+        {text:"About",to:"/register2"}
       ]
     }
   },

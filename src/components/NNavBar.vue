@@ -29,11 +29,11 @@
             </BNavItemDropdown>
 
             <BNavItem v-if="isLogin != true" to="/login" right>
-                SignIn
+                Signin
             </BNavItem>
 
             <BNavItem v-if="isLogin != true"  to="/register" right>
-                SignUp
+                Signup
             </BNavItem>
 
             <BNavItemDropdown v-if="isLogin == true" :text="User" right>

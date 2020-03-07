@@ -35,10 +35,11 @@
                 <b-form-file
                     id="pic" 
                     drop-placeholder="Drop file here..."
-                    placeholder="upload your pic"
+                    placeholder="Upload your pic"
                     v-model="registerData.pic" 
-                    :state="picState"/>
-                </b-form-group>
+                    :state="picState"
+                    accept="image/jpeg, image/png, image/gif"
+                /></b-form-group>
             </b-col>
             <b-col cols="4">
             </b-col>
@@ -95,7 +96,7 @@
                 <b-form-input 
                     id="tel" 
                     type="tel" 
-                    placeholder="Enter your tel"
+                    placeholder="Enter your telephone"
                     v-model="registerData.tel" 
                     :state="telState" trim/>
                 </b-form-group>
@@ -117,7 +118,7 @@
                 <b-form-input 
                     id="birthday" 
                     type="date" 
-                    placeholder="select your birthday"
+                    placeholder="Select your birthday"
                     v-model="registerData.birthday" 
                     :state="birthdayState"/>
                 </b-form-group>
@@ -161,7 +162,7 @@
                 <b-form-input 
                     id="confirm-password" 
                     type="password" 
-                    placeholder="confirm your password"
+                    placeholder="Confirm your password"
                     v-model="confirmPassword" 
                     :state="confirmPasswordState" trim/>
                 </b-form-group>
@@ -207,6 +208,13 @@ import { BFormGroup,BButton,BFormInput,BFormCheckbox,BRow,BCol,BFormRadioGroup,B
 })
 export default class NRegister extends Vue {
     //todo 上传图片单独分开
+     ////////////////////////////////////////////
+    constructor(){
+        super()
+        this.nameLength = 4;
+    }
+    ///////////////////////////////////////////
+    @Prop({default: 4}) nameLength: number;
     /////////////////////////////////////////////
     registerData = {
         userName : "",
@@ -362,12 +370,7 @@ export default class NRegister extends Vue {
             return "";
         }
     }
-    ////////////////////////////////////////////
-    constructor(){
-        super()
-        this.nameLength = 4;
-    }
-    @Prop({default: 4}) nameLength: number;
+   
     /////////////////////////////////////////////
     onSubmit(){
         this.emitSubmit();
