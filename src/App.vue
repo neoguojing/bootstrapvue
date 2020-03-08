@@ -3,7 +3,7 @@
     <BRow>
       <BCol>
         <NNavBar 
-          :brandImage="Logo"
+          :brandImage="logo"
           theme="primary" 
           :menuList="menus" 
           isSearchShow=false
@@ -23,7 +23,6 @@
 <script>
 // @ is an alias to /src
 import NNavBar from '@/components/NNavBar.vue'
-import Logo from '@/assets/logo.png'
 import { BContainer,BRow,BCol } from 'bootstrap-vue';
 
 export default { //导出模块
@@ -33,6 +32,7 @@ export default { //导出模块
   },
   data: function(){
     return {
+      logo: require('@/assets/favicon.png'),
       menus:[
         {text:"Vue",to:"/"},
         {text:"Demo",to:"/demo"},
