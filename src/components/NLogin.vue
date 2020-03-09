@@ -60,7 +60,7 @@
                 >Remeber password</b-form-checkbox>
             </b-col>
             <b-col cols="2">
-                <b-link to="/forgetPassword">Forget password</b-link>
+                <b-link :to="redirectToForgetPassword">Forget password</b-link>
             </b-col>
             
             <b-col cols="4">
@@ -157,6 +157,10 @@ export default class NLogin extends Vue {
         } else {
             return '';
         }
+    }
+
+    get redirectToForgetPassword(): string {
+        return "/forgetPassword/"+this.loginData.account
     }
     /////////////////////////////////////////////
     onSubmit(){

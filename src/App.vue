@@ -35,8 +35,8 @@ export default { //导出模块
       logo: require('@/assets/favicon.png'),
       menus:[
         {text:"Vue",to:"/"},
-        {text:"Demo",to:"/demo"},
-        {text:"About",to:"/register2"}
+        {text:"Demo",to:"/admin/resetPassword"},
+        {text:"About",to:"/forgetPassword/1223"}
       ]
     }
   },

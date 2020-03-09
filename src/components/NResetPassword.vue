@@ -90,7 +90,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue,Emit,Inject,Provide,Watch,Model } from 'vue-property-decorator';
-        
+import { Md5 } from 'ts-md5';
 import { BFormGroup,BButton,BFormInput,BRow,BCol } from 'bootstrap-vue';
 
 @Component({
@@ -135,7 +135,8 @@ export default class NResetPassword extends Vue {
             return null;
         }
         const patten = /^[A-Za-z][A-Za-z0-9]{7,99}(?<=[^A-Z].*)(?<=[^a-z].*)(?<=[^0-9].*)$/;
-        return patten.test(this.resetPassword.password);
+        return patten.test(this.resetPassword.password) &&
+            (this.resetPassword.oldPassword != this.resetPassword.password);
     }
 
     get confirmPasswordState(): boolean|null{
@@ -169,7 +170,9 @@ export default class NResetPassword extends Vue {
             return 'Please enter password';
         } else if(!this.passwordState) {
             return '8-100 length & must include number and letter low and upper & first letter must not be number';
-        } else {
+        } else if (this.resetPassword.oldPassword == this.resetPassword.password) {
+            return 'new password was equal to old one'
+        }else {
             return "";
         }
     }
@@ -191,7 +194,14 @@ export default class NResetPassword extends Vue {
             return '';
         }
     }
+
+    
     /////////////////////////////////////////////
+    md5(val: string): string{
+        //return Md5.hashStr(val);
+        return ""
+    }
+
     onSubmit(){
         this.emitSubmit();
     }

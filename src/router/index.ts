@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Register2 from '../views/Register2.vue'
+import ForgetPassword from '../views/ForgetPassword.vue'
 import Demo from '../views/Demo.vue'
 import ResetPassword from '../views/admin/ResetPassword.vue'
 
@@ -31,7 +32,12 @@ const routes = [
     component: Register2
   },
   {
-    path: '/resetPassword',
+    path: '/forgetPassword/:account',
+    name: 'ForgetPassword',
+    component: ForgetPassword
+  },
+  {
+    path: '/admin/resetPassword',
     name: 'ResetPassword',
     component: ResetPassword
   },
