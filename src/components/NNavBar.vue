@@ -32,7 +32,7 @@
                 Sign in
             </BNavItem>
 
-            <BNavItem v-if="isLogin != true"  to="/register" right>
+            <BNavItem v-if="isLogin != true"  to="/register2" right>
                 Sign up
             </BNavItem>
 

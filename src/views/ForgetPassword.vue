@@ -3,7 +3,7 @@
     <BRow>
       <BCol>
         <NForgetPassword
-            :account='getAccount'
+            :account='account'
             @submit="submit"
         ></NForgetPassword>
       </BCol>
@@ -23,9 +23,9 @@ export default { //导出模块
         BCol,
         NForgetPassword
     },
-    computed:{
-        getAccount() {
-            return this.$route.params.account
+    data(){
+        return {
+            account: this.$route.params.account
         }
     },
     methods:{

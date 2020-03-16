@@ -89,11 +89,11 @@ export default class NForgetPassword extends Vue {
     }
 
     get btnState(): boolean{
-        if (this.forgetPasswordData.email == "" || this.account == "") {
+        if (this.forgetPasswordData.email == "") {
             return false;
         }
 
-        if (this.emailState && this.account != "") {
+        if (this.emailState) {
             return true;
         }
 
@@ -109,6 +109,7 @@ export default class NForgetPassword extends Vue {
     /////////////////////////////////////////////
     @Emit("submit")
     emitSubmit(): object{
+        console.log(this.account);
         return this.forgetPasswordData;
     }
 }
