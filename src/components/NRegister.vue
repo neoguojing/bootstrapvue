@@ -204,9 +204,15 @@
 </template>
 
 <script lang="ts">
+import RegisterData from '../protocol/Register'
 import { Component,Prop,Vue,Emit,Inject,Provide,Watch,Model } from 'vue-property-decorator';
         
 import { BFormGroup,BButton,BFormInput,BFormCheckbox,BRow,BCol,BFormRadioGroup,BFormFile } from 'bootstrap-vue';
+
+import store from '@/store';
+import { getModule } from 'vuex-module-decorators';
+import Register from '@/store/modules/Register';
+const registerStore = getModule(Register, store);
 
 @Component({
     components: {
@@ -233,19 +239,13 @@ export default class NRegister extends Vue {
         this.emailGroupState=null;
         this.birthdayGroupState=null;
         this.confirmGroupState=null;
+
+        this.registerData = new RegisterData();
     }
     ///////////////////////////////////////////
     @Prop({default: 4}) nameLength: number;
     /////////////////////////////////////////////
-    registerData = {
-        userName : "",
-        password : "",
-        gender : 0,
-        pic: null,
-        email:"",
-        tel:"",
-        birthday:""
-    }
+    registerData: RegisterData;
 
     selectedGender = 0;
     genders = [
@@ -402,6 +402,7 @@ export default class NRegister extends Vue {
    
     /////////////////////////////////////////////
     onSubmit(){
+        registerStore.setRegisterData(this.registerData);
         this.emitSubmit();
     }
 

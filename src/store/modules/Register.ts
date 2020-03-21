@@ -1,26 +1,20 @@
 import RegisterData from '../../protocol/Register'
-import { Module } from "vuex"
+import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators';
 import axios, { AxiosRequestConfig } from "axios";
 
-const RegisterModule: Module<any,any> = {
-  state: {
-      registerData: RegisterData,
-  },
+@Module({name: 'Register', namespaced: true, stateFactory: true})
+export default class Register extends VuexModule{
 
-  getters: {
-      getRegisterData(state): RegisterData{
-          return state.registerData;
-      }
-  },
-  mutations: {
-    setRegisterData(state: any, payload?: any) {
-          state.registerData = payload;
-          console.log(state.registerData);
-    }
-  },
-  actions: {
-
+  public registerData = new RegisterData();
+ 
+  get getRegisterData(): RegisterData{
+      return this.registerData;
   }
-}
 
-export default RegisterModule;
+  @Mutation
+  setRegisterData(payload: RegisterData) {
+        this.registerData = payload;
+        console.log(this.registerData);
+  }
+
+}

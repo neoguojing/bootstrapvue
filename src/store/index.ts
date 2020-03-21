@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import LoginModule  from './modules/Login'
-import RegisterModule  from './modules/Register'
+import Login  from './modules/Login'
+import Register  from './modules/Register'
+import ForgetPassword  from './modules/ForgetPassword'
+import ResetPassword  from './modules/ResetPassword'
 
 Vue.use(Vuex)
 
@@ -13,7 +15,9 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    login: LoginModule,
-    register: RegisterModule
+    Login,
+    Register,
+    ForgetPassword,
+    ResetPassword,
   }
 })

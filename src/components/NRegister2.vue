@@ -248,6 +248,11 @@ import {
     BFormFile
 } from 'bootstrap-vue';
 
+import store from '@/store';
+import { getModule } from 'vuex-module-decorators';
+import Register from '@/store/modules/Register';
+const registerStore = getModule(Register, store);
+
 @Component({
     components: {
         BJumbotron,
@@ -474,7 +479,7 @@ export default class NRegister2 extends Vue {
     }
 
     onSubmit(){
-        this.$store.commit("setRegisterData",this.registerData);
+        registerStore.setRegisterData(this.registerData);
         this.emitSubmit();
     }
 

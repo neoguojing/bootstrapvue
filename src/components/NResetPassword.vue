@@ -89,10 +89,14 @@
 </template>
 
 <script lang="ts">
+import ResetPasswordData from '../protocol/ResetPassword'
 import { Component, Prop, Vue,Emit,Inject,Provide,Watch,Model } from 'vue-property-decorator';
-import { Md5 } from 'ts-md5';
 import { BFormGroup,BButton,BFormInput,BRow,BCol } from 'bootstrap-vue';
 
+import store from '@/store';
+import { getModule } from 'vuex-module-decorators';
+import ResetPassword from '@/store/modules/ResetPassword';
+const resetPasswordStore = getModule(ResetPassword, store);
 @Component({
     components: {
         BFormGroup,
@@ -108,14 +112,13 @@ export default class NResetPassword extends Vue {
         this.passwordGroupState = null;
         this.oldPasswordGroupState = null;
         this.confirmPasswordGroupState = null;
+
+        this.resetPassword = new ResetPasswordData();
     }
     //////////////////////////////////////
 
     /////////////////////////////////////////////
-    resetPassword = {
-        oldPassword : "",
-        password : "",
-    }
+    resetPassword: ResetPasswordData;
 
     confirmPassword: string;
 
@@ -195,14 +198,8 @@ export default class NResetPassword extends Vue {
         }
     }
 
-    
-    /////////////////////////////////////////////
-    md5(val: string): string{
-        //return Md5.hashStr(val);
-        return ""
-    }
-
     onSubmit(){
+        resetPasswordStore.setResetPasswordData(this.resetPassword);
         this.emitSubmit();
     }
 

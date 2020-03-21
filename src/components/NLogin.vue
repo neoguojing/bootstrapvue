@@ -88,6 +88,11 @@ import { Component, Prop, Vue,Emit,Inject,Provide,Watch,Model } from 'vue-proper
 import { BFormGroup,BButton,BFormInput,BFormCheckbox,BRow,BCol } from 'bootstrap-vue';
 import LoginData from '../protocol/Login'
 
+import store from '@/store';
+import { getModule } from 'vuex-module-decorators';
+import Login from '@/store/modules/Login';
+const loginStore = getModule(Login, store);
+
 @Component({
     components: {
         BFormGroup,
@@ -162,7 +167,7 @@ export default class NLogin extends Vue {
     }
     /////////////////////////////////////////////
     onSubmit(){
-        this.$store.commit('setLoginData',this.loginData);
+        loginStore.setLoginData(this.loginData);
         this.emitSubmit();
     }
 
