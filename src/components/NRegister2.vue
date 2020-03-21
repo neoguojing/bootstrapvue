@@ -235,6 +235,7 @@
 </template>
 
 <script lang="ts">
+import RegisterData from '../protocol/Register'
 import { Component, Prop, Vue,Emit,Inject,Provide,Watch,Model } from 'vue-property-decorator';
 import { 
     BJumbotron,
@@ -276,6 +277,8 @@ export default class NRegister2 extends Vue {
         this.emailGroupState=null;
         this.birthdayGroupState=null;
         this.confirmGroupState=null;
+
+        this.registerData = new RegisterData();
     }
     /////////////////////////////////////////////
     @Prop({default: 4}) nameLength: number;
@@ -285,15 +288,7 @@ export default class NRegister2 extends Vue {
     submitBtnName: string;
     pageNum: number;
 
-    registerData = {
-        userName : "",
-        password : "",
-        gender : 0,
-        pic: null,
-        email:"",
-        tel:"",
-        birthday:"1988-10-11"
-    }
+    registerData: RegisterData;
 
     selectedGender = 0;
     genders = [
@@ -479,6 +474,7 @@ export default class NRegister2 extends Vue {
     }
 
     onSubmit(){
+        this.$store.commit("setRegisterData",this.registerData);
         this.emitSubmit();
     }
 
