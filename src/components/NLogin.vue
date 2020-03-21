@@ -85,8 +85,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue,Emit,Inject,Provide,Watch,Model } from 'vue-property-decorator';
-        
 import { BFormGroup,BButton,BFormInput,BFormCheckbox,BRow,BCol } from 'bootstrap-vue';
+import LoginData from '../protocol/Login'
 
 @Component({
     components: {
@@ -102,17 +102,15 @@ export default class NLogin extends Vue {
         super();
         this.accountGroupState = null;
         this.passwordGroupState = null;
+        this.loginData = new LoginData();
         this.nameLength = 4;
     }
     //////////////////////////////////////
 
     @Prop({default: 4}) nameLength: number;
     /////////////////////////////////////////////
-    loginData = {
-        account : "",
-        password : "",
-        isRemember : 0
-    }
+    private loginData: LoginData;
+
     accountGroupState: boolean|null
     passwordGroupState: boolean|null
     ///////////////////////////////////////////
@@ -164,6 +162,7 @@ export default class NLogin extends Vue {
     }
     /////////////////////////////////////////////
     onSubmit(){
+        this.$store.commit('setLoginData',this.loginData);
         this.emitSubmit();
     }
 
