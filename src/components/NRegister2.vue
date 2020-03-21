@@ -468,7 +468,18 @@ export default class NRegister2 extends Vue {
         } 
 
         if (this.submitBtnName == "Submit") {
-            this.emitSubmit()
+            if (this.btnState) {
+                registerStore.setRegisterData(this.registerData);
+                this.emitSubmit()
+            } else {
+                this.userNameGroupState=false;
+                this.passwordGroupState=false;
+                this.picGroupState=false;
+                this.telGroupState=false;
+                this.emailGroupState=false;
+                this.birthdayGroupState=false;
+                this.confirmGroupState=false;
+            }
         }
 
         if (this.currentPage == (this.pageNum-1)) {
@@ -476,11 +487,6 @@ export default class NRegister2 extends Vue {
             
         }
         this.isPrevActive = true;
-    }
-
-    onSubmit(){
-        registerStore.setRegisterData(this.registerData);
-        this.emitSubmit();
     }
 
     ////////////////////////////////////////////////////////
