@@ -8,9 +8,14 @@ import {AxiosInstance, AxiosRequestConfig,AxiosResponse  } from "axios";
 export default class Login extends VuexModule {
 
   public loginData = new LoginData();
+  public loginState = false; 
 
   get getLoginData(): LoginData{
       return this.loginData;
+  }
+
+  get getLoginState(): boolean{
+    return this.loginState;
   }
  
   @Mutation
@@ -20,11 +25,19 @@ export default class Login extends VuexModule {
   }
 
   @Mutation
+  public setLoginState(payload: boolean) {
+        this.loginState = payload;
+  }
+
+  @Mutation
   public doLogin(){
     console.log("doLogin:",this.loginData)
     client.post(config.urlLogin,this.loginData)
     .then(response => {
           console.log(response)
+          if (response.data.code >=0){
+            this.setLoginState(true);
+          }
     })
     .catch(error => {
         console.log(error)
@@ -34,6 +47,6 @@ export default class Login extends VuexModule {
   @Action
   public async login(data: LoginData) {
       this.context.commit('setLoginData',data)
-      this.context.commit('doLogin')
+      await this.context.commit('doLogin')
   }
 }

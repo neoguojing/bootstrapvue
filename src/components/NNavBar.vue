@@ -54,6 +54,10 @@ import { BNavbar,BNavbarNav,BNavbarBrand,BNavbarToggle,BCollapse,BButton,
          BNavItem,BNavText,BNavForm,BNavItemDropdown,BFormInput,BDropdownItem
 } from 'bootstrap-vue';
 
+import store from '@/store';
+import { getModule } from 'vuex-module-decorators';
+import Login from '@/store/modules/Login';
+const loginStore = getModule(Login, store);
 
 /*
 props:
@@ -101,6 +105,8 @@ export default class NNavBar extends Vue {
         console.log('emitSearchValue emit',val);
     }
 
-    @Prop({default: false}) isLogin!: boolean;
+    get isLogin(): boolean{
+        return loginStore.getLoginState;
+    }
 }
 </script>

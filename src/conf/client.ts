@@ -8,5 +8,6 @@ const client = axios.create({
 //client.defaults.headers.common['Authorization'] = "";
 client.defaults.headers.post['Content-Type'] = "application/json";
 client.defaults.timeout = 10*1000;
+client.defaults.withCredentials=true;
 
 export default client;
