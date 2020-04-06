@@ -1,6 +1,8 @@
-import LoginData from '../../protocol/Login'
+import LoginData from '@/protocol/Login'
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators';
-import axios, { AxiosRequestConfig } from "axios";
+import client from '@/conf/client'
+import config from '@/conf/config'
+import {AxiosInstance, AxiosRequestConfig,AxiosResponse  } from "axios";
 
 @Module({name: 'Login', namespaced: true, stateFactory: true})
 export default class Login extends VuexModule {
@@ -12,31 +14,26 @@ export default class Login extends VuexModule {
   }
  
   @Mutation
-  setLoginData(payload: LoginData) {
+  public setLoginData(payload: LoginData) {
         this.loginData = payload;
-        console.log(this.loginData);
+        console.log("setLoginData",this.loginData);
+  }
+
+  @Mutation
+  public doLogin(){
+    console.log("doLogin:",this.loginData)
+    client.post(config.urlLogin,this.loginData)
+    .then(response => {
+          console.log(response)
+    })
+    .catch(error => {
+        console.log(error)
+    });
   }
   
-  @Action({ commit: 'login' })
-  async login() {
-    /*commit("changeAppLoadingState", true);
-
-    var formData = new FormData();
-    formData.append("username", payload.name);
-    formData.append("password", payload.pwd);
-
-    axios({
-      method: "post",
-      url: "/auth/login",
-      data: formData
-    })
-      .then(response => {
-        commit("loggedIn", { username: response.data.name });
-        commit("changeAppLoadingState", false);
-      })
-      .catch(error => {
-        commit("loginError", error.response.data || "GENERAL_ERROR");
-        commit("changeAppLoadingState", false);
-      });*/
+  @Action
+  public async login(data: LoginData) {
+      this.context.commit('setLoginData',data)
+      this.context.commit('doLogin')
   }
 }
