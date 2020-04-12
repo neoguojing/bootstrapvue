@@ -14,7 +14,7 @@
                     id="old-password" 
                     type="password" 
                     placeholder="Enter your old password"
-                    v-model="resetPassword.oldPassword" 
+                    v-model="resetPassword.OldPassword" 
                     :state="oldPasswordState" 
                     trim
                     @input="oldPasswordGroupState=false"
@@ -38,7 +38,7 @@
                     id="password" 
                     type="password" 
                     placeholder="Enter your password"
-                    v-model="resetPassword.password" 
+                    v-model="resetPassword.Password" 
                     :state="passwordState" 
                     trim
                     @input="passwordGroupState=false"
@@ -127,34 +127,34 @@ export default class NResetPassword extends Vue {
     confirmPasswordGroupState: boolean|null
     ///////////////////////////////////////////    
     get oldPasswordState(): boolean|null{
-        if (this.resetPassword.password == "") {
+        if (this.resetPassword.Password == "") {
             return null;
         }
         return true;
     }
 
     get passwordState(): boolean|null{
-        if (this.resetPassword.password == "") {
+        if (this.resetPassword.Password == "") {
             return null;
         }
         const patten = /^[A-Za-z][A-Za-z0-9]{7,99}(?<=[^A-Z].*)(?<=[^a-z].*)(?<=[^0-9].*)$/;
-        return patten.test(this.resetPassword.password) &&
-            (this.resetPassword.oldPassword != this.resetPassword.password);
+        return patten.test(this.resetPassword.Password) &&
+            (this.resetPassword.OldPassword != this.resetPassword.Password);
     }
 
     get confirmPasswordState(): boolean|null{
         if (this.confirmPassword == "") {
             return null;
         }
-        if (this.confirmPassword != this.resetPassword.password) {
+        if (this.confirmPassword != this.resetPassword.Password) {
             return false;
         }
         return true;
     }
 
     get btnState(): boolean{
-        if (this.resetPassword.password == "" || 
-            this.resetPassword.oldPassword == "" ||
+        if (this.resetPassword.Password == "" || 
+            this.resetPassword.OldPassword == "" ||
             this.confirmPassword == "" ) {
             return false;
         }
@@ -169,11 +169,11 @@ export default class NResetPassword extends Vue {
     }
 
     get passwordFeedback(): string  {
-        if (this.resetPassword.password == '') {
+        if (this.resetPassword.Password == '') {
             return 'Please enter password';
         } else if(!this.passwordState) {
             return '8-100 length & must include number and letter low and upper & first letter must not be number';
-        } else if (this.resetPassword.oldPassword == this.resetPassword.password) {
+        } else if (this.resetPassword.OldPassword == this.resetPassword.Password) {
             return 'new password was equal to old one'
         }else {
             return "";
@@ -191,7 +191,7 @@ export default class NResetPassword extends Vue {
     }
 
     get oldPasswordFeedback(): string  {
-        if (this.resetPassword.oldPassword == '') {
+        if (this.resetPassword.OldPassword == '') {
             return 'Please enter old password';
         } else {
             return '';

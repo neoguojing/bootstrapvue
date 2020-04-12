@@ -1,9 +1,9 @@
 export default class ResetPasswordData {
-    oldPassword: string;
-    password: string;
+    OldPassword: string;
+    Password: string;
 
     constructor() {
-        this.oldPassword = "";
-        this.password = "";
+        this.OldPassword = "";
+        this.Password = "";
     }
 }

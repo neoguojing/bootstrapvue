@@ -14,7 +14,7 @@
                     id="account" 
                     type="text" 
                     placeholder="Enter your account"
-                    v-model="loginData.account" 
+                    v-model="loginData.Account" 
                     :state="accountState" 
                     trim
                     @input="accountGroupState=false"
@@ -38,7 +38,7 @@
                     id="password" 
                     type="password" 
                     placeholder="Enter your password"
-                    v-model="loginData.password" 
+                    v-model="loginData.Password" 
                     :state="passwordState" 
                     trim
                     @input="passwordGroupState=false"
@@ -53,7 +53,7 @@
             <b-col cols="2">
                 <b-form-checkbox
                     id="mem"
-                    v-model="loginData.isRemember"
+                    v-model="loginData.IsRemember"
                     name="mempasswd"
                     value="1"
                     unchecked-value="0"
@@ -120,21 +120,21 @@ export default class NLogin extends Vue {
     passwordGroupState: boolean|null
     ///////////////////////////////////////////
     get accountState(): boolean|null {
-        if (this.loginData.account == "") {
+        if (this.loginData.Account == "") {
             return null;
         }
-       return this.loginData.account.length >= this.nameLength? true:false
+       return this.loginData.Account.length >= this.nameLength? true:false
     }
     
     get passwordState(): boolean|null{
-        if (this.loginData.password == "") {
+        if (this.loginData.Password == "") {
             return null;
         }
         return true;
     }
 
     get btnState(): boolean{
-        if (this.loginData.account == "" || this.loginData.password == "") {
+        if (this.loginData.Account == "" || this.loginData.Password == "") {
             return false;
         }
 
@@ -146,16 +146,16 @@ export default class NLogin extends Vue {
     }
 
     get accountFeedback(): string {
-        if (this.loginData.account.length >= this.nameLength) {
+        if (this.loginData.Account.length >= this.nameLength) {
             return ''
-        } else if (this.loginData.account.length > 0) {
+        } else if (this.loginData.Account.length > 0) {
             return 'Enter at least '+ this.nameLength +' characters';
         } else {
             return 'Please enter account'
         }
     }
     get passwordFeedback(): string  {
-        if (this.loginData.password == '') {
+        if (this.loginData.Password == '') {
             return 'Please enter password';
         } else {
             return '';
@@ -163,7 +163,7 @@ export default class NLogin extends Vue {
     }
 
     get redirectToForgetPassword(): string {
-        return "/forgetPassword/"+this.loginData.account
+        return "/forgetPassword/"+this.loginData.Account
     }
     /////////////////////////////////////////////
     onSubmit(){

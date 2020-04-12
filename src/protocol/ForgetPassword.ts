@@ -1,7 +1,7 @@
 export default class ForgetPasswordData {
-    email: string;
+    Email: string;
 
     constructor() {
-        this.email = "";
+        this.Email = "";
     }
 }

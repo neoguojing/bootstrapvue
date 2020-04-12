@@ -14,7 +14,7 @@
                     id="userName" 
                     type="text" 
                     placeholder="Enter your userName"
-                    v-model="registerData.userName" 
+                    v-model="registerData.UserName" 
                     :state="userNameState" 
                     @input="userNameGroupState=false"
                     trim/>
@@ -38,7 +38,7 @@
                     id="pic" 
                     drop-placeholder="Drop file here..."
                     placeholder="Upload your pic"
-                    v-model="registerData.pic" 
+                    v-model="registerData.Pic" 
                     :state="picState"
                     accept="image/jpeg, image/png, image/gif"
                     @input="picGroupState=false"
@@ -78,7 +78,7 @@
                     id="email" 
                     type="email" 
                     placeholder="Enter your email"
-                    v-model="registerData.email" 
+                    v-model="registerData.Email" 
                     :state="emailState" 
                     @input="emailGroupState=false"
                     trim/>
@@ -102,7 +102,7 @@
                     id="tel" 
                     type="tel" 
                     placeholder="Enter your telephone"
-                    v-model="registerData.tel" 
+                    v-model="registerData.Tel" 
                     :state="telState" 
                     @input="telGroupState=false"
                     trim/>
@@ -126,7 +126,7 @@
                     id="birthday" 
                     type="date" 
                     placeholder="Select your birthday"
-                    v-model="registerData.birthday" 
+                    v-model="registerData.Birthday" 
                     :state="birthdayState"
                     @input="birthdayGroupState=false"
                     />
@@ -150,7 +150,7 @@
                     id="password" 
                     type="password" 
                     placeholder="Enter your password"
-                    v-model="registerData.password" 
+                    v-model="registerData.Password" 
                     :state="passwordState" 
                     @input="passwordGroupState=false"
                     trim/>
@@ -264,30 +264,30 @@ export default class NRegister extends Vue {
     confirmGroupState: boolean|null
     ///////////////////////////////////////////
     get userNameState(): boolean|null {
-        if (this.registerData.userName == "") {
+        if (this.registerData.UserName == "") {
             return null;
         }
-       return this.registerData.userName.length >= this.nameLength? true:false
+       return this.registerData.UserName.length >= this.nameLength? true:false
     }
 
     get emailState(): boolean|null {
-        if (this.registerData.email == "") {
+        if (this.registerData.Email == "") {
             return null;
         }
         const patten = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-        return patten.test(this.registerData.email);
+        return patten.test(this.registerData.Email);
     }
 
     get telState(): boolean|null {
-        if (this.registerData.tel == "") {
+        if (this.registerData.Tel == "") {
             return null;
         }
         const patten =/^[1][3,4,5,7,8][0-9]{9}$/;
-        return patten.test(this.registerData.tel);
+        return patten.test(this.registerData.Tel);
     }
 
     get picState(): boolean|null {
-        if (this.registerData.pic == null) {
+        if (this.registerData.Pic == null) {
             return false;
         }
 
@@ -295,7 +295,7 @@ export default class NRegister extends Vue {
     }
 
     get birthdayState(): boolean|null {
-        if (this.registerData.birthday == "") {
+        if (this.registerData.Birthday == "") {
             return false;
         }
 
@@ -303,18 +303,18 @@ export default class NRegister extends Vue {
     }
     
     get passwordState(): boolean|null{
-        if (this.registerData.password == "") {
+        if (this.registerData.Password == "") {
             return null;
         }
         const patten = /^[A-Za-z][A-Za-z0-9]{7,99}(?<=[^A-Z].*)(?<=[^a-z].*)(?<=[^0-9].*)$/;
-        return patten.test(this.registerData.password);
+        return patten.test(this.registerData.Password);
     }
 
     get confirmPasswordState(): boolean|null{
         if (this.confirmPassword == "") {
             return null;
         }
-        if (this.confirmPassword != this.registerData.password) {
+        if (this.confirmPassword != this.registerData.Password) {
             return false;
         }
         return true;
@@ -332,16 +332,16 @@ export default class NRegister extends Vue {
     }
 
     get userNameFeedback(): string {
-        if (this.registerData.userName.length >= this.nameLength) {
+        if (this.registerData.UserName.length >= this.nameLength) {
             return ''
-        } else if (this.registerData.userName.length > 0) {
+        } else if (this.registerData.UserName.length > 0) {
             return 'Enter at least '+ this.nameLength +' characters';
         } else {
             return 'Please enter userName'
         }
     }
     get passwordFeedback(): string  {
-        if (this.registerData.password == '') {
+        if (this.registerData.Password == '') {
             return 'Please enter password';
         } else if(!this.passwordState) {
             return '8-100 length & must include number and letter low and upper & first letter must not be number';
@@ -361,7 +361,7 @@ export default class NRegister extends Vue {
     }
 
     get emailFeedback(): string {
-        if (this.registerData.email == '') {
+        if (this.registerData.Email == '') {
             return 'Please enter email';
         } else if(!this.emailState) {
             return 'invalid email';
@@ -371,7 +371,7 @@ export default class NRegister extends Vue {
     }
 
     get telFeedback(): string {
-        if (this.registerData.tel == '') {
+        if (this.registerData.Tel == '') {
             return 'Please enter tel';
         } else if(!this.telState) {
             return 'invalid tel';
@@ -381,9 +381,9 @@ export default class NRegister extends Vue {
     }
 
     get picFeedback(): string {
-        if (this.registerData.pic == null) {
+        if (this.registerData.Pic == null) {
             return 'Please upload your pic';
-        } else if(!this.registerData.pic) {
+        } else if(!this.registerData.Pic) {
             return 'invalid tel';
         } else {
             return "";
@@ -391,9 +391,9 @@ export default class NRegister extends Vue {
     }
 
     get birthdayFeedback(): string {
-        if (this.registerData.birthday == "") {
+        if (this.registerData.Birthday == "") {
             return 'Please select your birthday';
-        } else if(!this.registerData.birthday) {
+        } else if(!this.registerData.Birthday) {
             return 'invalid tel';
         } else {
             return "";

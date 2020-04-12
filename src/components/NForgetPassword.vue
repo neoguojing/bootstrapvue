@@ -14,7 +14,7 @@
                     id="email" 
                     type="email" 
                     placeholder="Enter your email"
-                    v-model="forgetPasswordData.email" 
+                    v-model="forgetPasswordData.Email" 
                     :state="emailState" 
                     @input="emailGroupState=false"
                     trim/>
@@ -75,15 +75,15 @@ export default class NForgetPassword extends Vue {
     ///////////////////////////////////////////
 
      get emailState(): boolean|null {
-        if (this.forgetPasswordData.email == "") {
+        if (this.forgetPasswordData.Email == "") {
             return null;
         }
         const patten = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-        return patten.test(this.forgetPasswordData.email);
+        return patten.test(this.forgetPasswordData.Email);
     }
 
     get emailFeedback(): string {
-        if (this.forgetPasswordData.email == '') {
+        if (this.forgetPasswordData.Email == '') {
             return 'Please enter email';
         } else if(!this.emailState) {
             return 'invalid email';
@@ -93,7 +93,7 @@ export default class NForgetPassword extends Vue {
     }
 
     get btnState(): boolean{
-        if (this.forgetPasswordData.email == "") {
+        if (this.forgetPasswordData.Email == "") {
             return false;
         }
 

@@ -1,13 +1,13 @@
 export default class LoginData {
-    account: string;
-    password: string;
-    type: number;
-    isRemember: number;
+    Account: string;
+    Password: string;
+    Type: number;
+    IsRemember: number;
 
     constructor() {
-        this.account = "";
-        this.password = "";
-        this.type = 0;
-        this.isRemember = 0;
+        this.Account = "";
+        this.Password = "";
+        this.Type = 0;
+        this.IsRemember = 0;
     }
 }
