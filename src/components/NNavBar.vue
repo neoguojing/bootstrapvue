@@ -38,7 +38,7 @@
 
             <BNavItemDropdown v-if="isLogin == true" :text="userInfo.UserName" right>
                 <BDropdownItem href="#">Profile</BDropdownItem>
-                <BDropdownItem href="#">Sign Out</BDropdownItem>
+                <BDropdownItem href="#" @click="logout">Sign Out</BDropdownItem>
             </BNavItemDropdown>
 
         </BNavbarNav>
@@ -111,6 +111,11 @@ export default class NNavBar extends Vue {
 
     get userInfo(): object{
         return loginStore.getUserInfo;
+    }
+
+    logout() {
+        loginStore.logout();
+        this.$router.push("/");
     }
 }
 </script>

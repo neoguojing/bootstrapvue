@@ -8,7 +8,6 @@ import {AxiosInstance, AxiosRequestConfig,AxiosResponse  } from "axios";
 export default class Login extends VuexModule {
 
   public loginData = new LoginData();
-  public loginState = false; 
   public userInfo = {
       ID:0,
       UserName:""
@@ -19,7 +18,10 @@ export default class Login extends VuexModule {
   }
 
   get getLoginState(): boolean{
-    return this.loginState;
+    if (localStorage.getItem("token") == null) {
+        return false;
+    } 
+    return true;
   }
 
   get getUserInfo(): object{
@@ -33,10 +35,6 @@ export default class Login extends VuexModule {
         console.log("setLoginData",this.loginData);
   }
 
-  @Mutation
-  public setLoginState(payload: boolean) {
-        this.loginState = payload;
-  }
 
   @Mutation
   public doLogin(){
@@ -45,15 +43,17 @@ export default class Login extends VuexModule {
     .then(response => {
           console.log(response)
           if (response.data.code >=0){
-            this.loginState = true;
+            localStorage.setItem("token",'Bearer '+response.data.data.token);
+            this.queryUserInfo();
           }
+          
     })
     .catch(error => {
         console.log(error)
     });
   }
 
-  @Mutation
+  //@Mutation
   public queryUserInfo(){
     client.get(config.urlGetLoginInfo)
     .then(response => {
@@ -70,12 +70,11 @@ export default class Login extends VuexModule {
 
   @Mutation
   public doLogout(){
-    console.log("doLogout:",this.loginData)
-    client.get(config.urlLogin)
+    client.get(config.urlLogout)
     .then(response => {
           console.log(response)
-          if (response.statusText =="ok"){
-            this.setLoginState(false);
+          if (response.statusText =="OK"){
+            localStorage.removeItem("token")
           }
     })
     .catch(error => {
@@ -84,10 +83,12 @@ export default class Login extends VuexModule {
   }
   
   @Action
-  public async login(data: LoginData) {
+  public login(data: LoginData) {
       this.context.commit('setLoginData',data)
-      await this.context.commit('doLogin')
-      await this.context.commit("queryUserInfo")
+      console.log("do login")
+      this.context.commit('doLogin')
+      //console.log("queryUserInfo")
+      //this.context.commit("queryUserInfo")
   }
 
   @Action

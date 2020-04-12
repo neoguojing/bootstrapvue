@@ -39,7 +39,10 @@ const routes = [
   {
     path: '/admin/resetPassword',
     name: 'ResetPassword',
-    component: ResetPassword
+    component: ResetPassword,
+    meta: {
+      needLogin: true
+    }
   },
   {
     path: '/demo',
