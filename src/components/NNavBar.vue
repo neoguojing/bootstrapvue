@@ -36,7 +36,7 @@
                 Sign up
             </BNavItem>
 
-            <BNavItemDropdown v-if="isLogin == true" :text="User" right>
+            <BNavItemDropdown v-if="isLogin == true" :text="userInfo.UserName" right>
                 <BDropdownItem href="#">Profile</BDropdownItem>
                 <BDropdownItem href="#">Sign Out</BDropdownItem>
             </BNavItemDropdown>
@@ -107,6 +107,10 @@ export default class NNavBar extends Vue {
 
     get isLogin(): boolean{
         return loginStore.getLoginState;
+    }
+
+    get userInfo(): object{
+        return loginStore.getUserInfo;
     }
 }
 </script>

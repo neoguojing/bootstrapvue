@@ -10,6 +10,7 @@ export default class Login extends VuexModule {
   public loginData = new LoginData();
   public loginState = false; 
   public userInfo = {
+      ID:0,
       UserName:""
   }; 
 
@@ -20,6 +21,11 @@ export default class Login extends VuexModule {
   get getLoginState(): boolean{
     return this.loginState;
   }
+
+  get getUserInfo(): object{
+    return this.userInfo;
+  }
+
  
   @Mutation
   public setLoginData(payload: LoginData) {
@@ -39,7 +45,7 @@ export default class Login extends VuexModule {
     .then(response => {
           console.log(response)
           if (response.data.code >=0){
-            this.setLoginState(true);
+            this.loginState = true;
           }
     })
     .catch(error => {
@@ -48,12 +54,12 @@ export default class Login extends VuexModule {
   }
 
   @Mutation
-  public getUserInfo(){
+  public queryUserInfo(){
     client.get(config.urlGetLoginInfo)
     .then(response => {
           console.log(response)
           if (response.data.code >=0){
-            this.setLoginState(true);
+            this.userInfo.UserName = response.data.data.UserName;
           }
     })
     .catch(error => {
@@ -81,9 +87,7 @@ export default class Login extends VuexModule {
   public async login(data: LoginData) {
       this.context.commit('setLoginData',data)
       await this.context.commit('doLogin')
-      if (this.getLoginState == true){
-        await this.context.commit('getUserInfo')
-      }
+      await this.context.commit("queryUserInfo")
   }
 
   @Action
