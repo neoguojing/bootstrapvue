@@ -1,4 +1,4 @@
-import RegisterData from '../../protocol/Register'
+import RegisterData from '@/protocol/Register'
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators';
 import axios, { AxiosRequestConfig } from "axios";
 
