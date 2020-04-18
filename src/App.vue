@@ -37,13 +37,29 @@ export default { //导出模块
         {text:"Vue",to:"/"},
         {text:"Demo",to:"/admin/resetPassword"},
         {text:"About",to:"/forgetPassword/1223"}
-      ]
+      ],
+      isRouterAlive: true
+    }
+  },
+  provide() {
+    return {
+      reload: this.reload
     }
   },
   methods:{
     handleSearch(val){
       console.log("handleSearch:",val)
+    },
+    reload() {
+      this.isRouterAlive = false
+      this.$nextTick(function(){
+        this.isRouterAlive = true
+      })
     }
+  },
+
+  mounted() {
+    this.reload();
   }
 }
 </script>

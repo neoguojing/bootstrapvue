@@ -106,6 +106,11 @@ export default class NNavBar extends Vue {
     }
 
     get isLogin(): boolean{
+        if (loginStore.getLoginState) {
+            loginStore.queryUserInfo();
+            this.reload();
+        }
+        
         return loginStore.getLoginState;
     }
 
@@ -115,7 +120,15 @@ export default class NNavBar extends Vue {
 
     logout() {
         loginStore.logout();
-        this.$router.push("/");
+        //this.$router.push("/login");
+        this.$router.replace("/login");
+        this.reload();
+    }
+
+    @Inject('reload') reload: any;
+    
+    mounted() {
+        //this.reload();
     }
 }
 </script>

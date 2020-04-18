@@ -7,6 +7,7 @@ import Register2 from '@/views/Register2.vue'
 import ForgetPassword from '@/views/ForgetPassword.vue'
 import Demo from '@/views/Demo.vue'
 import ResetPassword from '@/views/admin/ResetPassword.vue'
+import AdminHome from '@/views/admin/AdminHome.vue'
 
 Vue.use(VueRouter)
 
@@ -37,14 +38,6 @@ const routes = [
     component: ForgetPassword
   },
   {
-    path: '/admin/resetPassword',
-    name: 'ResetPassword',
-    component: ResetPassword,
-    meta: {
-      needLogin: true
-    }
-  },
-  {
     path: '/demo',
     name: 'Demo',
     component: Demo
@@ -56,7 +49,23 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  },
+  {
+    path: '/admin/resetPassword',
+    name: 'ResetPassword',
+    component: ResetPassword,
+    meta: {
+      needLogin: true
+    }
+  },
+  {
+    path: '/admin',
+    name: 'AdminHome',
+    component: AdminHome,
+    meta: {
+      needLogin: true
+    }
+  },
 ]
 
 const router = new VueRouter({

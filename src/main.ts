@@ -28,6 +28,10 @@ router.beforeEach((to,from,next)=>{
   }
 })
 
+//解决router.push无法刷新页面的问题
+//const win: any = window;
+//win.router = router;
+
 new Vue({
   router,
   store,

@@ -44,7 +44,6 @@ export default class Login extends VuexModule {
           console.log(response)
           if (response.data.code >=0){
             localStorage.setItem("token",'Bearer '+response.data.data.token);
-            this.queryUserInfo();
           }
           
     })
@@ -53,12 +52,13 @@ export default class Login extends VuexModule {
     });
   }
 
-  //@Mutation
+  @Mutation
   public queryUserInfo(){
     client.get(config.urlGetLoginInfo)
     .then(response => {
           console.log(response)
           if (response.data.code >=0){
+            console.log("queryUserInfo:",this.userInfo.UserName);
             this.userInfo.UserName = response.data.data.UserName;
           }
     })

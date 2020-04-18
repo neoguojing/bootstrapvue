@@ -29,17 +29,15 @@ client.interceptors.response.use(
     response => {
         //拦截响应，做统一处理 
         if (response.data.code) {
-            /*
             switch (response.data.code) {
-                case 1002:
-                    store.state.isLogin = false
-                    router.replace({
+                case 401:
+                    /*router.replace({
                         path: '/login',
                         query: {
                             redirect: router.currentRoute.fullPath
                         }
-                    })
-            }*/
+                    })*/
+            }
         }
         return response
     },
