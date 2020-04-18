@@ -38,6 +38,7 @@
 
             <BNavItemDropdown v-if="isLogin == true" :text="userInfo.UserName" right>
                 <BDropdownItem href="#">Profile</BDropdownItem>
+                <BDropdownItem href="#" @click="resetPassword">Reset password</BDropdownItem>
                 <BDropdownItem href="#" @click="logout">Sign Out</BDropdownItem>
             </BNavItemDropdown>
 
@@ -105,13 +106,18 @@ export default class NNavBar extends Vue {
         console.log('emitSearchValue emit',val);
     }
 
-    get isLogin(): boolean{
+    get isLogin(): boolean{     
         if (loginStore.getLoginState) {
             loginStore.queryUserInfo();
-            this.reload();
         }
-        
         return loginStore.getLoginState;
+    }
+    @Watch("isLogin")
+    onLoginStateChange(newVal: boolean, oldVal: boolean) {
+        if(newVal){
+            loginStore.queryUserInfo();
+        }
+        this.reload();
     }
 
     get userInfo(): object{
@@ -122,7 +128,10 @@ export default class NNavBar extends Vue {
         loginStore.logout();
         //this.$router.push("/login");
         this.$router.replace("/login");
-        this.reload();
+    }
+
+    resetPassword() {
+        this.$router.push("/admin/resetPassword");
     }
 
     @Inject('reload') reload: any;
