@@ -106,18 +106,11 @@ export default class NNavBar extends Vue {
         console.log('emitSearchValue emit',val);
     }
 
-    get isLogin(): boolean{     
+    get isLogin(): boolean{ 
         if (loginStore.getLoginState) {
             loginStore.queryUserInfo();
-        }
+        } 
         return loginStore.getLoginState;
-    }
-    @Watch("isLogin")
-    onLoginStateChange(newVal: boolean, oldVal: boolean) {
-        if(newVal){
-            loginStore.queryUserInfo();
-        }
-        this.reload();
     }
 
     get userInfo(): object{
@@ -135,8 +128,16 @@ export default class NNavBar extends Vue {
 
     @Inject('reload') reload: any;
     
+    @Watch("$route")
+    onRouteChange(newVal: string, oldVal: string) {
+        console.log("onRouteChange:*****",newVal,oldVal)
+    }
+
     mounted() {
-        this.reload();
+        console.log("NNavBar mounted!!")
+        if (loginStore.getLoginState) {
+            loginStore.queryUserInfo();
+        } 
     }
 }
 </script>

@@ -181,8 +181,9 @@ export default class NLogin extends Vue {
     /////////////////////////////////////////////
     onSubmit(){
         loginStore.login(this.loginData)
+        console.log("onSubmit getLoginState:",loginStore.getLoginState)
         this.emitSubmit();
-        this.$router.replace("/admin/");
+        this.$router.push("/admin");
     }
 
     /////////////////////////////////////////////

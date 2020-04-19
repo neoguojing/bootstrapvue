@@ -51,7 +51,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/admin/index',
+    path: '/admin',
     name: 'AdminHome',
     component: AdminHome,
     meta: {

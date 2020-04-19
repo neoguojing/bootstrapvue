@@ -2,6 +2,7 @@ import LoginData from '@/protocol/Login'
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators';
 import client from '@/conf/client'
 import config from '@/conf/config'
+import router from '@/router'
 import {AxiosInstance, AxiosRequestConfig,AxiosResponse  } from "axios";
 
 @Module({name: 'Login', namespaced: true, stateFactory: true})
@@ -12,16 +13,18 @@ export default class Login extends VuexModule {
       ID:0,
       UserName:""
   }; 
+  public loginState = false;
 
   get getLoginData(): LoginData{
       return this.loginData;
   }
 
   get getLoginState(): boolean{
-    if (localStorage.getItem("token") == null) {
+    /*if (localStorage.getItem("token") == null) {
         return false;
     } 
-    return true;
+    return true;*/
+    return this.loginState;
   }
 
   get getUserInfo(): object{
@@ -37,19 +40,22 @@ export default class Login extends VuexModule {
 
 
   @Mutation
-  public doLogin(){
+  public async doLogin(){
     console.log("doLogin:",this.loginData)
-    client.post(config.urlLogin,this.loginData)
+    const res = await client.post(config.urlLogin,this.loginData)
     .then(response => {
           console.log(response)
           if (response.data.code >=0){
             localStorage.setItem("token",'Bearer '+response.data.data.token);
+            this.loginState = true;
           }
           
     })
     .catch(error => {
         console.log(error)
     });
+
+    return res;
   }
 
   @Mutation
@@ -75,6 +81,7 @@ export default class Login extends VuexModule {
           console.log(response)
           if (response.statusText =="OK"){
             localStorage.removeItem("token")
+            this.loginState = false;
           }
     })
     .catch(error => {
