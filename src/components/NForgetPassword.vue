@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import ForgetPasswordData from '../protocol/ForgetPassword'
+import ForgetPasswordData from '@/protocol/ForgetPassword'
 import { Component, Prop, Vue,Emit,Inject,Provide,Watch,Model } from 'vue-property-decorator';
 import { BFormGroup,BButton,BFormInput,BRow,BCol } from 'bootstrap-vue';
 
@@ -62,19 +62,17 @@ export default class NForgetPassword extends Vue {
     constructor(){
         super();
         this.emailGroupState=null;
-        this.account = ""
         this.forgetPasswordData = new ForgetPasswordData();
     }
     //////////////////////////////////////
 
-    @Prop(String) account: string;
     /////////////////////////////////////////////
     forgetPasswordData: ForgetPasswordData;
 
     emailGroupState: boolean|null
     ///////////////////////////////////////////
 
-     get emailState(): boolean|null {
+    get emailState(): boolean|null {
         if (this.forgetPasswordData.Email == "") {
             return null;
         }
@@ -104,6 +102,10 @@ export default class NForgetPassword extends Vue {
         return false
     }
 
+    get accountInfo(): string{
+        return this.$route.params.account
+    }
+
     /////////////////////////////////////////////
     
     onSubmit(){
@@ -114,7 +116,6 @@ export default class NForgetPassword extends Vue {
     /////////////////////////////////////////////
     @Emit("submit")
     emitSubmit(): object{
-        console.log(this.account);
         return this.forgetPasswordData;
     }
 }

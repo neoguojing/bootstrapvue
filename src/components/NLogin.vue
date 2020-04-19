@@ -60,7 +60,10 @@
                 >Remeber password</b-form-checkbox>
             </b-col>
             <b-col cols="2">
-                <b-link :to="redirectToForgetPassword">Forget password</b-link>
+                <b-link 
+                    @click="redirectToForgetPassword"
+                    :disabled="forgetPasswordState"
+                >Forget password</b-link>
             </b-col>
             
             <b-col cols="4">
@@ -145,6 +148,14 @@ export default class NLogin extends Vue {
         return false
     }
 
+    get forgetPasswordState(): boolean {
+        if (this.loginData.Account == "") {
+            return true;
+        }
+
+        return false;
+    }
+
     get accountFeedback(): string {
         if (this.loginData.Account.length >= this.nameLength) {
             return ''
@@ -162,15 +173,16 @@ export default class NLogin extends Vue {
         }
     }
 
-    get redirectToForgetPassword(): string {
-        return "/forgetPassword/"+this.loginData.Account
+    redirectToForgetPassword(){
+        this.$router.push({
+          path: `/forgetPassword/${this.loginData.Account}`,
+        })
     }
     /////////////////////////////////////////////
     onSubmit(){
         loginStore.login(this.loginData)
         this.emitSubmit();
-        //this.$router.push("/");
-        this.$router.replace("/");
+        this.$router.replace("/admin/");
     }
 
     /////////////////////////////////////////////

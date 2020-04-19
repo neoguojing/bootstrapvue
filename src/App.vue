@@ -13,7 +13,7 @@
     </BRow>
     <BRow >
       <BCol>
-        <router-view class="full-height"/>
+        <router-view v-if="isRouterAlive" class="full-height"/>
       </BCol>
     </BRow>
   </BContainer>

@@ -51,6 +51,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
+    path: '/admin/index',
+    name: 'AdminHome',
+    component: AdminHome,
+    meta: {
+      needLogin: true
+    }
+  },
+  {
     path: '/admin/resetPassword',
     name: 'ResetPassword',
     component: ResetPassword,
@@ -58,14 +66,7 @@ const routes = [
       needLogin: true
     }
   },
-  {
-    path: '/admin',
-    name: 'AdminHome',
-    component: AdminHome,
-    meta: {
-      needLogin: true
-    }
-  },
+  
 ]
 
 const router = new VueRouter({

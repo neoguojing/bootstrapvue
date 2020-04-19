@@ -126,7 +126,6 @@ export default class NNavBar extends Vue {
 
     logout() {
         loginStore.logout();
-        //this.$router.push("/login");
         this.$router.replace("/login");
     }
 
@@ -137,7 +136,7 @@ export default class NNavBar extends Vue {
     @Inject('reload') reload: any;
     
     mounted() {
-        //this.reload();
+        this.reload();
     }
 }
 </script>
