@@ -36,10 +36,10 @@
                 Sign up
             </BNavItem>
 
-            <BNavItemDropdown v-if="isLogin == true" :text="userInfo.UserName" right>
+            <BNavItemDropdown v-if="isLogin == true" :text="userName" right>
                 <BDropdownItem href="#">Profile</BDropdownItem>
-                <BDropdownItem href="#" @click="resetPassword">Reset password</BDropdownItem>
-                <BDropdownItem href="#" @click="logout">Sign Out</BDropdownItem>
+                <BDropdownItem href="#" @click="onResetPassword">Reset password</BDropdownItem>
+                <BDropdownItem href="#" @click="onLogOut">Sign Out</BDropdownItem>
             </BNavItemDropdown>
 
         </BNavbarNav>
@@ -106,38 +106,34 @@ export default class NNavBar extends Vue {
         console.log('emitSearchValue emit',val);
     }
 
-    get isLogin(): boolean{ 
-        if (loginStore.getLoginState) {
-            loginStore.queryUserInfo();
-        } 
-        return loginStore.getLoginState;
+    @Prop(String) isLogin?: boolean;
+    @Prop(String) userName?: string;
+
+    onLogOut() {
+        this.emitLogOut();
+    }
+    @Emit("logout")
+    emitLogOut(){
+        return
     }
 
-    get userInfo(): object{
-        return loginStore.getUserInfo;
+    onResetPassword() {
+        this.emitResetPassword();
     }
-
-    logout() {
-        loginStore.logout();
-        this.$router.replace("/login");
-    }
-
-    resetPassword() {
-        this.$router.push("/admin/resetPassword");
+    @Emit("resetPassword")
+    emitResetPassword(){
+        return
     }
 
     @Inject('reload') reload: any;
     
     @Watch("$route")
-    onRouteChange(newVal: string, oldVal: string) {
-        console.log("onRouteChange:*****",newVal,oldVal)
+    onRouteChange(newVal: object, oldVal: object) {
+        console.log("onRouteChange:",newVal,oldVal)
     }
 
     mounted() {
         console.log("NNavBar mounted!!")
-        if (loginStore.getLoginState) {
-            loginStore.queryUserInfo();
-        } 
     }
 }
 </script>

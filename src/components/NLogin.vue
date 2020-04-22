@@ -61,7 +61,7 @@
             </b-col>
             <b-col cols="2">
                 <b-link 
-                    @click="redirectToForgetPassword"
+                    @click="onForgetPassword"
                     :disabled="forgetPasswordState"
                 >Forget password</b-link>
             </b-col>
@@ -91,10 +91,10 @@ import { Component, Prop, Vue,Emit,Inject,Provide,Watch,Model } from 'vue-proper
 import { BFormGroup,BButton,BFormInput,BFormCheckbox,BRow,BCol } from 'bootstrap-vue';
 import LoginData from '@/protocol/Login'
 
-import store from '@/store';
-import { getModule } from 'vuex-module-decorators';
-import Login from '@/store/modules/Login';
-const loginStore = getModule(Login, store);
+//import store from '@/store';
+//import { getModule } from 'vuex-module-decorators';
+//import Login from '@/store/modules/Login';
+//const loginStore = getModule(Login, store);
 
 @Component({
     components: {
@@ -173,23 +173,24 @@ export default class NLogin extends Vue {
         }
     }
 
-    redirectToForgetPassword(){
-        this.$router.push({
-          path: `/forgetPassword/${this.loginData.Account}`,
-        })
-    }
     /////////////////////////////////////////////
     onSubmit(){
-        loginStore.login(this.loginData)
-        console.log("onSubmit getLoginState:",loginStore.getLoginState)
         this.emitSubmit();
-        this.$router.push("/admin");
+    }
+
+    onForgetPassword(){
+        this.emitForgetPassword();
     }
 
     /////////////////////////////////////////////
     @Emit("submit")
     emitSubmit(): object{
         return this.loginData;
+    }
+
+    @Emit("forgetPassword")
+    emitForgetPassword(): string{
+        return this.loginData.Account;
     }
 }
 </script>
