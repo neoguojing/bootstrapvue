@@ -6,9 +6,7 @@
           :brandImage="logo"
           theme="primary" 
           :menuList="menus" 
-          isSearchShow=false
-          isLogin=isLogin
-          userName=userInfo.UserName
+          isSearchShow="yes"
           @search="handleSearch"
           @logout="logout"
           @resetPassword="resetPassword"
@@ -17,7 +15,7 @@
     </BRow>
     <BRow >
       <BCol>
-        <router-view v-if="isRouterAlive" class="full-height"/>
+        <router-view class="full-height"/>
       </BCol>
     </BRow>
   </BContainer>
@@ -52,6 +50,9 @@ export default { //导出模块
       reload: this.reload
     }
   },
+  computed:{
+    
+  },
   methods:{
     handleSearch(val){
       console.log("handleSearch:",val)
@@ -68,6 +69,7 @@ export default { //导出模块
             console.log(response)
             if (response.statusText =="OK"){
               localStorage.removeItem("token")
+              localStorage.removeItem("userName")
               this.$router.replace("/login");
             }
       })
@@ -78,22 +80,17 @@ export default { //导出模块
     resetPassword() {
         this.$router.push("/admin/resetPassword");
     },
-    isLogin() {
-      return this.$store.getters['Login/getLoginState']
-    },
-    userInfo() {
-      return this.$store.getters['Login/getUserInfo']
-    }
+    
   },
 
   watch:{
-      '$route.path':function(newVal,oldVal){
+      '$route':function(newVal,oldVal){
           console.log(newVal,oldVal)
+          this.reload()
       }
   },
   mounted() {
-    this.reload();
-    console.log("mounted,login state:",this.isLogin(),this.userInfo())
+    //this.reload();
   }
 }
 </script>

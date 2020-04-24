@@ -1,5 +1,5 @@
 const config = {
-    baseURL :"http://172.25.159.169:8000",
+    baseURL :"http://172.25.159.128:8000",
     
     //无需登录
     urlLogin :"/api/v1/Login",

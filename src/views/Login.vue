@@ -35,9 +35,15 @@ export default { //导出模块
               localStorage.setItem("token",'Bearer '+response.data.data.token);
               this.$store.commit('Login/setUserInfo',response.data.data.username)
               console.log("onSubmit getLoginState:",this.$store.getters['Login/getLoginState'])
-              this.$router.push("/admin");
-              console.log("finish doLogin")
+              console.log("onSubmit getUserInfo:",this.$store.getters['Login/getUserInfo'])
               
+              setTimeout(() => {
+                //if(this.$store.getters['Login/getLoginState']) {
+                if (localStorage.getItem("token") != null){
+                  this.$router.push("/admin");
+                  console.log("finish doLogin");
+                }
+              }, 1000);
             }
         })
         .catch(error => {

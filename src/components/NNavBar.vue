@@ -16,7 +16,7 @@
 
         <!-- Right aligned nav items -->
         <BNavbarNav class="ml-auto">
-            <BNavForm v-if="isSearchShow == 'true'">
+            <BNavForm v-if="isSearchShow == 'yes'">
                 <BFormInput size="sm" class="mr-sm-2" placeholder="Search" v-model="searchValue"></BFormInput>
                 <BButton size="sm" class="my-2 my-sm-0" type="submit">Search</BButton>
             </BNavForm>
@@ -28,15 +28,15 @@
             <BDropdownItem href="#">FA</BDropdownItem>
             </BNavItemDropdown>
 
-            <BNavItem v-if="isLogin != true" to="/login" right>
+            <BNavItem v-if="isLogin == 'no'" to="/login" right>
                 Sign in
             </BNavItem>
 
-            <BNavItem v-if="isLogin != true"  to="/register2" right>
+            <BNavItem v-if="isLogin == 'no'"  to="/register2" right>
                 Sign up
             </BNavItem>
 
-            <BNavItemDropdown v-if="isLogin == true" :text="userName" right>
+            <BNavItemDropdown v-if="isLogin == 'yes'" :text="userInfo" right>
                 <BDropdownItem href="#">Profile</BDropdownItem>
                 <BDropdownItem href="#" @click="onResetPassword">Reset password</BDropdownItem>
                 <BDropdownItem href="#" @click="onLogOut">Sign Out</BDropdownItem>
@@ -106,9 +106,6 @@ export default class NNavBar extends Vue {
         console.log('emitSearchValue emit',val);
     }
 
-    @Prop(String) isLogin?: boolean;
-    @Prop(String) userName?: string;
-
     onLogOut() {
         this.emitLogOut();
     }
@@ -130,10 +127,23 @@ export default class NNavBar extends Vue {
     @Watch("$route")
     onRouteChange(newVal: object, oldVal: object) {
         console.log("onRouteChange:",newVal,oldVal)
+        this.reload()
+    }
+
+    get isLogin(): string {
+      if (localStorage.getItem("token") != null) {
+        return "yes";
+      }
+      return "no";
+    }
+
+    get userInfo(): string {
+      return this.$store.getters['Login/getUserInfo']
     }
 
     mounted() {
         console.log("NNavBar mounted!!")
+        console.log("isLogin:",this.isLogin,this.userInfo)
     }
 }
 </script>

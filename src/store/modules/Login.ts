@@ -8,10 +8,6 @@ import {AxiosInstance, AxiosRequestConfig,AxiosResponse  } from "axios";
 @Module({name: 'Login', namespaced: true, stateFactory: true})
 export default class Login extends VuexModule {
 
-  public userInfo = {
-      UserName:""
-  }; 
-
   get getLoginState(): boolean{
     if (localStorage.getItem("token") == null){
       return false
@@ -19,14 +15,14 @@ export default class Login extends VuexModule {
     return true;
   }
 
-  get getUserInfo(): object{
-    return this.userInfo;
+  get getUserInfo(): string|null{
+    return localStorage.getItem("userName");
   }
 
 
   @Mutation
   public setUserInfo(username: string){
-    this.userInfo.UserName = username;
+    localStorage.setItem("userName",username);
   }
 
   @Mutation
@@ -39,7 +35,6 @@ export default class Login extends VuexModule {
           console.log(response)
           if (response.data.code >=0){
             localStorage.setItem("token",'Bearer '+response.data.data.token);
-            this.userInfo.UserName = response.data.data.username;
             console.log("finish doLogin")
             
           }
@@ -58,8 +53,7 @@ export default class Login extends VuexModule {
     .then(response => {
           console.log(response)
           if (response.data.code >=0){
-            console.log("queryUserInfo:",this.userInfo.UserName);
-            this.userInfo.UserName = response.data.data.UserName;
+            this.setUserInfo(response.data.data.UserName);
           }
     })
     .catch(error => {

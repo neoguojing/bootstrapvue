@@ -1,7 +1,6 @@
 import axios from "axios";
 import config from "./config";
 import router from '@/router'
-import store from '@/store'
 
 const client = axios.create({
     baseURL: config.baseURL,
