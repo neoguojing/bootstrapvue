@@ -1,17 +1,6 @@
 <template>
   <div class="home">
-    <BRow>
-      <BCol>
-        <NCarousel 
-          id="my-slide"
-          :imgWidth="1024"
-          :imgHeight="480"
-          :imgList="imgList"
-          @curSlide="getCurrentSlide"
-        ></NCarousel>
-      </BCol>
-    </BRow>
-
+  
     <BRow style="margin-top:10px;">
       <BCol cols="9">
         <b-card no-body>
@@ -142,16 +131,14 @@
 import { BRow,BCol,BCard,BTab,BTabs,BCardText,BCalendar,BCollapse,BCardBody,BCardHeader,BButton  } from 'bootstrap-vue';
 import NPagination from '@/components/Pagination.vue'
 import NTable from '@/components/Table.vue'
-import NCarousel from '@/components/Carousel.vue'
 import NPageTable from '@/components/PageTable.vue'
 import NModal from '@/components/Modal.vue'
 
 export default { //导出模块
-  name: 'Home',
+  name: 'AdminHome',
   components: {
     NPagination,
     NTable,
-    NCarousel,
     NPageTable,
     NModal,
     BTab,
