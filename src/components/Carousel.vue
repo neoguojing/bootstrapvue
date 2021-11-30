@@ -22,7 +22,14 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
+export default {
+
+}
+
+</script>
+
+<!--<script lang="ts">
 import { Options,Vue } from 'vue-class-component';
 
 @Options({
@@ -63,4 +70,4 @@ export default class Carousel extends Vue {
         console.log("emitSlideChange",val)
     }
 }
-</script>
+</script>-->
