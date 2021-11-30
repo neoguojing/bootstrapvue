@@ -15,6 +15,11 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 
 export default{
     name:"Card",
+    data(){
+       return {
+           
+       }
+    },
     props:{
         width:{
             type: String,
@@ -22,7 +27,7 @@ export default{
         },
         image: {
             type :String,
-            default: "../../assets/logo.png"
+            default: require('@/assets/test.jpg')
         },
         title:{
             type :String,

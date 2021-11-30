@@ -40,19 +40,19 @@ export default{
                 return [
                     {
                         id:"Slide 1",
-                        image:"../../assets/logo.png",
+                        image:require('@/assets/test.jpg'),
                         title:"First slide label",
                         content:"Some representative placeholder content for the first slide."
                     },
                     {
                         id:"Slide 2",
-                        image:"../assets/logo.png",
+                        image:require('@/assets/test.jpg'),
                         title:"Sencod slide label",
                         content:"Some representative placeholder content for the sencod slide."
                     },
                     {
                         id:"Slide 3",
-                        image:"../assets/logo.png",
+                        image:require('@/assets/test.jpg'),
                         title:"Third slide label",
                         content:"Some representative placeholder content for the Third slide."
                     },
@@ -61,7 +61,7 @@ export default{
         },
         interval:{
             type :String,
-            default: "10000"
+            default: "1000"
         }
 
     },
