@@ -53,15 +53,14 @@ export default{
         }
     },
     computed:{
-        selectId(){
-            return function(name) {
-                return "#"+name
-            }
-        },
+        
         
     },
     
     methods:{
+        selectId(name){
+            return "#"+name
+        },
         isShow(idx){
             return {
                 show:idx==0

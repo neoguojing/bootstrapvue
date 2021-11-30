@@ -4,6 +4,8 @@
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <Button text="my button" size="mid" color="danger"/>
     <Accordion/>
+    <Card/>
+    <Carousel/>
   </div>
 </template>
 
@@ -12,12 +14,18 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 import Button from '@/components/Button.vue'
 import Accordion from '@/components/Accordion.vue'
+import Card from '@/components/Card.vue'
+import Carousel from '@/components/Carousel.vue'
+
 export default {
   name: 'Home',
   components: {
     HelloWorld,
     Button,
-    Accordion
+    Accordion,
+    Card,
+    Carousel
   }
 }
-</script>
+
+    Card</script>
