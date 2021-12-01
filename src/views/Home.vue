@@ -6,6 +6,9 @@
     <Accordion/>
     <Card/>
     <Carousel/>
+    <Collapse>
+    Collapse
+    </Collapse>
   </div>
 </template>
 
@@ -16,7 +19,7 @@ import Button from '@/components/Button.vue'
 import Accordion from '@/components/Accordion.vue'
 import Card from '@/components/Card.vue'
 import Carousel from '@/components/Carousel.vue'
-
+import Collapse from '@/components/Collapse.vue'
 export default {
   name: 'Home',
   components: {
@@ -24,7 +27,8 @@ export default {
     Button,
     Accordion,
     Card,
-    Carousel
+    Carousel,
+    Collapse
   }
 }
 
