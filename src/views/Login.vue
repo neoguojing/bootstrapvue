@@ -1,6 +1,6 @@
 <template>
-<form class="row gy-5 needs-validation" novalidate>
-  <div class="row gy-5">
+<form class="row needs-validation" novalidate>
+  <div class="row g-5">
     <div class="col"></div>
     <div class="col">
       <div class="form-floating has-validation">
@@ -13,7 +13,7 @@
     </div>
     <div class="col"></div>
   </div>
-  <div class="row gy-2">
+  <div class="row gy-2 gx-5">
     <div class="col"></div>
     <div class="col">
       <div class="has-validation form-floating">
@@ -26,9 +26,9 @@
     </div>
     <div class="col"></div>
   </div>
-  <div class="row gx-2">
+  <div class="row g-2">
     <div class="col-4"></div>
-    <div class="form-check col-2">
+    <div class="form-check col">
       <input class="form-check-input" type="checkbox" value="" id="remember" required>
       <label class="form-check-label" for="remember">
         Remember
@@ -37,11 +37,11 @@
         You must agree before submitting.
       </div>
     </div>
-    <div class="col-6"></div>
+    <div class="col-7"></div>
   </div>
-  <div class="row gy-1">
-    <div class="col-5"></div>
-    <div class="col-2">
+  <div class="row g-2">
+    <div class="col-7"></div>
+    <div class="col-1">
     <button class="btn btn-primary" type="submit">Login</button>
     </div>
     <div class="col-5"></div>
