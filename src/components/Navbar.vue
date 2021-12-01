@@ -19,6 +19,14 @@
         <input v-model="searchText" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+      <ul class="navbar-nav navbar-nav-scroll">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/login">Sigin in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/register">Sign up</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
