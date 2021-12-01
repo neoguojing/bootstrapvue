@@ -1,10 +1,10 @@
 <template>
 <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" role="button" :id="id" data-bs-toggle="dropdown" aria-expanded="false">
+  <a class="nav-link dropdown-toggle"  href="#" role="button" :id="id" data-bs-toggle="dropdown" aria-expanded="false">
     {{ text }}
   </a>
   <ul class="dropdown-menu" :aria-labelledby="id">
-    <li v-for="item in list" :key="item"><a class="dropdown-item" :href="item.href">{{ item.content }}</a></li>
+    <li v-for="item in list" :key="item" ><a class="dropdown-item" :to="item.href" :href="item.href">{{ item.content }}</a></li>
   </ul>
 </li>
 </template>

@@ -1,10 +1,36 @@
 <template>
-  <div id="nav">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <Navbar>
+        <NavDropdown/>
+      </Navbar>
+   </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <router-view class="full-height"/>
+   </div>
+  </div>
+</div>
+  <!-- <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
-  <router-view/>
+  <router-view/> -->
 </template>
+
+<script>
+import Navbar from '@/components/Navbar.vue'
+import NavDropdown from '@/components/NavDropdown.vue'
+export default {
+  name: 'App',
+  components: {
+    Navbar,
+    NavDropdown,
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -26,5 +52,17 @@
       color: #42b983;
     }
   }
+}
+
+
+</style>
+
+<style scoped>
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.full-height {
+  height: 100%;
 }
 </style>
