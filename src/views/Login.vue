@@ -1,4 +1,5 @@
 <template>
+<div class="position-relative top-50">
 <form class="row needs-validation" :class="validateClass" novalidate>
   <div class="row g-5">
     <div class="col"></div>
@@ -30,13 +31,13 @@
   </div>
   <div class="row justify-content-md-center gy-2">
     <div class="col-4"></div>
-    <div class="form-check form-switch col-1 gx-5">
+    <div class="form-check form-switch col-1">
       <input class="form-check-input" v-model="wasRememberChecked" type="checkbox" role="switch" value="" id="remember">
       <label class="form-check-label fs-6" for="remember">
       Remember
       </label>
     </div>
-    <div class="col-1 gx-3">
+    <div class="col-1 ">
       <a class="fs-6" href="/forgetPassword">Forget password?</a>
     </div>
     <div class="col-5"></div>
@@ -49,6 +50,7 @@
     <div class="col-5"></div>
   </div>
 </form>
+</div>
 </template>
 
 <script>
