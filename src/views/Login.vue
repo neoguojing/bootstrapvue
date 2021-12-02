@@ -88,9 +88,12 @@ export default {
             return
         }
         console.log("登录动作触发成功")
+        this.$emit("loginStatus",true)
+        this.$router.push("/");
         
       },1000),
-  }
+  },
+  emits:['loginStatus']
 
 }
 

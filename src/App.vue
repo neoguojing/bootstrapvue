@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <Navbar>
+      <Navbar :loginStatus="loginStatus">
         <NavDropdown/>
          <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/vue">Vue</a>
@@ -15,7 +15,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <router-view class="full-height"/>
+      <router-view @loginStatus="updateLoginStatus" class="full-height"/>
    </div>
   </div>
 </div>
@@ -34,6 +34,16 @@ export default {
   components: {
     Navbar,
     NavDropdown,
+  },
+  data(){
+    return {
+      loginStatus: false
+    }
+  },
+  methods:{
+    updateLoginStatus(status){
+      this.loginStatus = status
+    }
   }
 }
 </script>

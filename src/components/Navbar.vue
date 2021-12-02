@@ -19,14 +19,26 @@
         <input v-model="searchText" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      <ul class="navbar-nav navbar-nav-scroll">
+      <ul class="navbar-nav navbar-nav-scroll gx-3" >
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/login">Sigin in</a>
+          <a v-if="loginStatus==false" class="nav-link" aria-current="page" href="/login">Sigin in</a>
         </li>
-        <li class="nav-item">
+        <li v-if="loginStatus==false" class="nav-item">
           <a class="nav-link" aria-current="page" href="/register">Sign up</a>
         </li>
+        <li v-if="loginStatus" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ username }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" @click="onLogout" href="/">Log out</a></li>
+          </ul>
+      </li>
       </ul>
+      
     </div>
   </div>
 </nav>
@@ -59,7 +71,15 @@ export default{
         brandName:{
           type: String,
           default: "NEO",
-        }
+        },
+        loginStatus:{
+          type: Boolean,
+          default: false,
+        },
+        username:{
+          type: String,
+          default: "NEO",
+        },
 
     },
     computed:{
@@ -69,6 +89,12 @@ export default{
                'bg-'+this.bgColor,
            ]
         },
+    },
+    emits:['loginStatus'],
+    methods:{
+      onLogout(){
+        this.$emit('loginStatus',false)
+      }
     }
 
 }
