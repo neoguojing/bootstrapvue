@@ -4,7 +4,7 @@
     <div class="col"></div>
     <div class="col">
       <div class="form-floating has-validation">
-        <input type="text" class="form-control" id="username" aria-describedby="inputGroupPrepend" required>
+        <input type="text" class="form-control" id="username" placeholder="Username" aria-describedby="inputGroupPrepend" required>
         <label for="username">Username</label>
       </div>
       <div class="invalid-feedback">
@@ -13,11 +13,11 @@
     </div>
     <div class="col"></div>
   </div>
-  <div class="row gy-2 gx-5">
+  <div class="row gy-3 gx-5">
     <div class="col"></div>
     <div class="col">
       <div class="has-validation form-floating">
-        <input type="password" class="form-control" id="password" required>
+        <input type="password" class="form-control" id="password"  placeholder="Password" required>
         <label for="password">Password</label>
       </div>
       <div class="invalid-feedback">
@@ -26,23 +26,23 @@
     </div>
     <div class="col"></div>
   </div>
-  <div class="row g-2">
-    <div class="col-4"></div>
-    <div class="form-check col">
-      <input class="form-check-input" type="checkbox" value="" id="remember" required>
+  <div class="row justify-content-md-center gy-2">
+    <div class="col-3"></div>
+    <div class="form-check form-switch col-1 ">
+      <input class="form-check-input" type="checkbox" role="switch" value="" id="remember" required>
       <label class="form-check-label" for="remember">
-        Remember
+      Remember
       </label>
       <div class="invalid-feedback">
         You must agree before submitting.
       </div>
     </div>
-    <div class="col-7"></div>
+    <div class="col-5"></div>
   </div>
   <div class="row g-2">
-    <div class="col-7"></div>
-    <div class="col-1">
-    <button class="btn btn-primary" type="submit">Login</button>
+    <div class="col-6"></div>
+    <div class="col-2">
+    <button class="btn btn-primary btn-lg" type="submit">Login</button>
     </div>
     <div class="col-5"></div>
   </div>
