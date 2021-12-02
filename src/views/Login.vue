@@ -1,5 +1,5 @@
 <template>
-<div class="position-relative top-50">
+<div class="position-relative">
   <slot></slot>
 <form class="row needs-validation" :class="validateClass" novalidate>
   <div class="row g-5">
@@ -20,7 +20,7 @@
     <div class="col"></div>
     <div class="col">
       <div class="has-validation form-floating">
-        <input type="password" class="form-control" v-model="password" id="password"  placeholder="Password" required>
+        <input type="password" class="form-control" v-model="password" id="password"  placeholder="Password" required minlength="8" maxlength="128">
         <label for="password" class="form-label">Password</label>
         <div class="invalid-feedback">
         Please provide a valid Password.

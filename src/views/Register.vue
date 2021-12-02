@@ -2,14 +2,14 @@
   <div  class="mx-auto" style="width:50%;">
      <form class="row gy-5 p-5 needs-validation" :class="validateClass" novalidate>
       <div class="col-md-4 form-floating">
-        <input type="text" class="form-control" id="firstName" v-model="firstName" placeholder="First name"  required minlength="3" maxlength="6">
+        <input type="text" class="form-control" id="firstName" v-model="firstName" placeholder="First name"  required minlength="3" maxlength="16">
         <label for="firstName" class="form-label">First name</label>
         <div class="invalid-feedback">
            Please provide a valid first name.
         </div>
       </div>
       <div class="col-md-4 form-floating">
-        <input type="text" class="form-control" id="lastName" v-model="lastName" placeholder="Last name"  required minlength="3" maxlength="6">
+        <input type="text" class="form-control" id="lastName" v-model="lastName" placeholder="Last name"  required minlength="3" maxlength="16">
         <label for="lastName" class="form-label">Last name</label>
         <div class="invalid-feedback">
           Please provide a valid last name.
@@ -47,14 +47,14 @@
         </div>
       </div>
       <div class="col-md-5 form-floating">
-        <input type="text" class="form-control" id="city" v-model="city" placeholder="City" required>
+        <input type="text" class="form-control" id="city" v-model="city" placeholder="City" required minlength="2" maxlength="32">
         <label for="city" class="form-label">City</label>
         <div class="invalid-feedback">
           Please provide a valid city.
         </div>
       </div>
       <div class="col-md-5 form-floating">
-        <input type="text" class="form-control" v-model="state" id="state" placeholder="State" required>
+        <input type="text" class="form-control" v-model="state" id="state" placeholder="State" required minlength="2" maxlength="32">
         <label for="state" class="form-label">State</label>
         <div class="invalid-feedback">
           Please provide a valid state.
@@ -74,7 +74,7 @@
           Please confirm the password.
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-5">
         <div class="form-check">
           <input class="form-check-input" v-model="wasAgreeChecked" type="checkbox" value="true"  id="agree" required>
           <a class="form-check-label" for="agree" data-bs-toggle="modal" data-bs-target="#terms">
@@ -83,22 +83,9 @@
           <div class="invalid-feedback">
             You must agree before submitting.
           </div>
-          <div class="modal fade" id="terms" tabindex="-1" aria-labelledby="#content" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="content">Terms and conditions</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  This is some placeholder content to show a vertically centered modal. We've added some extra copy here to show how vertically centering the modal works when combined with scrollable modals. We also use some repeated line breaks to quickly extend the height of the content, thereby triggering the scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal.
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Modal id="terms" showSaveBtn=false showBtn=false title="Terms and conditions">
+                 This is some placeholder content to show the scrolling behavior for modals. We use repeated line breaks to demonstrate how content can exceed minimum inner height, thereby showing inner scrolling. When content becomes longer than the predefined max-height of modal, content will be cropped and scrollable within the modal.
+          </Modal>
         </div>
       </div>
       <div class="col-9"></div>
@@ -113,11 +100,13 @@
 // @ is an alias to /src
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import Modal from '../components/Modal.vue'
 import _ from 'lodash'
 export default {
   
   name: 'Register',
   components: {
+    Modal,
   },
    data(){
     return {
@@ -177,7 +166,8 @@ export default {
         if (!email.checkValidity() || !firstName.checkValidity() || !lastName.checkValidity() ||
         !userName.checkValidity() ||!city.checkValidity() ||!state.checkValidity() ||
         !agree.checkValidity() ||!email.checkValidity() ||
-        !password.checkValidity() ||!password1.checkValidity()){
+        !password.checkValidity() ||!password1.checkValidity() || 
+        this.password != this.password1){
             console.log(this.email)
             return false
         }

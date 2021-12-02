@@ -61,7 +61,7 @@ export default{
         },
         interval:{
             type :String,
-            default: "1000"
+            default: "3000"
         }
 
     },

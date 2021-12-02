@@ -1,7 +1,7 @@
 <template>
- <button class="btn" :class="classObj" type="button" data-bs-toggle="offcanvas" :data-bs-target="selectId(id)" aria-controls="offcanvasTop">{{ text }}</button>
+ <button v-if="showBtn==true" class="btn" :class="classObj" type="button" data-bs-toggle="offcanvas" :data-bs-target="selectId(id)" aria-controls="offcanvasTop">{{ text }}</button>
 
-<div class="offcanvas" :class="classDirect" tabindex="-1" :id="id" aria-labelledby="offcanvasTopLabel">
+<div class="offcanvas" :class="classDirect" tabindex="1" :id="id" aria-labelledby="offcanvasTopLabel">
   <div class="offcanvas-header">
     <h5 id="offcanvasTopLabel">{{ title }}</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -42,6 +42,10 @@ export default{
         direction:{
             type :String,
             default: "start"
+        },
+        showBtn:{
+            type :Boolean,
+            default: true
         }
 
     },

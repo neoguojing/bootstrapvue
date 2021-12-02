@@ -1,9 +1,8 @@
 <template>
   <!-- Button trigger modal -->
-<button type="button" class="btn" :class="classObj" data-bs-toggle="modal" :data-bs-target="selectId(id)">
+<button v-if="showBtn==true" type="button" class="btn" :class="classObj" data-bs-toggle="modal" :data-bs-target="selectId(id)">
   {{ text }}
 </button>
-
 <!-- Modal -->
 <div class="modal fade" :id="id" tabindex="-1" :aria-labelledby="selectId(labelId)" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -17,7 +16,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn" :class="colorObj" >Save changes</button>
+        <button v-if="showSaveBtn==true" type="button" class="btn" :class="colorObj" >Save changes</button>
       </div>
     </div>
   </div>
@@ -54,6 +53,14 @@ export default{
         labelId:{
             type :String,
             default: "exampleModalLabel"
+        },
+        showBtn:{
+            type :Boolean,
+            default: true
+        },
+        showSaveBtn:{
+            type :Boolean,
+            default: true
         },
 
     },

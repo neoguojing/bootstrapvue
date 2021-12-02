@@ -1,5 +1,5 @@
 <template>
-    <button class="btn" :class="classObj" type="button" data-bs-toggle="collapse" :data-bs-target="selectId(id)" :aria-expanded="expanded" :aria-controls="id">
+    <button v-if="showBtn==true" class="btn" :class="classObj" type="button" data-bs-toggle="collapse" :data-bs-target="selectId(id)" :aria-expanded="expanded" :aria-controls="id">
         {{ text }}
     </button>
     <div class="collapse" :id="id">
@@ -35,6 +35,10 @@ export default{
         expanded:{
             type :Boolean,
             default: false
+        },
+        showBtn:{
+            type :Boolean,
+            default: true
         }
 
     },
