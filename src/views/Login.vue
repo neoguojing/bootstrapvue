@@ -83,17 +83,23 @@ export default {
   methods:{
       onSubmit: _.debounce(function(){
         this.wasValidated = true
-        var email = document.getElementById("email");
-        var password = document.getElementById("password");
-        if (!email.checkValidity() || !password.checkValidity()){
-            console.log(this.email)
-            return
+        if (!this.validate()){
+           return 
         }
         console.log("登录动作触发成功")
         this.$emit("loginStatus",true)
         this.$router.push("/");
         
       },1000),
+      validate(){
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        if (!email.checkValidity() || !password.checkValidity()){
+            console.log(this.email)
+            return false
+        }
+        return true
+      },
   },
   emits:['loginStatus']
 

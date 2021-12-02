@@ -1,5 +1,5 @@
 <template>
-  <div  class="mx-auto " style="width:50%;">
+  <div  class="mx-auto" style="width:50%;">
      <form class="row g-3  needs-validation" novalidate>
       <div class="col-md-4">
         <label for="validationCustom01" class="form-label">First name</label>
@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="col-12">
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-primary" type="submit">Submit</button>
       </div>
     </form>
   </div>
