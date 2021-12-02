@@ -1,5 +1,6 @@
 <template>
 <div class="position-relative top-50">
+  <slot></slot>
 <form class="row needs-validation" :class="validateClass" novalidate>
   <div class="row g-5">
     <div class="col"></div>

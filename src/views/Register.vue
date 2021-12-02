@@ -2,14 +2,14 @@
   <div  class="mx-auto" style="width:50%;">
      <form class="row gy-5 p-5 needs-validation" :class="validateClass" novalidate>
       <div class="col-md-4 form-floating">
-        <input type="text" class="form-control" id="firstName" v-model="firstName" placeholder="First name"  required>
+        <input type="text" class="form-control" id="firstName" v-model="firstName" placeholder="First name"  required minlength="3" maxlength="6">
         <label for="firstName" class="form-label">First name</label>
         <div class="invalid-feedback">
            Please provide a valid first name.
         </div>
       </div>
       <div class="col-md-4 form-floating">
-        <input type="text" class="form-control" id="lastName" v-model="lastName" placeholder="Last name"  required>
+        <input type="text" class="form-control" id="lastName" v-model="lastName" placeholder="Last name"  required minlength="3" maxlength="6">
         <label for="lastName" class="form-label">Last name</label>
         <div class="invalid-feedback">
           Please provide a valid last name.
@@ -17,15 +17,15 @@
       </div>
       <div class="col-md-3">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" v-model="gender" name="gender" id="1" value="Male">
-          <label class="form-check-label" for="man">
-            Man
+          <input class="form-check-input" type="radio" v-model="gender" name="gender" id="male" value=1>
+          <label class="form-check-label" for="male">
+            Male
           </label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" v-model="gender" name="gender" id="woman" value="0" checked>
-          <label class="form-check-label" for="woman">
-            Woman
+          <input class="form-check-input" type="radio" v-model="gender" name="gender" id="female" value=0 checked>
+          <label class="form-check-label" for="female">
+            Female
           </label>
         </div>
       </div>
@@ -39,7 +39,7 @@
       </div>
       <div class="col-md-4">
         <div class="has-validation form-floating">
-          <input type="text" class="form-control" id="userName" v-model="userName" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+          <input type="text" class="form-control" id="userName" v-model="userName" placeholder="Username" aria-describedby="inputGroupPrepend" required minlength="3" maxlength="32">
           <label for="userName" class="form-label">Username</label>
           <div class="invalid-feedback">
             Please choose a username.
@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="col-md-5 form-floating">
-        <input type="password" class="form-control" v-model="password" id="password" placeholder="Password" required>
+        <input type="password" class="form-control" v-model="password" id="password" placeholder="Password" required minlength="8" maxlength="128">
         <label for="password" class="form-label">Password</label>
         <div class="invalid-feedback">
           Please provide a valid password.
@@ -145,14 +145,43 @@ export default {
     onSubmit: _.debounce(function(){
         this.wasValidated = true
         if (!this.validate()){
+          console.log(
+              this.wasValidated,
+              this.wasAgreeChecked,
+              this.firstName,
+              this.lastName,
+              this.userName,
+              this.gender,
+              this.city,
+              this.state,
+              this.email,
+              this.password,
+              this.password1
+          )
            return 
         }
         console.log("注册成功")
-         this.router.push("/login")
+         this.$router.push("/login")
       },1000),
 
     validate(){
-      return true
+        var email = document.getElementById("email");
+        var firstName = document.getElementById("firstName");
+        var lastName = document.getElementById("lastName");
+        var userName = document.getElementById("userName");
+        var city = document.getElementById("city");
+        var state = document.getElementById("state");
+        var agree = document.getElementById("agree");
+        var password = document.getElementById("password");
+        var password1 = document.getElementById("password1");
+        if (!email.checkValidity() || !firstName.checkValidity() || !lastName.checkValidity() ||
+        !userName.checkValidity() ||!city.checkValidity() ||!state.checkValidity() ||
+        !agree.checkValidity() ||!email.checkValidity() ||
+        !password.checkValidity() ||!password1.checkValidity()){
+            console.log(this.email)
+            return false
+        }
+        return true
     }
   }
 }

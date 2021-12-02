@@ -52,7 +52,7 @@ export default{
     name:"Navbar",
     data(){
       return {
-        searchText :"search",
+        searchText :"",
       }
     },
     props:{
