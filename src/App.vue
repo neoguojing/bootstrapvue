@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <Navbar :loginStatus="loginStatus()" signUpModalId="modalSignin" >
+      <Navbar signUpModalId="modalSignin" >
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/album">Album</a>
         </li>
@@ -19,7 +19,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <router-view @loginStatus="updateLoginStatus" class="full-height"/>
+      <router-view  class="full-height"/>
    </div>
   </div>
 </div>
@@ -48,13 +48,7 @@ export default {
     
   },
   methods:{
-    updateLoginStatus(status){
-      console.log(status)
-      this.$store.commit('upLoginStatus',status)
-    },
-    loginStatus() {
-        return  this.$store.state.loginStatus
-    }
+    
   }
 }
 </script>
