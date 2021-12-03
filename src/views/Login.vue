@@ -1,57 +1,34 @@
 <template>
-<div class="position-relative">
-  <slot></slot>
-<form class="row needs-validation" :class="validateClass" novalidate>
-  <div class="row g-5">
-    <div class="col"></div>
-    <div class="col">
-      <div class="form-floating has-validation">
-        <input type="email" class="form-control" v-model="email" id="email" placeholder="Email" aria-describedby="inputGroupPrepend" required>
-        <label for="email" class="form-label">Email</label>
-        <div class="invalid-feedback">
+ <div class="body">
+  <form class="form-signin needs-validation" :class="validateClass" novalidate>
+    <img class="mb-4" :src="logo" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <input v-model="email" type="email" class="form-control" id="loginEmail" placeholder="name@example.com" required>
+      <label for="loginEmail">Email address</label>
+      <div class="invalid-feedback">
           Please input a valid email.
       </div>
-      </div>
-      
     </div>
-    <div class="col"></div>
-  </div>
-  <div class="row gy-4 gx-5">
-    <div class="col"></div>
-    <div class="col">
-      <div class="has-validation form-floating">
-        <input type="password" class="form-control" v-model="password" id="password"  placeholder="Password" required minlength="8" maxlength="128">
-        <label for="password" class="form-label">Password</label>
-        <div class="invalid-feedback">
+    <div class="form-floating">
+      <input v-model="password" type="password" class="form-control" id="loginPassword" placeholder="Password" required minlength="8" maxlength="128">
+      <label for="loginPassword">Password</label>
+      <div class="invalid-feedback">
         Please provide a valid Password.
       </div>
-      </div>
-      
     </div>
-    <div class="col"></div>
-  </div>
-  <div class="row justify-content-md-center gy-2">
-    <div class="col-4"></div>
-    <div class="form-check form-switch col-1">
-      <input class="form-check-input" v-model="wasRememberChecked" type="checkbox" role="switch" value="" id="remember">
-      <label class="form-check-label fs-6" for="remember">
-      Remember
+
+    <div class="checkbox mb-4 gx-2">
+      <label>
+        <input v-model="wasRememberChecked" type="checkbox" value=true> Remember me
       </label>
     </div>
-    <div class="col-1 ">
-      <a class="fs-6" href="/forgetPassword">Forget password?</a>
-    </div>
-    <div class="col-5"></div>
-  </div>
-  <div class="row g-2">
-    <div class="col-6"></div>
-    <div class="col-2">
-    <button class="btn btn-primary btn-lg"  @click.stop.prevent="onSubmit" type="submit">Login</button>
-    </div>
-    <div class="col-5"></div>
-  </div>
-</form>
-</div>
+    <button  @click.stop.prevent="onSubmit" class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <a class="fs-6" href="/forgetPassword">Forget password?</a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+  </form>
+ </div>
 </template>
 
 <script>
@@ -65,6 +42,12 @@ export default {
   name: 'Login',
   components: {
    
+  },
+  props:{
+      logo: {
+          type :String,
+          default: require('@/assets/logo.png')
+      },
   },
   data(){
     return {
@@ -93,10 +76,12 @@ export default {
         
       },1000),
       validate(){
-        var email = document.getElementById("email");
-        var password = document.getElementById("password");
+        var email = document.getElementById("loginEmail");
+        var password = document.getElementById("loginPassword");
         if (!email.checkValidity() || !password.checkValidity()){
             console.log(this.email)
+             console.log(this.wasRememberChecked)
+             console.log(this.password)
             return false
         }
         return true
@@ -107,3 +92,46 @@ export default {
 }
 
 </script>
+
+<style scoped>
+html,
+.body {
+  height: 100%;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  padding-top: 200px;
+  padding-bottom: 180px;
+  background-color: #f5f5f5;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+</style>

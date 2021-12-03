@@ -18,7 +18,7 @@
     <div class="row g-2">
       <div class="col-3"></div>
       <div class="col">
-      <button class="btn btn-primary btn-lg"  @click.stop.prevent="onSubmit" type="submit">Submit</button>
+      <button class="w-50 btn btn-lg btn-primary"  @click.stop.prevent="onSubmit" type="submit">Submit</button>
       </div>
       <div class="col-3"></div>
     </div>
