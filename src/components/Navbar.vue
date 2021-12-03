@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-lg" :class="colorObj">
+<nav  class="navbar navbar-expand-lg" :class="colorObj">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <img :src="brandImage" alt="" width="30" height="24" class="d-inline-block align-text-top">
@@ -28,7 +28,7 @@
             {{ username }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" @click="onLogout" href="/login">Log out</a></li>
@@ -98,6 +98,17 @@ export default{
       },
       selectId(name){
           return "#"+name
+      },
+      //TODO 页面重载和事件阻塞间的矛盾
+      onMenuClick(event){
+          console.log(event)
+          var activedElem = document.getElementsByClassName("nav-link active");
+          console.log(activedElem)
+          while (activedElem.length) {
+              activedElem[0].classList.remove("active");
+          }
+          event.target.classList.add("active");
+          
       },
     }
 

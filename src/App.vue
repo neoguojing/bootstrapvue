@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <Navbar :loginStatus="loginStatus" signUpModalId="modalSignin" >
+      <Navbar :loginStatus="loginStatus()" signUpModalId="modalSignin" >
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/album">Album</a>
         </li>
@@ -41,13 +41,20 @@ export default {
   },
   data(){
     return {
-      loginStatus: false
+     
     }
+  },
+  computed:{
+    
   },
   methods:{
     updateLoginStatus(status){
-      this.loginStatus = status
+      console.log(status)
+      this.$store.commit('upLoginStatus',status)
     },
+    loginStatus() {
+        return  this.$store.state.loginStatus
+    }
   }
 }
 </script>

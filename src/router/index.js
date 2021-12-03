@@ -6,6 +6,7 @@ import ForgetPassword from '../views/ForgetPassword.vue'
 import Album from '../views/Album.vue'
 import Blog from '../views/Blog.vue'
 import Product from '../views/Product.vue'
+import Profile from '../views/Profile.vue'
 
 const routes = [
   {
@@ -42,7 +43,13 @@ const routes = [
     path: '/blog',
     name: 'Blog',
     component: Blog
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
   }
+  
 ]
 
 const router = createRouter({
