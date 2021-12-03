@@ -106,7 +106,7 @@ export default{
           
       },
       loginStatus() {
-          return  this.$store.state.loginStatus
+          return  this.$store.getters.getLoginStatus
       }
     }
 

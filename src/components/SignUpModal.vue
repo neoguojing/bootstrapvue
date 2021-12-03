@@ -89,7 +89,6 @@ export default{
                 return 
             }
 
-            //TODO 关不掉
             var myModal = new bootstrap.Modal(document.getElementById(this.id), {
                 keyboard: false
             })
