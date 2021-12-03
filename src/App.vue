@@ -3,13 +3,16 @@
   <div class="row">
     <div class="col">
       <Navbar :loginStatus="loginStatus" signUpModalId="modalSignin" >
-        <NavDropdown/>
-         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/vue">Vue</a>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/album">Album</a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/about">About</a>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/blog">Blog</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/product">Product</a>
+        </li>
+        <NavDropdown text="Compontent"/>
       </Navbar>
       <SignUpModal/>
    </div>

@@ -1,5 +1,5 @@
 <template>
-    <div :id="id" class="carousel slide" data-bs-ride="carousel">
+<div :id="id" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button v-for="(item,i) in list" :key="item.id" type="button" :data-bs-target="selectId(id)" :data-bs-slide-to="i" :class="isActive(i)" :aria-current="i==0" :aria-label="item.id"></button>
  </div>

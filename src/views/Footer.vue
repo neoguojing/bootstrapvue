@@ -1,12 +1,19 @@
 <template>
 <footer class="footer mt-auto py-3 bg-light">
   <div class="container">
-    <span class="text-muted">{{ text }}</span>
+    <p class="float-end"> <a href="#">Back to top</a></p>
+    <p> 
+       © {{ text }} 
+      <a href="#">Privacy</a>
+      " . "
+      <a href="#">Terms</a>
+    </p>
+    <!-- <span class="text-muted">{{ text }}</span> -->
   </div>
 </footer>
 </template>
 <script>
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 export default {
     name:"Footer",
     props:{

@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-lg fixed-top" :class="colorObj">
+<nav class="navbar navbar-expand-lg" :class="colorObj">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <img :src="brandImage" alt="" width="30" height="24" class="d-inline-block align-text-top">
