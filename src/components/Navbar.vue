@@ -24,7 +24,7 @@
           <a v-if="loginStatus==false" class="nav-link" aria-current="page" href="/login">Sigin in</a>
         </li>
         <li v-if="loginStatus==false" class="nav-item">
-          <a class="nav-link" aria-current="page" href="/register">Sign up</a>
+          <a class="nav-link" aria-current="page" href="#" data-bs-toggle="modal" :data-bs-target="selectId(signUpModalId)">Sign up</a>
         </li>
         <li v-if="loginStatus" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -56,6 +56,10 @@ export default{
       }
     },
     props:{
+        signUpModalId:{
+          type: String,
+          default: "modalSignin",
+        },
         color:{
             type :String,
             default: "dark"
@@ -94,7 +98,10 @@ export default{
     methods:{
       onLogout(){
         this.$emit('loginStatus',false)
-      }
+      },
+      selectId(name){
+          return "#"+name
+      },
     }
 
 }

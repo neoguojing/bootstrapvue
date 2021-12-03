@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <Navbar :loginStatus="loginStatus">
+      <Navbar :loginStatus="loginStatus" signUpModalId="modalSignin" >
         <NavDropdown/>
          <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/vue">Vue</a>
@@ -11,6 +11,7 @@
           <a class="nav-link" aria-current="page" href="/about">About</a>
         </li>
       </Navbar>
+      <SignUpModal/>
    </div>
   </div>
   <div class="row">
@@ -26,14 +27,16 @@
   <router-view/> -->
 </template>
 
-<script>
+<script type="module">
 import Navbar from '@/components/Navbar.vue'
 import NavDropdown from '@/components/NavDropdown.vue'
+import SignUpModal from '@/components/SignUpModal.vue'
 export default {
   name: 'App',
   components: {
     Navbar,
     NavDropdown,
+    SignUpModal
   },
   data(){
     return {
@@ -43,7 +46,7 @@ export default {
   methods:{
     updateLoginStatus(status){
       this.loginStatus = status
-    }
+    },
   }
 }
 </script>
