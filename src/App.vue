@@ -20,23 +20,21 @@
    </div>
   </div>
 </div>
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/> -->
+<Footer/>
 </template>
 
 <script type="module">
 import Navbar from '@/components/Navbar.vue'
 import NavDropdown from '@/components/NavDropdown.vue'
 import SignUpModal from '@/components/SignUpModal.vue'
+import Footer from '@/views/Footer.vue'
 export default {
   name: 'App',
   components: {
     Navbar,
     NavDropdown,
-    SignUpModal
+    SignUpModal,
+    Footer
   },
   data(){
     return {

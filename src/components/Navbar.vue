@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-md fixed-top" :class="colorObj">
+<nav class="navbar navbar-expand-lg fixed-top" :class="colorObj">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <img :src="brandImage" alt="" width="30" height="24" class="d-inline-block align-text-top">
@@ -15,16 +15,13 @@
         </li>
         <slot></slot>
       </ul>
-      <form class="d-flex">
-        <input v-model="searchText" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <form class="col-12 col-lg-auto mb-12 mb-lg-0 me-lg-3">
+        <input v-model="searchText" class="fform-control form-control-dark w-100" type="search" placeholder="Search..." aria-label="Search">
       </form>
       <ul class="navbar-nav navbar-nav-scroll gx-3" >
-        <li class="nav-item">
-          <a v-if="loginStatus==false" class="nav-link" aria-current="page" href="/login">Sigin in</a>
-        </li>
-        <li v-if="loginStatus==false" class="nav-item">
-          <a class="nav-link" aria-current="page" href="#" data-bs-toggle="modal" :data-bs-target="selectId(signUpModalId)">Sign up</a>
+        <li class="nav-item text-end">
+          <a v-if="loginStatus==false" class="btn btn-outline-light me-2" aria-current="page" href="/login">Sigin in</a>
+          <a v-if="loginStatus==false" class="btn btn-warning" aria-current="page" href="/signup" data-bs-toggle="modal" :data-bs-target="selectId(signUpModalId)">Sign up</a>
         </li>
         <li v-if="loginStatus" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,7 +31,7 @@
             <li><a class="dropdown-item" href="#">Profile</a></li>
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" @click="onLogout" href="/">Log out</a></li>
+            <li><a class="dropdown-item" @click="onLogout" href="/login">Log out</a></li>
           </ul>
       </li>
       </ul>
@@ -106,3 +103,18 @@ export default{
 
 }
 </script>
+
+
+<style scoped>
+.form-control-dark {
+  color: #fff;
+  background-color: var(--bs-dark);
+  border-color: var(--bs-gray);
+}
+.form-control-dark:focus {
+  color: #fff;
+  background-color: var(--bs-dark);
+  border-color: #fff;
+  box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
+}
+</style>
