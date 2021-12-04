@@ -1,5 +1,5 @@
 <template>
- <button v-if="showBtn==true" class="btn" :class="classObj" type="button" data-bs-toggle="offcanvas" :data-bs-target="selectId(id)" aria-controls="offcanvasTop">{{ text }}</button>
+ <button v-if="showBtn==true" class="btn" :class="classObj" type="button" data-bs-toggle="offcanvas" :data-bs-target="selectId(id)" :aria-controls="id">{{ text }}</button>
 
 <div class="offcanvas" :class="classDirect" tabindex="1" :id="id" aria-labelledby="offcanvasTopLabel">
   <div class="offcanvas-header">

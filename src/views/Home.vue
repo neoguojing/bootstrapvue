@@ -1,7 +1,5 @@
 <template>
-  
   <main>
-
 <Carousel/>
 
   <!-- Marketing messaging and featurettes
@@ -82,12 +80,15 @@
     <!-- /END THE FEATURETTES -->
 
   </div><!-- /.container -->
-</main>
+  </main>
 </template>
 
 <script>
 // @ is an alias to /src
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import Carousel from '@/components/Carousel.vue'
+
 
 export default {
   name: 'Home',

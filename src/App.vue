@@ -18,6 +18,8 @@
    </div>
   </div>
   <div class="row">
+
+      <Sidebar/>
     <div class="col">
       <router-view  class="full-height"/>
    </div>
@@ -31,13 +33,15 @@ import Navbar from '@/components/Navbar.vue'
 import NavDropdown from '@/components/NavDropdown.vue'
 import SignUpModal from '@/components/SignUpModal.vue'
 import Footer from '@/views/Footer.vue'
+import Sidebar from './components/Sidebar.vue'
 export default {
   name: 'App',
   components: {
     Navbar,
     NavDropdown,
     SignUpModal,
-    Footer
+    Footer,
+    Sidebar
   },
   data(){
     return {

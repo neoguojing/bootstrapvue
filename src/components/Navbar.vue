@@ -1,7 +1,7 @@
 <template>
 <nav  class="navbar navbar-expand-lg" :class="colorObj">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId">
       <img :src="brandImage" alt="" width="30" height="24" class="d-inline-block align-text-top">
       {{ brandName }}
     </a>
@@ -30,6 +30,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="/profile">Profile</a></li>
             <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId">Console</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" @click="onLogout" href="/login">Log out</a></li>
           </ul>
@@ -56,6 +57,10 @@ export default{
         signUpModalId:{
           type: String,
           default: "modalSignin",
+        },
+        sideBarId:{
+          type: String,
+          default: "sidebar",
         },
         color:{
             type :String,
