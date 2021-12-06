@@ -64,6 +64,7 @@ export default {
       }
     },
   },
+  emits:['usernameUpdated'],
   methods:{
       onSubmit: _.debounce(function(){
         this.wasValidated = true
@@ -88,7 +89,7 @@ export default {
           var token = 'Bearer '+res.data.data.token
           this.$store.commit('upLoginStatus',token)
           this.$store.commit('upUserName',res.data.data.username)
-
+          this.$emit("usernameUpdated")
           this.$router.push("/");
         })
         .catch(err => {

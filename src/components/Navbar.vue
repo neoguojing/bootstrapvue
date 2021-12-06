@@ -27,7 +27,7 @@
         </li>
         <li v-if="loginStatus()" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ username }}
+            {{ userName }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="/profile">Profile</a></li>
@@ -54,11 +54,9 @@ export default{
     data(){
       return {
         searchText :"",
-        username: "NEO",
       }
     },
     mounted(){
-      this.username = this.$store.getters.getUserName
     },
     props:{
         signUpModalId:{
@@ -94,6 +92,9 @@ export default{
                'bg-'+this.bgColor,
            ]
         },
+        userName() {
+          return this.$store.getters.getUserName
+        }
     },
     methods:{
       onLogout(){
@@ -120,7 +121,8 @@ export default{
       },
       loginStatus() {
           return  this.$store.getters.getLoginStatus != ""
-      }
+      },
+      
     }
 
 }
