@@ -51,7 +51,11 @@ export default{
     data(){
       return {
         searchText :"",
+        username: "NEO",
       }
+    },
+    mounted(){
+      this.username = this.$store.getters.getUserName
     },
     props:{
         signUpModalId:{
@@ -78,10 +82,6 @@ export default{
           type: String,
           default: "NEO",
         },
-        username:{
-          type: String,
-          default: "NEO",
-        },
 
     },
     computed:{
@@ -94,7 +94,7 @@ export default{
     },
     methods:{
       onLogout(){
-        this.$store.commit('upLoginStatus',false)
+        this.$store.commit('upLoginStatus',"")
       },
       selectId(name){
           return "#"+name
@@ -111,7 +111,7 @@ export default{
           
       },
       loginStatus() {
-          return  this.$store.getters.getLoginStatus
+          return  this.$store.getters.getLoginStatus != ""
       }
     }
 

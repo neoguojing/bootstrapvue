@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="form-floating">
-      <input v-model="password" type="password" class="form-control" id="loginPassword" placeholder="Password" required minlength="8" maxlength="128">
+      <input v-model="password" type="password" class="form-control" id="loginPassword" placeholder="Password" required minlength="4" maxlength="128">
       <label for="loginPassword">Password</label>
       <div class="invalid-feedback">
         Please provide a valid Password.
@@ -70,12 +70,21 @@ export default {
         if (!this.validate()){
            return 
         }
+        var req = {
+          account:this.email,
+          password:this.password,
+          type:2,
+          isRemember:0
+        }
 
-        this.$http.get(config.urlLogin)
+        this.$http.post(config.urlLogin,req)
         .then(res => {
           console.log(res)
           console.log("登录动作触发成功")
-          this.$store.commit('upLoginStatus',true)
+          var token = 'Bearer '+res.data.data.token
+          this.$store.commit('upLoginStatus',token)
+          this.$store.commit('upUserName',res.data.data.username)
+
           this.$router.push("/");
         })
         .catch(err => {
@@ -90,7 +99,7 @@ export default {
         var email = document.getElementById("loginEmail");
         var password = document.getElementById("loginPassword");
         if (!email.checkValidity() || !password.checkValidity()){
-            console.log(this.email)
+             console.log(this.email)
              console.log(this.wasRememberChecked)
              console.log(this.password)
             return false

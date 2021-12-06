@@ -2,19 +2,24 @@ import { createStore } from 'vuex'
 import createPersistedState from "vuex-persistedstate"
 export default createStore({
     state: {
-      loginStatus: false,
+      loginStatus: "",
+      userName : "",
     },
     mutations: {
       upLoginStatus(state,isLogin){
         state.loginStatus = isLogin
-        console.log("loginStatus",state.loginStatus)
+      },
+      upUserName(state,name){
+        state.userName = name
       }
     },
     actions:{},
     getters:{
       getLoginStatus:state => {
-        console.log("getLoginStatus",state.loginStatus)
         return state.loginStatus
+      },
+      getUserName:state => {
+        return state.userName
       }
     },
     plugins: [createPersistedState({
@@ -22,7 +27,8 @@ export default createStore({
           reducer(val)  {
               return {
                   // 只储存state中的token
-                  loginStatus: val.loginStatus
+                  loginStatus: val.loginStatus,
+                  userName: val.userName
               }
           }
       })]
