@@ -89,7 +89,6 @@ export default {
           var token = 'Bearer '+res.data.data.token
           this.$store.commit('upLoginStatus',token)
           this.$store.commit('upUserName',res.data.data.username)
-          this.$emit("usernameUpdated")
           this.$router.push("/");
         })
         .catch(err => {
