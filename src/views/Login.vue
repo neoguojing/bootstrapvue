@@ -69,6 +69,17 @@ export default {
         if (!this.validate()){
            return 
         }
+
+        this.axios.get("www.baidu.com")
+        .then(res => {
+          console.log(res)
+          console.log("请求返回")
+        })
+        .catch(err => {
+          console.log(err)
+          return 
+        })
+
         console.log("登录动作触发成功")
         this.$store.commit('upLoginStatus',true)
         this.$router.push("/");

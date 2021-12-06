@@ -18,14 +18,15 @@
    </div>
   </div>
   <div class="row">
-
-      <Sidebar/>
+    <Sidebar/>
     <div class="col">
       <router-view  class="full-height"/>
-   </div>
+    </div>
   </div>
 </div>
-<Footer/>
+<div class="row">
+  <Footer/>
+</div>
 </template>
 
 <script type="module">
