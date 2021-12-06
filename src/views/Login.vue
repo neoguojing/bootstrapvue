@@ -79,7 +79,6 @@ export default {
 
         this.$http.post(config.urlLogin,req)
         .then(res => {
-          console.log(res)
           console.log("登录动作触发成功")
           var token = 'Bearer '+res.data.data.token
           this.$store.commit('upLoginStatus',token)
@@ -91,10 +90,8 @@ export default {
           console.log(err)
           return 
         })
-
-        
-        
       },1000),
+      
       validate(){
         var email = document.getElementById("loginEmail");
         var password = document.getElementById("loginPassword");

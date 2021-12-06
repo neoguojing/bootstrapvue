@@ -45,6 +45,7 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import config from '@/conf'
 
 export default{
     name:"Navbar",
@@ -94,7 +95,12 @@ export default{
     },
     methods:{
       onLogout(){
-        this.$store.commit('upLoginStatus',"")
+        this.$http.get(config.urlLogout)
+        .then(res => {
+          console.log(res)
+          this.$store.commit('upLoginStatus',"")
+        })
+        
       },
       selectId(name){
           return "#"+name
