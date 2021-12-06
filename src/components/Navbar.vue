@@ -21,7 +21,9 @@
       <ul class="navbar-nav navbar-nav-scroll gx-3" >
         <li class="nav-item text-end">
           <a v-if="loginStatus()==false" class="btn btn-outline-light me-2" aria-current="page" href="/login">Sigin in</a>
-          <a v-if="loginStatus()==false" class="btn btn-warning" aria-current="page" href="/signup" data-bs-toggle="modal" :data-bs-target="selectId(signUpModalId)">Sign up</a>
+          <!-- <a v-if="loginStatus()==false" class="btn btn-warning" aria-current="page" href="/signup" data-bs-toggle="modal" :data-bs-target="selectId(signUpModalId)">Sign up</a> -->
+          <a v-if="loginStatus()==false" class="btn btn-warning" aria-current="page" href="/signup">Sign up</a>
+
         </li>
         <li v-if="loginStatus()" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

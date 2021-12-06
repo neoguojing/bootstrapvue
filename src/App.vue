@@ -14,7 +14,7 @@
         </li>
         <NavDropdown text="Compontent"/>
       </Navbar>
-      <SignUpModal/>
+      <!-- <SignUpModal/> -->
    </div>
   </div>
   <div class="row">
@@ -32,7 +32,7 @@
 <script type="module">
 import Navbar from '@/components/Navbar.vue'
 import NavDropdown from '@/components/NavDropdown.vue'
-import SignUpModal from '@/components/SignUpModal.vue'
+// import SignUpModal from '@/components/SignUpModal.vue'
 import Footer from '@/views/Footer.vue'
 import Sidebar from './components/Sidebar.vue'
 export default {
@@ -40,7 +40,7 @@ export default {
   components: {
     Navbar,
     NavDropdown,
-    SignUpModal,
+    // SignUpModal,
     Footer,
     Sidebar
   },

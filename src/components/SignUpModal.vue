@@ -24,7 +24,7 @@
                         Please provide a valid password : 8-128 letter.
                     </div>
                 </div>
-                <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" @click.stop="onSignUp" type="submit">Sign up</button>
+                <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" @click.stop.prevent="onSignUp" type="submit">Sign up</button>
                 <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
                 <hr class="my-4">
                 <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
@@ -52,6 +52,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import _ from 'lodash'
+import config from '@/conf'
 
 export default{
     name:"SignUpModal",
@@ -88,15 +89,31 @@ export default{
             if (!this.validate()){
                 return 
             }
+            var req = {
+                email:this.email,
+                password:this.password,
+            }
 
-            var myModal = new bootstrap.Modal(document.getElementById(this.id), {
-                keyboard: false
+            this.$http.post(config.urlRegister,req)
+            .then(res => {
+                console.log(res.data)
+                if(res.data.code!=0){
+                    console.log("注册失败")
+                    return
+                }
+                console.log("注册成功")
+                var myModal = new bootstrap.Modal(document.getElementById(this.id), {
+                    keyboard: false
+                })
+                myModal.hide()
+                this.$router.push("/login")
+                
             })
-            myModal.hide()
-            console.log(myModal)
+            .catch(err => {
+                console.log(err)
+            })
 
-            console.log("注册成功")
-            this.$router.push("/login")
+            
 
         },1000),
 

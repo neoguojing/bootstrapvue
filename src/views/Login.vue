@@ -79,6 +79,11 @@ export default {
 
         this.$http.post(config.urlLogin,req)
         .then(res => {
+          console.log(res.data)
+          if(res.data.code!=200){
+              console.log("登录失败")
+              return
+          }
           console.log("登录动作触发成功")
           var token = 'Bearer '+res.data.data.token
           this.$store.commit('upLoginStatus',token)

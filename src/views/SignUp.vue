@@ -34,6 +34,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import _ from 'lodash'
+import config from '@/conf'
 
 export default{
     name:"SignUp",
@@ -80,9 +81,24 @@ export default{
                 return 
             }
 
-            console.log("注册成功")
-            this.$router.push("/login")
+            var req = {
+                email:this.email,
+                password:this.password,
+            }
 
+            this.$http.post(config.urlRegister,req)
+            .then(res => {
+                 console.log(res.data)
+                if(res.data.code!=0){
+                    console.log("注册失败")
+                    return
+                }
+                console.log("注册成功")
+                this.$router.push("/login")
+            })
+            .catch(err => {
+                console.log(err)
+            })
         },1000),
 
         onThirdPartySignUp: _.debounce(function(){
