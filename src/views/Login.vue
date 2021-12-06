@@ -35,6 +35,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import _ from 'lodash'
+import config from '@/conf'
 
 
 export default {
@@ -70,19 +71,19 @@ export default {
            return 
         }
 
-        this.axios.get("www.baidu.com")
+        this.$http.get(config.urlLogin)
         .then(res => {
           console.log(res)
-          console.log("请求返回")
+          console.log("登录动作触发成功")
+          this.$store.commit('upLoginStatus',true)
+          this.$router.push("/");
         })
         .catch(err => {
           console.log(err)
           return 
         })
 
-        console.log("登录动作触发成功")
-        this.$store.commit('upLoginStatus',true)
-        this.$router.push("/");
+        
         
       },1000),
       validate(){

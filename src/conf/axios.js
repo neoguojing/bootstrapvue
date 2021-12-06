@@ -1,13 +1,16 @@
 import axios from "axios";
-import config from "./config";
+import config from "./index.js";
 
-axios.defaults.baseURL = config.baseURL
-axios.defaults.headers.common['Authorization'] = "";
-axios.defaults.headers.post['Content-Type'] = "application/json;charset=UTF-8";
-axios.defaults.timeout = 10*1000;
-axios.defaults.withCredentials=false;
+const client = axios.create({
+    baseURL: config.baseURL,
+});
 
-axios.interceptors.request.use(
+//client.defaults.headers.common['Authorization'] = "";
+client.defaults.headers.post['Content-Type'] = "application/json";
+client.defaults.timeout = 10*1000;
+client.defaults.withCredentials=false;
+
+client.interceptors.request.use(
     config => {
       const token = localStorage.getItem('token')
       if (token) { // 判断是否存在token，如果存在的话，则每个http header都加上token
@@ -20,10 +23,19 @@ axios.interceptors.request.use(
       return Promise.reject(err)
     }
 );
-axios.interceptors.response.use(
+client.interceptors.response.use(
     response => {
         //拦截响应，做统一处理 
         if (response.data.code) {
+            switch (response.data.code) {
+                case 401:
+                    /*router.replace({
+                        path: '/login',
+                        query: {
+                            redirect: router.currentRoute.fullPath
+                        }
+                    })*/
+            }
         }
         return response
     },
@@ -33,4 +45,4 @@ axios.interceptors.response.use(
     }
 );
 
-export default axios;
+export default client;
