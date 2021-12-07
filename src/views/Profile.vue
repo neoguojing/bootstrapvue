@@ -1,17 +1,17 @@
 <template>
   
-  <Modal id="profileModalId" modalClass="position-absolute top-0 end-0" :dialogClass=profileClass>
+  <Modal id="profileModalId" modalClass="top-0 end-0" :dialogClass=profileClass :dialogStyle=dialogStyle>
     <div class="container-fluid">
       <div class="row">
         <div class="col align-self-center">
-          <Card width="100%" myClass="p-0 g-0"> 
             <img :src="portal" class="img-thumbnail rounded-circle" alt="...">
+            
             <div class="card-body">
                 <h5 class="card-title">{{ userName }}</h5>
                 <p class="card-text">{{ email }}</p>
+                <hr/>
                 <a href="/userForm" class="btn btn-primary">Edit</a>
             </div>
-          </Card>
         </div>
       </div>
     </div>
@@ -24,7 +24,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import Modal from '../components/Modal.vue'
-import Card from '../components/Card.vue'
 import config from '@/conf'
 import _ from 'lodash'
 export default {
@@ -32,7 +31,6 @@ export default {
   name: 'Profile',
   components: {
     Modal,
-    Card
   },
   mounted() {
      this.$http.get(config.urlGetUserInfo)
@@ -53,6 +51,11 @@ export default {
   data(){
     return {
       profileClass : ['modal-sm'],
+      dialogStyle:{
+        position: 'fixed',
+        top: '20px',
+        right: '30px',
+      },
       userName:"",
       email:"",
       portal:"",

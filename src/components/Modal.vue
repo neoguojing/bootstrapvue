@@ -5,7 +5,7 @@
 </button>
 <!-- Modal -->
 <div class="modal fade" :class="modalClass" :id="id" tabindex="-1" :aria-labelledby="selectId(labelId)" aria-hidden="true">
-  <div class="modal-dialog" :class="dialogClass">
+  <div class="modal-dialog" :class="dialogClass" :style="dialogStyle">
     <div class="modal-content">
       <div v-if="showHeader" class="modal-header">
         <h5 class="modal-title" :id="labelId">{{ title }}</h5>
@@ -77,6 +77,14 @@ export default{
         modalClass:{
             type : Array,
             default: () => []
+        },
+        dialogStyle:{
+            type : Object,
+            default: function() {
+                return {
+                   
+                }
+            }
         }
 
     },
