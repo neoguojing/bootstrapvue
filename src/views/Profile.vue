@@ -11,16 +11,14 @@
                 <p class="card-text">{{ userInfo.email }}</p>                
             </div>
         </div>
-        <hr/>
-        <div class="col">
-            <ul class="list-group  start-0">
-              <li class="list-group-item " aria-current="true">
-                <i class="bi-gear"></i>
-                <a href="/userForm">Edit</a>
-              </li>
-            </ul>
-        </div>
+         <hr/>
+         <div class="col align-self-center">
+         <!-- <i class="bi-gear" width="32"></i>     -->
+             <a href="/userForm" class="w-100 py-0 mb-0 btn btn-outline-secondary btn-sm rounded-4"  role="button">Edit</a>
+          </div>
+       
       </div>
+
     </div>
   </Modal>
 

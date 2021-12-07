@@ -31,8 +31,12 @@
             {{ userName }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/profile" data-bs-toggle="modal" :data-bs-target="selectId(profileModalId)">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li> 
+              <a class="dropdown-item" href="/profile" data-bs-toggle="modal" :data-bs-target="selectId(profileModalId)">
+              Profile
+              </a>
+              </li>
+            <li><a class="dropdown-item" href="#"><i class="bi-gear"></i>Settings</a></li>
             <li><a class="dropdown-item" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId">Console</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" @click="onLogout" href="/login">Log out</a></li>
@@ -48,6 +52,7 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import config from '@/conf'
 
 export default{

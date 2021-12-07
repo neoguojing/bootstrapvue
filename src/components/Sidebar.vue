@@ -67,7 +67,8 @@
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="#" class="nav-link active" aria-current="page">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+          
+        <i class="bi-shop"></i>
           Home
         </a>
       </li>
@@ -117,7 +118,7 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
-
+import 'bootstrap-icons/font/bootstrap-icons.css'
 export default {
     name:"Sidebar",
     props:{
