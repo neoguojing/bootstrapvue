@@ -1,14 +1,14 @@
 <template>
   
-  <Modal id="profileModalId" modalClass="top-0 end-0" :dialogClass=profileClass :dialogStyle=dialogStyle>
+  <Modal id="profileModalId" :dialogClass=profileClass :dialogStyle=dialogStyle>
     <div class="container-fluid">
       <div class="row">
         <div class="col align-self-center">
-            <img :src="portal" class="img-thumbnail rounded-circle" alt="...">
+            <img :src="userInfo.portal" class="img-thumbnail rounded-circle" alt="...">
             
             <div class="card-body">
-                <h5 class="card-title">{{ userName }}</h5>
-                <p class="card-text">{{ email }}</p>
+                <h5 class="card-title">{{ userInfo.userName }}</h5>
+                <p class="card-text">{{ userInfo.email }}</p>
                 <hr/>
                 <a href="/userForm" class="btn btn-primary">Edit</a>
             </div>
@@ -39,12 +39,19 @@ export default {
             return
         }
         console.log(res.data)
-        this.userName = res.data.data.UserName
-        this.email = res.data.data.Email
-        this.portal = res.data.data.Pic
-        if(this.portal==""){
-          this.portal = require('@/assets/test.jpg')
+        var userInfo = {
+          userName: res.data.data.UserName,
+          email: res.data.data.Email,
+          portal: res.data.data.Pic,
+          gender:res.data.data.Gender,
+          birthDay:res.data.data.BirthDay,
+          tel:res.data.data.Tel
+
         }
+        if(userInfo.portal==""){
+          userInfo.portal = require('@/assets/test.jpg')
+        }
+        this.$store.commit('upUserInfo',userInfo)
       })
   },
   data(){
@@ -55,13 +62,12 @@ export default {
         top: '20px',
         right: '30px',
       },
-      userName:"",
-      email:"",
-      portal:"",
     }
   },
   computed:{
-
+    userInfo() {
+      return this.$store.getters.getUserInfo
+    }
   },
   methods:{
   }

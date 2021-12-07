@@ -88,7 +88,8 @@ export default {
           console.log("登录动作触发成功")
           var token = 'Bearer '+res.data.data.token
           this.$store.commit('upLoginStatus',token)
-          this.$store.commit('upUserName',res.data.data.username)
+          
+          this.$store.commit('upUserInfo',{userName:res.data.data.username})
           this.$router.push("/");
         })
         .catch(err => {

@@ -175,17 +175,17 @@ export default{
       wasAgreeChecked: false,
       firstName:"",
       lastName:"",
-      userName: this.userInfo.userName,
-      gender:0,
-      portal:this.userInfo.portal,
-      
-      email:this.userInfo.email,
-      tel:"",
+      userName: "",
+      gender: 0,
+      portal: "",
+      email: "",
+      tel: "",
       
       country:"",
       state:"",
       city:"",
       address:"",
+      zip:"",
       
       nameOnCard:"",
       cardNum:"",
@@ -194,25 +194,28 @@ export default{
       
     }
   },
+  mounted() {
+    var userInfo = this.$store.getters.getUserInfo
+    console.log("UserForm.mounted",userInfo)
+    this.userName =userInfo.userName
+    this.gender = userInfo.gender
+    this.portal = userInfo.portal
+    this.email = userInfo.email
+    this.tel = userInfo.tel
+  },
   props:{
     logo: {
           type :String,
           default: require('@/assets/logo.png')
     },
-    userInfo(){
-      return {
-        userName : "",
-        email : "",
-        portal: "",
-      }
-    }
   },
   computed:{
     validateClass(){
       return {
         'was-validated':this.wasValidated,
       }
-    },
+    }
+    
   },
   methods:{
     onSubmit: _.debounce(function(){
@@ -245,7 +248,8 @@ export default{
             return false
         }
         return true
-    }
+    },
+    
   }
 }
 </script>

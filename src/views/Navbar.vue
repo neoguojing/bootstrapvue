@@ -98,7 +98,7 @@ export default{
            ]
         },
         userName() {
-          return this.$store.getters.getUserName
+          return this.$store.getters.getUserInfo.userName
         }
     },
     methods:{

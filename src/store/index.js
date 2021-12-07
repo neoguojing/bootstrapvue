@@ -3,14 +3,23 @@ import createPersistedState from "vuex-persistedstate"
 export default createStore({
     state: {
       loginStatus: "",
-      userName : "",
+      userInfo : {
+        userName:"",
+        email:"",
+        gender:0,
+        portal:"",
+        firstName:"",
+        lastName:"",
+        birthDay:"",
+
+      },
     },
     mutations: {
       upLoginStatus(state,isLogin){
         state.loginStatus = isLogin
       },
-      upUserName(state,name){
-        state.userName = name
+      upUserInfo(state,info){
+        state.userInfo = info
       }
     },
     actions:{},
@@ -18,8 +27,8 @@ export default createStore({
       getLoginStatus:state => {
         return state.loginStatus
       },
-      getUserName:state => {
-        return state.userName
+      getUserInfo:state => {
+        return state.userInfo
       }
     },
     plugins: [createPersistedState({
