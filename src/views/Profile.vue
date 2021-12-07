@@ -8,10 +8,19 @@
             
             <div class="card-body">
                 <h5 class="card-title">{{ userInfo.userName }}</h5>
-                <p class="card-text">{{ userInfo.email }}</p>
-                <hr/>
-                <a href="/userForm" class="btn btn-primary">Edit</a>
+                <p class="card-text">{{ userInfo.email }}</p>                
             </div>
+        </div>
+        <hr/>
+        <div class="col">
+            <ul class="list-group mx-0">
+              <li class="list-group-item " aria-current="true">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                  <use xlink:href="bootstrap-icons.svg#heart-fill"/>
+                </svg>
+                <a href="/userForm">Edit</a>
+              </li>
+            </ul>
         </div>
       </div>
     </div>

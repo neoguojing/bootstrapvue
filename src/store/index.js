@@ -37,7 +37,7 @@ export default createStore({
               return {
                   // 只储存state中的token
                   loginStatus: val.loginStatus,
-                  userName: val.userName
+                  userInfo: val.userInfo
               }
           }
       })]
