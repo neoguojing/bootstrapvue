@@ -25,7 +25,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import Modal from '../components/Modal.vue'
 import config from '@/conf'
-import _ from 'lodash'
 export default {
   
   name: 'Profile',
@@ -62,55 +61,9 @@ export default {
     }
   },
   computed:{
-    validateClass(){
-      return {
-        'was-validated':this.wasValidated,
-      }
-    },
+
   },
   methods:{
-    onSubmit: _.debounce(function(){
-        this.wasValidated = true
-        if (!this.validate()){
-          console.log(
-              this.wasValidated,
-              this.wasAgreeChecked,
-              this.firstName,
-              this.lastName,
-              this.userName,
-              this.gender,
-              this.city,
-              this.state,
-              this.email,
-              this.password,
-              this.password1
-          )
-           return 
-        }
-        console.log("注册成功")
-         this.$router.push("/login")
-      },1000),
-
-    validate(){
-        var email = document.getElementById("email");
-        var firstName = document.getElementById("firstName");
-        var lastName = document.getElementById("lastName");
-        var userName = document.getElementById("userName");
-        var city = document.getElementById("city");
-        var state = document.getElementById("state");
-        var agree = document.getElementById("agree");
-        var password = document.getElementById("password");
-        var password1 = document.getElementById("password1");
-        if (!email.checkValidity() || !firstName.checkValidity() || !lastName.checkValidity() ||
-        !userName.checkValidity() ||!city.checkValidity() ||!state.checkValidity() ||
-        !agree.checkValidity() ||!email.checkValidity() ||
-        !password.checkValidity() ||!password1.checkValidity() || 
-        this.password != this.password1){
-            console.log(this.email)
-            return false
-        }
-        return true
-    }
   }
 }
 </script>
