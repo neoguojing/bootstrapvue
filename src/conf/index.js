@@ -6,7 +6,7 @@ const config = {
     urlLookBackPassWord :"/api/v1/LookBackPassWord",
     urlRegister :"/api/v1/Register",
     //需要登录
-    urlGetLoginInfo :"/api/v1/admin/QueryUserInfo",
+    urlGetUserInfo :"/api/v1/admin/QueryUserInfo",
     urlRefreshToken :"/api/v1/admin/RefreshToken",
     urlQueryUserInfos :"/api/v1/admin/QueryUserInfos",
     urlResetPassword :"/api/v1/admin/ResetPassword",

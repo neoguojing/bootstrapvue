@@ -4,19 +4,19 @@
   {{ text }}
 </button>
 <!-- Modal -->
-<div class="modal fade" :id="id" tabindex="-1" :aria-labelledby="selectId(labelId)" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<div class="modal fade" :class="modalClass" :id="id" tabindex="-1" :aria-labelledby="selectId(labelId)" aria-hidden="true">
+  <div class="modal-dialog" :class="dialogClass">
     <div class="modal-content">
-      <div class="modal-header">
+      <div v-if="showHeader" class="modal-header">
         <h5 class="modal-title" :id="labelId">{{ title }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <slot></slot>
       </div>
-      <div class="modal-footer">
+      <div v-if="showFooter" class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button v-if="showSaveBtn==true" type="button" class="btn" :class="colorObj" >Save changes</button>
+        <button v-if="showSaveBtn" type="button" class="btn" :class="colorObj" >Save changes</button>
       </div>
     </div>
   </div>
@@ -56,12 +56,28 @@ export default{
         },
         showBtn:{
             type :Boolean,
-            default: true
+            default: false
         },
         showSaveBtn:{
             type :Boolean,
-            default: true
+            default: false
         },
+        showHeader:{
+            type :Boolean,
+            default: false
+        },
+        showFooter:{
+            type :Boolean,
+            default: false
+        },
+        dialogClass:{
+            type : Array,
+            default: () => ['modal-dialog-centered' ,'modal-dialog-scrollable']
+        },
+        modalClass:{
+            type : Array,
+            default: () => []
+        }
 
     },
     computed:{
@@ -86,3 +102,6 @@ export default{
 
 }
 </script>
+
+<style scoped>
+</style>

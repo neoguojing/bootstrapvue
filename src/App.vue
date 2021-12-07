@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <Navbar signUpModalId="modalSignin" >
+      <Navbar signUpModalId="modalSignin" profileModalId="profileModalId" >
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/album">Album</a>
         </li>
@@ -15,6 +15,7 @@
         <NavDropdown text="Compontent"/>
       </Navbar>
       <!-- <SignUpModal/> -->
+      <Profile/>
    </div>
   </div>
   <div class="row">
@@ -30,10 +31,11 @@
 </template>
 
 <script type="module">
-import Navbar from '@/components/Navbar.vue'
+import Navbar from '@/views/Navbar.vue'
 import NavDropdown from '@/components/NavDropdown.vue'
 // import SignUpModal from '@/components/SignUpModal.vue'
 import Footer from '@/views/Footer.vue'
+import Profile from '@/views/Profile.vue'
 import Sidebar from './components/Sidebar.vue'
 export default {
   name: 'App',
@@ -42,10 +44,12 @@ export default {
     NavDropdown,
     // SignUpModal,
     Footer,
-    Sidebar
+    Sidebar,
+    Profile
   },
   data(){
     return {
+      offcanvasClass:[]
     }
   },
   computed:{

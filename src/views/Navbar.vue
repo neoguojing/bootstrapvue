@@ -1,7 +1,8 @@
 <template>
 <nav  class="navbar navbar-expand-lg" :class="colorObj">
   <div class="container-fluid">
-    <a class="navbar-brand" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId">
+    <!-- <a class="navbar-brand" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId"> -->
+     <a class="navbar-brand" href="#">
       <img :src="brandImage" alt="" width="30" height="24" class="d-inline-block align-text-top">
       {{ brandName }}
     </a>
@@ -30,7 +31,7 @@
             {{ userName }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+            <li><a class="dropdown-item" href="/profile" data-bs-toggle="modal" :data-bs-target="selectId(profileModalId)">Profile</a></li>
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><a class="dropdown-item" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId">Console</a></li>
             <li><hr class="dropdown-divider"></li>
@@ -62,6 +63,10 @@ export default{
         signUpModalId:{
           type: String,
           default: "modalSignin",
+        },
+        profileModalId:{
+          type: String,
+          default: "profileModalId",
         },
         sideBarId:{
           type: String,

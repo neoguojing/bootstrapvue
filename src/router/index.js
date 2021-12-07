@@ -6,6 +6,7 @@ import ForgetPassword from '../views/ForgetPassword.vue'
 import Album from '../views/Album.vue'
 import Blog from '../views/Blog.vue'
 import Product from '../views/Product.vue'
+import UserForm from '../views/UserForm.vue'
 import Profile from '../views/Profile.vue'
 
 const routes = [
@@ -43,6 +44,11 @@ const routes = [
     path: '/blog',
     name: 'Blog',
     component: Blog
+  },
+  {
+    path: '/userForm',
+    name: 'UserForm',
+    component: UserForm
   },
   {
     path: '/profile',
