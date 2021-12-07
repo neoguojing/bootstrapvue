@@ -13,11 +13,9 @@
         </div>
         <hr/>
         <div class="col">
-            <ul class="list-group mx-0">
+            <ul class="list-group  start-0">
               <li class="list-group-item " aria-current="true">
-                <svg class="bi" width="32" height="32" fill="currentColor">
-                  <use xlink:href="bootstrap-icons.svg#heart-fill"/>
-                </svg>
+                <i class="bi-gear"></i>
                 <a href="/userForm">Edit</a>
               </li>
             </ul>
@@ -32,6 +30,7 @@
 // @ is an alias to /src
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import Modal from '../components/Modal.vue'
 import config from '@/conf'
 export default {
