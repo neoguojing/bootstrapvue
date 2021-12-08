@@ -13,7 +13,6 @@ client.defaults.withCredentials=false;
 
 client.interceptors.request.use(
     config => {
-      console.log("请求拦截器")
       const token = store.getters.getLoginStatus
       if (token) { // 判断是否存在token，如果存在的话，则每个http header都加上token
         config.headers.authorization = token  //请求头加上token
@@ -27,6 +26,7 @@ client.interceptors.request.use(
 client.interceptors.response.use(
     response => {
         //拦截响应，做统一处理 
+        console.log(response)
         if (response.data.code != 0) {
             console.log("请求异常",response.data.code)
             store.commit('upAlertStatus',{
@@ -52,7 +52,7 @@ client.interceptors.response.use(
                         isHide:false,
                         type:"danger"
                     })
-                    return 
+                    return Promise.reject("鉴权失败") 
             }
         }
         return Promise.reject(error.response.status) // 返回接口返回的错误信息

@@ -252,13 +252,7 @@ export default{
 
         this.$http.post(config.urlUpdateUserInfo,req)
         .then(res => {
-          console.log("******",res)
-          if(res.data.code!=0){
-             console.log(req)
-              console.log("跟新个人信息失败")
-              return
-          }
-          console.log("跟新个人信息成功")
+          console.log("跟新个人信息成功",res)
           this.$router.push("/");
         })
 
@@ -269,8 +263,9 @@ export default{
         var firstName = document.getElementById("firstName");
         var lastName = document.getElementById("lastName");
         var userName = document.getElementById("userName");
+        var gender= document.getElementById("female");
         if (!email.checkValidity() || !firstName.checkValidity() || !lastName.checkValidity() ||
-        !userName.checkValidity()){
+        !userName.checkValidity() || !gender.checkValidity()){
             console.log(this.email)
             return false
         }

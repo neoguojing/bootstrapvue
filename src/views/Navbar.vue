@@ -32,7 +32,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li> 
-              <a class="dropdown-item" href="/profile" data-bs-toggle="modal" :data-bs-target="selectId(profileModalId)">
+              <a class="dropdown-item" @click.stop.prevent="onProfile" href="/profile" data-bs-toggle="modal" :data-bs-target="selectId(profileModalId)">
               Profile
               </a>
               </li>
@@ -53,6 +53,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import _ from 'lodash'
 import config from '@/conf'
 
 export default{
@@ -132,6 +133,29 @@ export default{
       loginStatus() {
           return  this.$store.getters.getLoginStatus != ""
       },
+      onProfile:_.debounce(function(){
+        this.$http.get(config.urlGetUserInfo)
+        .then(res => {
+          if(res.data.code!=0){
+              console.log("获取信息失败")
+              return
+          }
+          console.log(res.data)
+          var userInfo = {
+            userName: res.data.data.UserName,
+            email: res.data.data.Email,
+            portal: res.data.data.Pic,
+            gender:res.data.data.Gender,
+            birthDay:res.data.data.BirthDay,
+            tel:res.data.data.Tel
+
+          }
+          if(userInfo.portal==""){
+            userInfo.portal = require('@/assets/test.jpg')
+          }
+          this.$store.commit('upUserInfo',userInfo)
+        })
+      },500),
       
     }
 

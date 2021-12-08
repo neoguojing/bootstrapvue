@@ -30,7 +30,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Modal from '../components/Modal.vue'
-import config from '@/conf'
 export default {
   
   name: 'Profile',
@@ -41,28 +40,6 @@ export default {
     if(!this.loginStatus()) {
       return
     }
-
-    this.$http.get(config.urlGetUserInfo)
-      .then(res => {
-        if(res.data.code!=0){
-            console.log("获取信息失败")
-            return
-        }
-        console.log(res.data)
-        var userInfo = {
-          userName: res.data.data.UserName,
-          email: res.data.data.Email,
-          portal: res.data.data.Pic,
-          gender:res.data.data.Gender,
-          birthDay:res.data.data.BirthDay,
-          tel:res.data.data.Tel
-
-        }
-        if(userInfo.portal==""){
-          userInfo.portal = require('@/assets/test.jpg')
-        }
-        this.$store.commit('upUserInfo',userInfo)
-      })
   },
   data(){
     return {
