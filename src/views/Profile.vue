@@ -38,7 +38,11 @@ export default {
     Modal,
   },
   mounted() {
-     this.$http.get(config.urlGetUserInfo)
+    if(!this.loginStatus()) {
+      return
+    }
+
+    this.$http.get(config.urlGetUserInfo)
       .then(res => {
         if(res.data.code!=0){
             console.log("获取信息失败")
@@ -76,6 +80,9 @@ export default {
     }
   },
   methods:{
+     loginStatus() {
+          return  this.$store.getters.getLoginStatus != ""
+      },
   }
 }
 </script>

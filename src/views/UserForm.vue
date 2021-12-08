@@ -43,7 +43,7 @@
                 </label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-model="gender" name="gender" id="female" value=0 checked>
+                <input class="form-check-input" type="radio" v-model="gender" name="gender" id="female" value=2 checked>
                 <label class="form-check-label" for="female">
                   Female
                 </label>
@@ -163,6 +163,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import _ from 'lodash'
+import config from '@/conf'
+
 export default{
   
   name: 'UserForm',
@@ -176,10 +178,11 @@ export default{
       firstName:"",
       lastName:"",
       userName: "",
-      gender: 0,
+      gender: 1,
       portal: "",
       email: "",
       tel: "",
+      birthday:"",
       
       country:"",
       state:"",
@@ -233,8 +236,28 @@ export default{
           )
            return 
         }
-        console.log("更新成功")
-         this.$router.push("/")
+
+         var req = {
+            UserName: this.userName,
+            Gender  : parseInt(this.gender),
+            Pic    : this.portal,
+            Email    :this.email,
+            Tel     :this.tel,
+            Birthday :this.birthday,
+        }
+
+        this.$http.post(config.urlUpdateUserInfo,req)
+        .then(res => {
+          console.log(res.data)
+          if(res.data.code!=0){
+             console.log(req)
+              console.log("跟新个人信息失败")
+              return
+          }
+          console.log("跟新个人信息成功")
+          this.$router.push("/");
+        })
+
       },1000),
 
     validate(){

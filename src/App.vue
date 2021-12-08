@@ -20,8 +20,11 @@
   </div>
   <div class="row">
     <Sidebar/>
+   
     <div class="col">
+       <Alert message="xxxxxx" type="danger"/>
       <router-view  class="full-height"/>
+      
     </div>
   </div>
 </div>
@@ -37,6 +40,8 @@ import NavDropdown from '@/components/NavDropdown.vue'
 import Footer from '@/views/Footer.vue'
 import Profile from '@/views/Profile.vue'
 import Sidebar from './components/Sidebar.vue'
+import Alert from './components/Alert.vue'
+
 export default {
   name: 'App',
   components: {
@@ -45,7 +50,8 @@ export default {
     // SignUpModal,
     Footer,
     Sidebar,
-    Profile
+    Profile,
+    Alert
   },
   data(){
     return {

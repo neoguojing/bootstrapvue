@@ -1,6 +1,7 @@
 import axios from "axios";
 import config from "./index.js";
 import store  from '../store'
+import router  from '../router'
 const client = axios.create({
     baseURL: config.baseURL,
 });
@@ -15,7 +16,6 @@ client.interceptors.request.use(
       console.log("请求拦截器")
       const token = store.getters.getLoginStatus
       if (token) { // 判断是否存在token，如果存在的话，则每个http header都加上token
-        console.log(token)
         config.headers.authorization = token  //请求头加上token
       }
       return config
@@ -27,8 +27,9 @@ client.interceptors.request.use(
 client.interceptors.response.use(
     response => {
         //拦截响应，做统一处理 
-        if (response.data.code) {
-            console.log("正常返回拦截器")
+        if (response.data.code != 0) {
+            console.log("请求异常",response.data.code)
+            return 
         }
         return response
     },
@@ -39,6 +40,9 @@ client.interceptors.response.use(
                 case 401:
                     console.log("鉴权失败")
                     store.commit('upLoginStatus',"")
+                    store.commit('upUserInfo',{})
+                    router.push("/login")
+                    return 
             }
         }
         return Promise.reject(error.response.status) // 返回接口返回的错误信息

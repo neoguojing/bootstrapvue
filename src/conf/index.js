@@ -11,6 +11,7 @@ const config = {
     urlQueryUserInfos :"/api/v1/admin/QueryUserInfos",
     urlResetPassword :"/api/v1/admin/ResetPassword",
     urlLogout :"/api/v1/admin/Logout",
+    urlUpdateUserInfo:"/api/v1/admin/UpdateUserInfo",
 }
 
 export default config;
