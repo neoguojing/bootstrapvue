@@ -1,5 +1,5 @@
 <template>
-    <div class="alert alert-dismissible" :class="classObj" role="alert" stype="width:100px" tabindex="100" >
+    <div class="alert alert-dismissible floating" :class="[{'visually-hidden':isHide} ,classObj]" role="alert">
     {{ message }}
     </div>
 </template>
@@ -16,15 +16,17 @@ export default{
         type :{
             type: String,
             defaut:"success"
+        },
+        isHide:{
+            type: Boolean,
+            defaut: true
         }
 
     },
     computed:{
         classObj(){
-            return [ 
-                'alert-'+ this.type
-            ]
-        }
+            return 'alert-'+ this.type
+        },
     }
 }
 

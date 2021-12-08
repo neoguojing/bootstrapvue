@@ -18,11 +18,12 @@
       <Profile/>
    </div>
   </div>
-  <div class="row">
+  <div class="row" >
     <Sidebar/>
-   
-    <div class="col">
-       <Alert message="xxxxxx" type="danger"/>
+    <div class="col ">
+      <div class="mx-auto" style="width:500px" z-index="1">
+            <Alert :message="alertStatus.message" :type="alertStatus.type" :isHide="alertStatus.isHide"/>
+      </div>
       <router-view  class="full-height"/>
       
     </div>
@@ -59,9 +60,12 @@ export default {
     }
   },
   computed:{
-    
+    alertStatus(){
+      return this.$store.getters.getAlertStatus
+    }
   },
   methods:{
+  
   }
 }
 </script>

@@ -13,6 +13,11 @@ export default createStore({
         birthDay:"",
 
       },
+      alertStatus: {
+        message :"",
+        type:"danger",
+        isHide:true
+      }
     },
     mutations: {
       upLoginStatus(state,isLogin){
@@ -20,6 +25,9 @@ export default createStore({
       },
       upUserInfo(state,info){
         state.userInfo = info
+      },
+      upAlertStatus(state,status){
+        state.alertStatus = status
       }
     },
     actions:{},
@@ -29,6 +37,9 @@ export default createStore({
       },
       getUserInfo:state => {
         return state.userInfo
+      },
+      getAlertStatus:state => {
+        return state.alertStatus
       }
     },
     plugins: [createPersistedState({

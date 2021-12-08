@@ -37,17 +37,21 @@
             </div>
             <div class="col-4">
                 <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-model="gender" name="gender" id="male" value=1>
+                <input class="form-check-input" type="radio" v-model="gender" name="gender" id="male" value=1 required>
                 <label class="form-check-label" for="male">
                   Male
                 </label>
               </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-model="gender" name="gender" id="female" value=2 checked>
+              <div class="form-check form-check-inline mb-3">
+                <input class="form-check-input" type="radio" v-model="gender" name="gender" id="female" value=2 checked required> 
                 <label class="form-check-label" for="female">
                   Female
                 </label>
+                <div class="invalid-feedback">
+                  Please make a choice.
+                </div>
               </div>
+              
             </div>
 
             <div class="col-8 form-floating">
@@ -248,7 +252,7 @@ export default{
 
         this.$http.post(config.urlUpdateUserInfo,req)
         .then(res => {
-          console.log(res.data)
+          console.log("******",res)
           if(res.data.code!=0){
              console.log(req)
               console.log("跟新个人信息失败")

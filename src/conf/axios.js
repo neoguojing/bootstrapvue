@@ -29,7 +29,12 @@ client.interceptors.response.use(
         //拦截响应，做统一处理 
         if (response.data.code != 0) {
             console.log("请求异常",response.data.code)
-            return 
+            store.commit('upAlertStatus',{
+                message:response.data.message,
+                isHide:false,
+                type:"danger"
+            })
+            return Promise.reject(response.data.message)
         }
         return response
     },
@@ -42,6 +47,11 @@ client.interceptors.response.use(
                     store.commit('upLoginStatus',"")
                     store.commit('upUserInfo',{})
                     router.push("/login")
+                    store.commit('upAlertStatus',{
+                        message:"鉴权失败",
+                        isHide:false,
+                        type:"danger"
+                    })
                     return 
             }
         }
