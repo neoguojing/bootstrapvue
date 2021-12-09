@@ -20,9 +20,9 @@
   </div>
   <div class="row" >
     <Sidebar/>
-    <div class="col" offcanvasClass="[]">
+    <div class="col " offcanvasClass="">
       <div class="mx-auto" style="width:500px" z-index="1">
-            <Alert :message="alertStatus.message" :type="alertStatus.type" :isHide="alertStatus.isHide"/>
+            <Alert  :message="alertStatus.message" :type="alertStatus.type" :isHide="alertStatus.isHide"/>
       </div>
       <router-view  class="full-height"/>
       
@@ -65,6 +65,9 @@ export default {
     }
   },
   methods:{
+    onAlertClose() {
+      
+    }
   
   }
 }

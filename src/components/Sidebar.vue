@@ -76,7 +76,7 @@ export default {
         default: () => ['offcanvas' ,'offcanvas-start']
       },
       portal:{
-        type:Array,
+        type : String,
         default:require('@/assets/logo.png'),
       }
     }
