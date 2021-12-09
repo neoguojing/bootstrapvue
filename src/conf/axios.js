@@ -46,12 +46,12 @@ client.interceptors.response.use(
                     console.log("鉴权失败")
                     store.commit('upLoginStatus',"")
                     store.commit('upUserInfo',{})
-                    router.push("/login")
                     store.commit('upAlertStatus',{
                         message:"鉴权失败",
                         isHide:false,
                         type:"danger"
                     })
+                    router.push("/login")
                     return Promise.reject("鉴权失败") 
             }
         }

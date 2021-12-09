@@ -1,7 +1,7 @@
 <template>
     <div class="alert alert-dismissible floating" :class="[{'visually-hidden':isHide} ,classObj]" role="alert">
         {{ message }}
-        <button @click.stop.prevent="onClose" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button @click="onClose" type="button" class="btn-close" aria-label="Close"></button>
     </div>
 </template>
 
@@ -29,11 +29,9 @@ export default{
             return 'alert-'+ this.type
         },
     },
-    emits:['alertClose'],
     methods:{
         onClose() {
-            this.$store.commit('upAlertStatus',{})
-            // this.$emit('alertClose')
+            this.$emit('alertClose')
         }
     }
 }

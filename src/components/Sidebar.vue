@@ -8,32 +8,32 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item ">
-        <a href="#" class="nav-link active justify-content-start" aria-current="page">
-        <i class="bi-house" width="16" height="16"></i>
+        <a href="#" class="nav-link active d-flex justify-content-start" aria-current="page">
+        <i class="bi bi-house px-3" width="16" height="16"></i>
           Home
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
-          <i class="bi-speedometer2" width="16" height="16"></i>
+        <a href="#" class="nav-link text-white d-flex justify-content-start">
+          <i class="bi bi-speedometer2 px-3" width="16" height="16"></i>
           Dashboard
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
-           <i class="bi-table" width="16" height="16"></i>
+        <a href="#" class="nav-link text-white d-flex justify-content-start">
+           <i class="bi bi-table px-3" width="16" height="16"></i>
           Orders
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
-          <i class="bi-grid" width="16" height="16"></i>
+        <a href="#" class="nav-link text-white d-flex justify-content-start">
+          <i class="bi bi-grid px-3" width="16" height="16"></i>
           Products
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">
-          <i class="bi-people-circle" width="16" height="16"></i>
+        <a href="#" class="nav-link text-white  d-flex justify-content-start">
+          <i class="bi bi-person-circle px-3"></i>
           Customers
         </a>
       </li>
