@@ -5,7 +5,7 @@
  </div>
   <div class="carousel-inner">
     <div  v-for="(item,i) in list" :key="item.id" class="carousel-item" :class="isActive(i)" :data-bs-interval="interval">
-      <img :src="item.image" class="d-block w-100" alt="...">
+      <img :src="item.image" class="d-block w-100" style="height: 500px" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>{{ item.title }}</h5>
         <p>{{ item.content }}</p>

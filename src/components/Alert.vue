@@ -1,7 +1,7 @@
 <template>
-    <div class="alert alert-dismissible floating" :class="[{'visually-hidden':isHide} ,classObj]" role="alert">
+    <div class="alert alert-dismissible position-absolute start-50 translate-middle" :class="[{'visually-hidden':isHide} ,classObj]" role="alert" >
         {{ message }}
-        <button @click="onClose" type="button" class="btn-close" aria-label="Close"></button>
+        <button @click.stop.prevent="onClose" type="button" class="btn-close btn-sm" aria-label="Close"></button>
     </div>
 </template>
 
