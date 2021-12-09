@@ -40,8 +40,8 @@ import NavDropdown from '@/components/NavDropdown.vue'
 // import SignUpModal from '@/components/SignUpModal.vue'
 import Footer from '@/views/Footer.vue'
 import Profile from '@/views/Profile.vue'
-import Sidebar from './components/Sidebar.vue'
-import Alert from './components/Alert.vue'
+import Sidebar from '@/components/Sidebar.vue'
+import Alert from '@/components/Alert.vue'
 
 export default {
   name: 'App',
@@ -56,7 +56,6 @@ export default {
   },
   data(){
     return {
-      offcanvasClass:[]
     }
   },
   computed:{

@@ -8,6 +8,8 @@ import Blog from '../views/Blog.vue'
 import Product from '../views/Product.vue'
 import UserForm from '../views/UserForm.vue'
 import Profile from '../views/Profile.vue'
+import Settings from '../views/Settings.vue'
+import Dashboard from '../views/Dashboard.vue'
 
 const routes = [
   {
@@ -54,6 +56,16 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
   }
   
 ]

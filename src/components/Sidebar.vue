@@ -1,8 +1,8 @@
 <template>
   
-   <div :id="id" class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" :class="offcanvasClass" style="width: 280px;">
+   <div :id="id" class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100" :class="offcanvasClass" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <i class="bi-bootstrap"  style="font-size: 2rem;"></i>
+      <i class="bi-bootstrap px-3"  style="font-size: 2rem;"></i>
       <span class="fs-4">{{ title }}</span>
     </a>
     <hr>
@@ -42,7 +42,7 @@
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
         <img :src="portal" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
+        <strong>{{ userName }}</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
         <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -69,7 +69,11 @@ export default {
       },
       title:{
         type : String,
-        default:""
+        default:"Sidebar"
+      },
+      userName:{
+        type : String,
+        default:"NEO"
       },
       offcanvasClass:{
         type : Array,

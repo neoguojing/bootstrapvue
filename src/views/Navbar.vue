@@ -1,8 +1,7 @@
 <template>
 <nav  class="navbar navbar-expand-lg" :class="colorObj">
   <div class="container">
-    <!-- <a class="navbar-brand" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId"> -->
-     <a class="navbar-brand" href="#">
+    <a class="navbar-brand" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId">
       <img :src="brandImage" alt="" width="30" height="24" class="d-inline-block align-text-top">
       {{ brandName }}
     </a>
@@ -39,17 +38,17 @@
               </a>
             </li>
             <li>
-              <a class="dropdown-item d-flex gap-2 py-2 align-items-center h7" href="#">
+              <a class="dropdown-item d-flex gap-2 py-2 align-items-center" href="/settings">
                <i class="bi-gear px-2"></i>Settings
               </a>
             </li>
             <li>
-              <a class="dropdown-item d-flex gap-2 py-2align-items-center" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId">
+              <a class="dropdown-item d-flex gap-2 py-2 align-items-center" href="/dashboard">
                 <i class="bi-person-workspace px-2"></i>Console
               </a>
             </li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item d-flex gap-2 py-2align-items-center" @click="onLogout" href="/login">
+            <li><a class="dropdown-item d-flex gap-2 py-2 align-items-center" @click="onLogout" href="/login">
             <i class="bi bi-box-arrow-right px-2"></i>Log out</a></li>
           </ul>
       </li>
