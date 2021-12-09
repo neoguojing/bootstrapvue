@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col align-self-center">
-            <img :src="userInfo.portal" class="img-thumbnail rounded-circle" alt="...">
+            <img :src="userInfo.portal" width="128" height="128" class="rounded-circle me-2" alt="...">
             
             <div class="card-body">
                 <h5 class="card-title">{{ userInfo.userName }}</h5>

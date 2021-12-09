@@ -1,6 +1,6 @@
 <template>
 <nav  class="navbar navbar-expand-lg" :class="colorObj">
-  <div class="container-fluid">
+  <div class="container">
     <!-- <a class="navbar-brand" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId"> -->
      <a class="navbar-brand" href="#">
       <img :src="brandImage" alt="" width="30" height="24" class="d-inline-block align-text-top">
@@ -10,17 +10,19 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+      <ul class="navbar-nav me-auto mb-2 my-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <slot></slot>
       </ul>
-      <form class="col-12 col-lg-auto mb-12 mb-lg-0 me-lg-3">
-        <input v-model="searchText" class="fform-control form-control-dark w-100" type="search" placeholder="Search..." aria-label="Search">
+      <form class="">
+        <input v-model="searchText" class="fform-control" type="search" placeholder="Search..." aria-label="Search">
       </form>
-      <ul class="navbar-nav navbar-nav-scroll gx-3" >
-        <li class="nav-item text-end">
+    </div>
+    <div class="" style="margin-left: 50px;">
+      <ul class="navbar-nav" >
+        <li class="nav-item">
           <a v-if="loginStatus()==false" class="btn btn-outline-light me-2" aria-current="page" href="/login">Sigin in</a>
           <!-- <a v-if="loginStatus()==false" class="btn btn-warning" aria-current="page" href="/signup" data-bs-toggle="modal" :data-bs-target="selectId(signUpModalId)">Sign up</a> -->
           <a v-if="loginStatus()==false" class="btn btn-warning" aria-current="page" href="/signup">Sign up</a>
@@ -30,20 +32,28 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{ userName }}
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu list-unstyled mb-0" aria-labelledby="navbarDropdown">
             <li> 
-              <a class="dropdown-item" @click.stop.prevent="onProfile" href="/profile" data-bs-toggle="modal" :data-bs-target="selectId(profileModalId)">
-              Profile
+              <a class="dropdown-item d-flex gap-2 py-2 align-items-center" @click.stop.prevent="onProfile" href="/profile" data-bs-toggle="modal" :data-bs-target="selectId(profileModalId)">
+                <i class="bi-person px-2"></i>Profile
               </a>
-              </li>
-            <li><a class="dropdown-item" href="#"><i class="bi-gear"></i>Settings</a></li>
-            <li><a class="dropdown-item" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId">Console</a></li>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex gap-2 py-2 align-items-center h7" href="#">
+               <i class="bi-gear px-2"></i>Settings
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex gap-2 py-2align-items-center" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId">
+                <i class="bi-person-workspace px-2"></i>Console
+              </a>
+            </li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" @click="onLogout" href="/login">Log out</a></li>
+            <li><a class="dropdown-item d-flex gap-2 py-2align-items-center" @click="onLogout" href="/login">
+            <i class="bi bi-box-arrow-right px-2"></i>Log out</a></li>
           </ul>
       </li>
       </ul>
-      
     </div>
   </div>
 </nav>

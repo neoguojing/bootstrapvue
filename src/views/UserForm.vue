@@ -13,7 +13,7 @@
         <form class="needs-validation" :class="validateClass" novalidate>
           <div class="row g-3">
             <div class="col-sm-6 form-floating">
-              <input v-model="firstName" type="text" class="form-control" id="firstName" placeholder="firstName"  required  minlength="3" maxlength="16">
+              <input v-model="firstName" type="text" class="form-control" id="firstName" placeholder="firstName"    minlength="3" maxlength="16">
               <label for="firstName">First name</label>
               <div class="invalid-feedback">
                 Valid first name is required.
@@ -21,7 +21,7 @@
             </div>
 
             <div class="col-sm-6  form-floating">
-              <input v-model="lastName" type="text" class="form-control" id="lastName" placeholder="lastName"  required minlength="3" maxlength="16">
+              <input v-model="lastName" type="text" class="form-control" id="lastName" placeholder="lastName"   minlength="3" maxlength="16">
               <label for="lastName" class="form-label">Last name</label>
               <div class="invalid-feedback">
                 Valid last name is required.
@@ -37,13 +37,13 @@
             </div>
             <div class="col-4">
                 <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" v-model="gender" name="gender" id="male" value=1 required>
+                <input class="form-check-input" type="radio" v-model="gender" name="gender" id="male" value="1" required>
                 <label class="form-check-label" for="male">
                   Male
                 </label>
               </div>
               <div class="form-check form-check-inline mb-3">
-                <input class="form-check-input" type="radio" v-model="gender" name="gender" id="female" value=2 checked required> 
+                <input class="form-check-input" type="radio" v-model="gender" name="gender" id="female" value="2" checked required> 
                 <label class="form-check-label" for="female">
                   Female
                 </label>
@@ -182,7 +182,7 @@ export default{
       firstName:"",
       lastName:"",
       userName: "",
-      gender: 1,
+      gender: 0,
       portal: "",
       email: "",
       tel: "",
