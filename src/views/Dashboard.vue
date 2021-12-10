@@ -17,17 +17,20 @@
             </ul>
         </Sidebar>
         <div class="col" >
+            <PageTable/>
         </div>
     </div>
 </template>
 
 <script>
 import Sidebar from '@/components/Sidebar.vue'
+import PageTable from '@/components/PageTable.vue'
 
 export default {
     name:"Dashboard",
     components:{
         Sidebar,
+        PageTable
     },
     setup() {
         
