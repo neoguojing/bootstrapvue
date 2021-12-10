@@ -17,7 +17,7 @@
             </ul>
         </Sidebar>
         <div class="col" >
-            <PageTable/>
+            <PageTable @pageChange="onPageChange" :items="rows"/>
         </div>
     </div>
 </template>
@@ -28,6 +28,19 @@ import PageTable from '@/components/PageTable.vue'
 
 export default {
     name:"Dashboard",
+    data(){
+        return {
+            test:  [
+                ['1','Mark','Otto','@mdo'],
+                ['2','Mark','Otto','@mdo'],
+                ['3','Mark','Otto','@mdo'],
+            ],
+            rows: [
+                ['1','Mark','Otto','@mdo'],
+                ['2','Mark','Otto','@mdo'],
+            ]
+        }
+    },
     components:{
         Sidebar,
         PageTable
@@ -35,6 +48,15 @@ export default {
     setup() {
         
     },
+    computed:{
+ 
+    },
+    methods:{
+        onPageChange(offset,limit) {
+            // 网络请求该页数据
+            this.rows = this.test.slice(offset*limit,offset*limit+limit)
+        }
+    }
 }
 </script>
 

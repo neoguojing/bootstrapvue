@@ -5,14 +5,14 @@
     <div class="table-responsive">
         <table class="table caption-top">
             <caption v-if="title != ''">List of users</caption>
-            <thead v-if="items.heads.length">
+            <thead v-if="heads.length">
                 <tr>
-                <th v-for="(head) in items.heads" v-bind:key="head" scope="col"> {{ head }}</th>
+                <th v-for="(head) in heads" v-bind:key="head" scope="col"> {{ head }}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="row in items.rows.slice(pageStart,pageEnd)" v-bind:key="row">
-                    <td v-for="elem in row" v-bind:key="elem"> {{ elem }}</td>
+                <tr v-for="item in items" v-bind:key="item">
+                    <td v-for="elem in item" v-bind:key="elem"> {{ elem }}</td>
                 </tr>
             </tbody>
             
@@ -23,15 +23,13 @@
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             <li class="page-item">
-            <a class="page-link text-dark" @click.prevent.stop="onPrevious"  href="#" aria-label="Previous">
+            <a class="page-link text-dark" @click="onPrevious"  href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
             </li>
-            <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-            <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-            <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+            <li v-for="idx in totalPage" v-bind:key="idx" @click="onNumBtnClick(idx-1)" class="page-item"><a class="page-link text-dark" href="#">{{ idx }}</a></li>
             <li class="page-item">
-            <a class="page-link text-dark" @click.prevent.stop="onNext"  href="#" aria-label="Next">
+            <a class="page-link text-dark" @click="onNext"  href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
             </li>
@@ -43,6 +41,7 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import _ from 'lodash'
 
 export default {
 
@@ -61,17 +60,20 @@ export default {
             type: String,
             default:"List of users"
         },
-        items:{
-            type: Object,
+        heads:{
+            type: Array,
             default:function(){
-                return {
-                    heads:['#','First','Last','Handle'],
-                    rows:[
+                return ['#','First','Last','Handle']
+            }
+        },
+        items:{  //每次只传一页数据
+            type: Array,
+            default:function(){
+                return [
                         ['1','Mark','Otto','@mdo'],
                         ['2','Mark','Otto','@mdo'],
                         ['3','Mark','Otto','@mdo'],
                     ]
-                }
             }
         },
         numOfPerPage:{
@@ -80,31 +82,39 @@ export default {
         },
         total :{
             type: Number,
-            default: 3
+            default: 20
         }
     },
     computed:{
         totalPage(){
-            return (this.total%this.numOfPerPage == 0)?this.total/this.numOfPerPage:this.total/this.numOfPerPage+1
+            return (this.total%this.numOfPerPage == 0)?this.total/this.numOfPerPage:parseInt(this.total/this.numOfPerPage)+1
         },
-        pageStart(){
-            return this.curPage*this.numOfPerPage
-        },
-        pageEnd(){
-            return this.pageStart+this.numOfPerPage
-        }
     },
+    emits:['pageChange'],
     methods:{
-        onNext(){
-            if (this.curPage< this.totalPage-1) {
-                this.curPage++
-            }
+        onPageChange(){
+            this.$emit("pageChange",this.curPage,this.numOfPerPage)           
         },
-        onPrevious(){
-            if (this.curPage>0) {
-                this.curPage--
+        onNext:_.debounce(function(e){
+            if (this.curPage < this.totalPage-1) {
+                this.curPage++
+                this.onPageChange()
             }
-        }
+            console.log(e)
+            
+        },500),
+        onPrevious:_.debounce(function(){
+            if (this.curPage > 0) {
+                this.curPage--
+                this.onPageChange()
+            }
+            
+        },500),
+        onNumBtnClick:_.debounce(function(idx){
+                this.curPage = idx
+                this.onPageChange(idx)
+                
+        },500)
     }
 }
 </script>
