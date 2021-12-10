@@ -89,6 +89,12 @@ export default {
         totalPage(){
             return (this.total%this.numOfPerPage == 0)?this.total/this.numOfPerPage:parseInt(this.total/this.numOfPerPage)+1
         },
+        pageBtnCount(){
+            var arr = []
+            if (this.totalPage <= 10) {
+                return 
+            }
+        }
     },
     emits:['pageChange'],
     methods:{

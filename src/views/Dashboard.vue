@@ -38,7 +38,7 @@ export default {
             rows: [
                 ['1','Mark','Otto','@mdo'],
                 ['2','Mark','Otto','@mdo'],
-            ]
+            ],
         }
     },
     components:{
@@ -49,7 +49,7 @@ export default {
         
     },
     computed:{
- 
+        
     },
     methods:{
         onPageChange(offset,limit) {
