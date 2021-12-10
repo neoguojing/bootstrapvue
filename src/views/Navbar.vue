@@ -49,7 +49,7 @@
             </li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item d-flex gap-2 py-2 align-items-center" @click="onLogout" href="/login">
-            <i class="bi bi-box-arrow-right px-2"></i>Log out</a></li>
+            <i class="bi bi-box-arrow-right px-2"></i>Sign out</a></li>
           </ul>
       </li>
       </ul>

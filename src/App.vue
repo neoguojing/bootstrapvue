@@ -28,10 +28,11 @@
       
     </div>
   </div>
+  <div class="row">
+    <Footer/>
+  </div>
 </div>
-<div class="row">
-  <Footer/>
-</div>
+
 </template>
 
 <script type="module">

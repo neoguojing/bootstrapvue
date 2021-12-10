@@ -1,16 +1,18 @@
 <template>
-<footer class="footer mt-auto py-3 bg-light">
-  <div class="container">
-    <p class="float-end"> <a href="#">Back to top</a></p>
-    <p> 
-       © {{ text }} 
-      <a href="#">Privacy</a>
-      " . "
-      <a href="#">Terms</a>
-    </p>
-    <!-- <span class="text-muted">{{ text }}</span> -->
-  </div>
-</footer>
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <i class="bi-bootstrap px-3"  style="font-size: 1.5rem;"></i>
+      </a>
+      <span class="text-muted">&copy; {{ text }}</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-twitter" style="font-size: 1.5rem;"></i></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-instagram" style="font-size: 1.5rem;"></i></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><i class="bi bi-facebook" style="font-size: 1.5rem;"></i></a></li>
+    </ul>
+  </footer>
 </template>
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -19,7 +21,7 @@ export default {
     props:{
         text:{
             type: String,
-            default :"2022 NEO Inc"
+            default :"2022 NEO , Inc"
         },
     }
 }
@@ -27,9 +29,8 @@ export default {
 
 
 <style scoped>
-.container {
-  width: auto;
-  max-width: 680px;
-  padding: 0 15px;
+.bi {
+  vertical-align: -.125em;
+  fill: currentColor;
 }
 </style>
