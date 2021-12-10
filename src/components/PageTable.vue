@@ -27,7 +27,7 @@
                 <span aria-hidden="true">&laquo;</span>
             </a>
             </li>
-            <li v-for="idx in totalPage" v-bind:key="idx" @click="onNumBtnClick(idx-1)" class="page-item"><a class="page-link text-dark" href="#">{{ idx }}</a></li>
+            <li v-for="idx in pageBtnCount" v-bind:key="idx" @click="onNumBtnClick(idx-1)" class="page-item"><a class="page-link text-dark" href="#">{{ idx }}</a></li>
             <li class="page-item">
             <a class="page-link text-dark" @click="onNext"  href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
@@ -82,7 +82,7 @@ export default {
         },
         total :{
             type: Number,
-            default: 20
+            default: 100
         }
     },
     computed:{
@@ -92,8 +92,29 @@ export default {
         pageBtnCount(){
             var arr = []
             if (this.totalPage <= 10) {
-                return 
+                for (var i=1;i<=this.totalPage;i++){
+                    arr.push(i)
+                }
+                return arr
             }
+            
+            console.log(this.curPage)
+            var idx = this.curPage
+            if (idx>5&&idx<=this.totalPage-4){
+                arr.push(1,'...')
+                for(var j=idx-3;j<idx+3;j++){
+                    arr.push(j)
+                }
+                arr.push('...',this.totalPage)
+                return arr
+            } else if (idx<=5||idx>this.totalPage-4){
+                arr.push(1,2,3,4,5)
+                arr.push('...')
+                for(var q=this.totalPage-3;q<=this.totalPage;q++){
+                    arr.push(q)
+                }
+            }
+            return arr
         }
     },
     emits:['pageChange'],
@@ -117,6 +138,9 @@ export default {
             
         },500),
         onNumBtnClick:_.debounce(function(idx){
+                if (idx == '...') {
+                    return 
+                }
                 this.curPage = idx
                 this.onPageChange(idx)
                 
