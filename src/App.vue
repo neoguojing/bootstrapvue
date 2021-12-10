@@ -28,7 +28,7 @@
       
     </div>
   </div>
-  <div class="row">
+  <div class="row ">
     <Footer/>
   </div>
 </div>
