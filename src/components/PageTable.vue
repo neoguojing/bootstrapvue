@@ -23,13 +23,15 @@
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             <li class="page-item">
-            <a class="page-link text-dark" @click="onPrevious"  href="#" aria-label="Previous">
+            <a class="page-link text-dark" :class="previousClass" @click="onPrevious"  href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
             </li>
-            <li v-for="idx in pageBtnCount" v-bind:key="idx" @click="onNumBtnClick(idx-1)" class="page-item"><a class="page-link text-dark" href="#">{{ idx }}</a></li>
+            <li v-for="(idx,i) in pageBtnCount" v-bind:key="i" @click="onNumBtnClick(idx-1)" :class="{'active':curPage==i}" class="page-item">
+                <a class="page-link text-dark" href="#">{{ idx }}</a>
+            </li>
             <li class="page-item">
-            <a class="page-link text-dark" @click="onNext"  href="#" aria-label="Next">
+            <a class="page-link text-dark" :class="nextClass" @click="onNext"  href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
             </li>
@@ -82,12 +84,22 @@ export default {
         },
         total :{
             type: Number,
-            default: 100
+            default: 20
         }
     },
     computed:{
         totalPage(){
             return (this.total%this.numOfPerPage == 0)?this.total/this.numOfPerPage:parseInt(this.total/this.numOfPerPage)+1
+        },
+        nextClass(){
+            return {
+                disabled: this.curPage == this.totalPage-1,
+            }
+        },
+        previousClass(){
+            return {
+                disabled: this.curPage == 0,
+            }
         },
         pageBtnCount(){
             var arr = []
@@ -97,23 +109,25 @@ export default {
                 }
                 return arr
             }
-            
-            console.log(this.curPage)
-            var idx = this.curPage
-            if (idx>5&&idx<=this.totalPage-4){
+
+            var idx = this.curPage+1
+            if (idx>=5&&idx<=this.totalPage-4){
                 arr.push(1,'...')
                 for(var j=idx-3;j<idx+3;j++){
                     arr.push(j)
                 }
                 arr.push('...',this.totalPage)
                 return arr
-            } else if (idx<=5||idx>this.totalPage-4){
+            } 
+            if (idx <=5 || idx>=this.totalPage-5){
                 arr.push(1,2,3,4,5)
                 arr.push('...')
                 for(var q=this.totalPage-3;q<=this.totalPage;q++){
                     arr.push(q)
                 }
             }
+            
+
             return arr
         }
     },
