@@ -17,17 +17,19 @@
             </ul>
         </Sidebar>
         <div class="col" >
+            <ProfileBig/>
         </div>
     </div>
 </template>
 
 <script>
 import Sidebar from '@/components/Sidebar.vue'
-
+import ProfileBig from '@/views/ProfileBig.vue'
 export default {
     name:"Settings",
     components:{
         Sidebar,
+        ProfileBig
     },
     setup() {
         

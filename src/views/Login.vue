@@ -91,8 +91,6 @@ export default {
           
           this.$store.commit('upUserInfo',{userName:res.data.data.username})
           this.$router.push("/");
-        }).catch((err) => {
-          console.log(err)
         })
       },1000),
       

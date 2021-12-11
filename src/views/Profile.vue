@@ -1,7 +1,7 @@
 <template>
   
   <Modal id="profileModalId" :dialogClass=profileClass :dialogStyle=dialogStyle>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col align-self-center">
             <img :src="userInfo.portal" width="128" height="128" class="rounded-circle me-2" alt="...">
@@ -11,14 +11,22 @@
                 <p class="card-text">{{ userInfo.email }}</p>                
             </div>
         </div>
-         <hr/>
+      </div>
+         
+      <div class="row">
+        <div class="col ">
+          <i class="bi bi-twitter px-1" style="font-size: 1rem;"></i>
+          <i class="bi bi-instagram px-1" style="font-size: 1rem;"></i>
+          <i class="bi bi-facebook px-1" style="font-size: 1rem;"></i>
+        </div>
+      </div>
+      <hr/>
+      <div class="row">
          <div class="col align-self-center">
          <!-- <i class="bi-gear" width="32"></i>     -->
              <a href="/userForm" class="w-100 py-0 mb-0 btn btn-outline-secondary btn-sm rounded-4"  role="button">Edit</a>
           </div>
-       
-      </div>
-
+      </div>  
     </div>
   </Modal>
 

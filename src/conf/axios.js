@@ -35,12 +35,20 @@ client.interceptors.response.use(
                 type:"danger"
             })
             return Promise.reject(response.data.message)
-        }
+        } 
         return response
     },
     //接口错误状态处理，也就是说无响应时的处理
     error => {
-        if (error.response.data.code) {
+        if (!error.response){
+            console.log(error)
+            store.commit('upAlertStatus',{
+                message:error,
+                isHide:false,
+                type:"danger"
+            })
+            return Promise.reject(error)
+        } else if (error.response.data.code) {
             switch (error.response.data.code) {
                 case 401:
                     console.log("鉴权失败")
@@ -54,7 +62,9 @@ client.interceptors.response.use(
                     router.push("/login")
                     return Promise.reject("鉴权失败") 
             }
-        }
+        } 
+        
+        
         return Promise.reject(error.response.status) // 返回接口返回的错误信息
     }
 );
