@@ -266,8 +266,8 @@ export default{
 
       },1000),
 
-    onUpload() {
-      apis.UploadFiles("portal",this.$refs.file.files)
+    onUpload(e) {
+      apis.UploadFiles("portal",e.target.files[0])
     },
 
     validate(){
