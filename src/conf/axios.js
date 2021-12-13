@@ -61,6 +61,13 @@ client.interceptors.response.use(
                     })
                     router.push("/login")
                     return Promise.reject("鉴权失败") 
+                case 400:
+                    store.commit('upAlertStatus',{
+                        message:"请求参数错误",
+                        isHide:false,
+                        type:"danger"
+                    })
+                    return Promise.reject("请求参数错误") 
             }
         } 
         

@@ -62,6 +62,13 @@
               </div>
             </div>
 
+            <div class="col-8">
+              <input id="fileUpload" @change="onUpload" ref="file" type="file" class="form-control" aria-label="file upload" required>
+              <div class="invalid-feedback">
+                Please upload a portal.
+              </div>
+            </div>
+
             <div class="col-6 form-floating">
               <input v-model="tel" type="text" class="form-control" id="tel" placeholder="Tel">
               <label for="tel" class="form-label">Tel</label>
@@ -166,6 +173,7 @@
 // @ is an alias to /src
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import apis from '@/utils/apis.js'
 import _ from 'lodash'
 import config from '@/conf'
 
@@ -258,14 +266,19 @@ export default{
 
       },1000),
 
+    onUpload() {
+      apis.UploadFiles("portal",this.$refs.file.files)
+    },
+
     validate(){
         var email = document.getElementById("email");
         var firstName = document.getElementById("firstName");
         var lastName = document.getElementById("lastName");
         var userName = document.getElementById("userName");
         var gender= document.getElementById("female");
+        var upload= document.getElementById("fileUpload");
         if (!email.checkValidity() || !firstName.checkValidity() || !lastName.checkValidity() ||
-        !userName.checkValidity() || !gender.checkValidity()){
+        !userName.checkValidity() || !gender.checkValidity()|| !upload.checkValidity()){
             console.log(this.email)
             return false
         }

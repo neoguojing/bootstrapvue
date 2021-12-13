@@ -12,6 +12,7 @@ const config = {
     urlResetPassword :"/api/v1/admin/ResetPassword",
     urlLogout :"/api/v1/admin/Logout",
     urlUpdateUserInfo:"/api/v1/admin/UpdateUserInfo",
+    urlUpload:"/api/v1/admin/Upload",
 }
 
 export default config;
