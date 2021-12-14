@@ -11,6 +11,7 @@ var apis = {
         client.post(conf.urlUpload, data, {headers: {'Content-Type': 'multipart/form-data'}})
         .then(res => {
             console.log(res)
+            return res.data.data
         });
     }
 }
