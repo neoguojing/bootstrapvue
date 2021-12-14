@@ -61,14 +61,6 @@
                 Please enter a valid email address for shipping updates.
               </div>
             </div>
-
-            <div class="col-8">
-              <input id="fileUpload" @change="onUpload" ref="file" type="file" class="form-control" aria-label="file upload" required>
-              <div class="invalid-feedback">
-                Please upload a portal.
-              </div>
-            </div>
-
             <div class="col-6 form-floating">
               <input v-model="tel" type="text" class="form-control" id="tel" placeholder="Tel">
               <label for="tel" class="form-label">Tel</label>
@@ -164,6 +156,13 @@
           <button @click.prevent="onSubmit" class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
         </form>
       </div>
+       <div class="col-4 g-3">
+              <img :src="portal" class="img-thumbnail rounded mx-auto" alt="...">
+              <input id="fileUpload"  @change="onUpload" ref="file" type="file" class="form-control" aria-label="file upload" required>
+              <div class="invalid-feedback">
+                Please upload a portal.
+              </div>
+       </div>
     </div>
   </main>
 </div>
