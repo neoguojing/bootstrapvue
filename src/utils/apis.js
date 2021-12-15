@@ -15,14 +15,16 @@ var apis = {
         });
         return filePath
     },
-    FileDownload:function(imagePath) {
-        let stream
-         client.get(imagePath, {responseType: 'arraybuffer'})
-        .then(res => Buffer.from(res.data, 'binary').toString('base64'))
-        .then(function(data) {
-            stream = data
+    FileDownload:async function(imagePath) {
+        let base64Data
+        await client.get(imagePath, {responseType: 'arraybuffer'})
+        .then(res => {
+            var contentType = res.headers['content-type']
+            return 'data:'+contentType+';base64,'+Buffer.from(res.data, 'binary').toString('base64')
+        }).then(function(data) {
+            base64Data = data
         });
-        return stream
+        return base64Data
     },
 }
 

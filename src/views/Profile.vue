@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col align-self-center">
-            <img :src="userInfo.portal" width="128" height="128" class="rounded-circle me-2" alt="...">
+            <img :src="portal" width="128" height="128" class="rounded-circle me-2" alt="...">
             
             <div class="card-body">
                 <h5 class="card-title">{{ userInfo.userName }}</h5>
@@ -37,6 +37,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import apis from '@/utils/apis.js'
 import Modal from '../components/Modal.vue'
 export default {
   
@@ -48,6 +49,7 @@ export default {
     if(!this.loginStatus()) {
       return
     }
+    this.getPortal(this.userInfo.portal)
   },
   data(){
     return {
@@ -57,6 +59,7 @@ export default {
         top: '20px',
         right: '30px',
       },
+      portal:""
     }
   },
   computed:{
@@ -67,6 +70,11 @@ export default {
   methods:{
      loginStatus() {
           return  this.$store.getters.getLoginStatus != ""
+      },
+      getPortal(fileUrl){
+        apis.FileDownload(fileUrl).then(data => {
+          this.portal = data
+        })
       },
   }
 }

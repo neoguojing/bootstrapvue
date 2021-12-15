@@ -27,7 +27,10 @@ client.interceptors.response.use(
     response => {
         //拦截响应，做统一处理 
         console.log(response)
-        if (response.data.code != 0) {
+        if (Object.prototype.toString.call(response.data) == '[object ArrayBuffer]') {
+            return response
+        }
+        if (Object.prototype.hasOwnProperty.call(response.data,'data') && response.data.code != 0) {
             console.log("请求异常",response.data.code)
             store.commit('upAlertStatus',{
                 message:response.data.message,

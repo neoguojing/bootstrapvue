@@ -213,9 +213,9 @@ export default{
     console.log("UserForm.mounted",userInfo)
     this.userName =userInfo.userName
     this.gender = userInfo.gender
-    this.portal = userInfo.portal
     this.email = userInfo.email
     this.tel = userInfo.tel
+    this.getPortal(userInfo.portal)
   },
   props:{
     logo: {
@@ -228,7 +228,8 @@ export default{
       return {
         'was-validated':this.wasValidated,
       }
-    }
+    },
+   
     
   },
   methods:{
@@ -268,7 +269,14 @@ export default{
     onUpload(e) {
       apis.UploadFiles("portal",e.target.files[0])
       .then(filePath =>{
-        this.portal = apis.FileDownload(filePath)
+          apis.FileDownload(filePath).then(data => {
+            this.portal = data
+          })
+      })
+    },
+    getPortal(fileUrl) {
+      apis.FileDownload(fileUrl).then(data => {
+        this.portal = data
       })
     },
 
