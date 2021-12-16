@@ -269,14 +269,16 @@ export default{
     onUpload(e) {
       apis.UploadFiles("portal",e.target.files[0])
       .then(filePath =>{
-          apis.FileDownload(filePath).then(data => {
-            this.portal = data
-          })
+          this.getPortal(filePath)
       })
     },
     getPortal(fileUrl) {
-      apis.FileDownload(fileUrl).then(data => {
-        this.portal = data
+      apis.FileDownload(fileUrl).then(data => { 
+          this.portal = data   
+      }).catch(err => {
+        if (err == "404"){
+          this.portal = this.logo
+        }
       })
     },
 

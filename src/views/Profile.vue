@@ -59,7 +59,8 @@ export default {
         top: '20px',
         right: '30px',
       },
-      portal:""
+      portal:"",
+      logo:require('@/assets/logo.png')
     }
   },
   computed:{
@@ -74,6 +75,10 @@ export default {
       getPortal(fileUrl){
         apis.FileDownload(fileUrl).then(data => {
           this.portal = data
+        }).catch(err => {
+          if (err == "404"){
+            this.portal = this.logo
+          }
         })
       },
   }
