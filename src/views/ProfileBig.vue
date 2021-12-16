@@ -1,62 +1,86 @@
 <template>
-<div class="row g-3 m-3">
-  <div class="col-3">
-    <div class="card">
-      <img :src="portal" width="64" height="128" class="card-img-top rounded-circle me-2" alt="...">
+<div class="row m-3">
+  <nav id="profile-scrollspy" class="navbar navbar-light bg-light px-3">
+  <a class="navbar-brand" href="#">Profile</a>
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="#basic">Basic</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#companys">Companys</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#designation">Designation</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#colleges">Colleges</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#skills">Skills</a>
+    </li>
+  </ul>
+</nav>
+<div data-bs-spy="scroll" data-bs-target="#profile-scrollspy" data-bs-offset="0" class="g-3" tabindex="0">
+
+    <div id="basic" class="card" >
+      <img :src="portal" class="img-thumbnail" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{ people.name }}</h5>
       </div>
-      <ul class="list-group list-group-flush">
+      <ul class="list-group list-group-flush text-start">
         <li class="list-group-item">Experience: {{ people.total_experience }}</li>
         <li class="list-group-item"> Phone: {{ people.mobile_number }}</li>
         <li class="list-group-item">E-mail: {{ people.email }}</li>
       </ul>
       <div class="card-body">
-        <p class="card-text"></p>
-         <a href="#" class="btn btn-primary">Edit</a>
+          <a href="#" class="btn btn-primary">Edit</a>
       </div>
     </div>
-  </div>
-  
-  <div class="col-6">
-    <div class="card" style="width: 18rem;">
-      <div class="card-header">
+
+     <div id="companys" class="card" >
+      <h5 class="card-header">
         Companys
-      </div>
+      </h5>
       <ul class="list-group list-group-flush">
         <li v-for="(company,i) in people.company_names" v-bind:key="i" class="list-group-item"> {{ company }}</li>
       </ul>
     </div>
 
-    <div class="card" style="width: 18rem;">
-      <div class="card-header">
-        Skills
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">{{ getSkils }}</h5>
-      </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-      <div class="card-header">
+    <div id="designation" class="card">
+      <h5 class="card-header">
         Designation
-      </div>
+      </h5>
       <ul class="list-group list-group-flush">
         <li v-for="(d,i) in people.designation" v-bind:key="i" class="list-group-item">{{ d }}</li>
       </ul>
     </div>
 
-    <div class="card" style="width: 18rem;">
-      <div class="card-header">
+    <div id="colleges" class="card" >
+      <h5 class="card-header">
         Colleges
-      </div>
+      </h5>
       <ul class="list-group list-group-flush">
         <li v-for="(c,i) in people.college_name" v-bind:key="i" class="list-group-item"> {{ c }}</li>
       </ul>
     </div>
+    <div id="skills" class="card" >
+      <h5  class="card-header">Skills</h5>
+      <div class="card-body">
+        <h5 class="card-title text-start">{{ getSkils }}</h5>
+      </div>
+    </div>
+</div>
+    
+  
+
+   
 
     
-  </div>
+
+    
+
+    
+
 </div>
 </template>
 
@@ -84,7 +108,7 @@ export default {
           'mobile_number': '8087996634',
           'name': 'Omkar Pathak',
           'no_of_pages': 3,
-          'skills': ['Operating systems','Linux',
+          'skills': ['Linux',
                     'Github',
                     'Testing',
                     'Content',
