@@ -1,5 +1,4 @@
 <template>
-<div class="row m-3">
   <nav id="profile-scrollspy" class="navbar navbar-light bg-light px-3">
   <a class="navbar-brand" href="#">Profile</a>
   <ul class="nav nav-pills">
@@ -21,22 +20,24 @@
   </ul>
 </nav>
 <div data-bs-spy="scroll" data-bs-target="#profile-scrollspy" data-bs-offset="0" class="g-3" tabindex="0">
-
-    <div id="basic" class="card" >
-      <img :src="portal" class="img-thumbnail" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ people.name }}</h5>
-      </div>
-      <ul class="list-group list-group-flush text-start">
-        <li class="list-group-item">Experience: {{ people.total_experience }}</li>
-        <li class="list-group-item"> Phone: {{ people.mobile_number }}</li>
-        <li class="list-group-item">E-mail: {{ people.email }}</li>
-      </ul>
-      <div class="card-body">
-          <a href="#" class="btn btn-primary">Edit</a>
+    <div id="basic" class="row">
+      <img :src="portal" class="img-thumbnail" alt="..." style="width:200px;height:300px;">
+      <div  class="card" >
+        
+        <div class="card-body">
+          <h5 class="card-title">{{ people.name }}</h5>
+        </div>
+        <ul class="list-group list-group-flush text-start">
+          <li class="list-group-item">Experience: {{ people.total_experience }}</li>
+          <li class="list-group-item"> Phone: {{ people.mobile_number }}</li>
+          <li class="list-group-item">E-mail: {{ people.email }}</li>
+        </ul>
+        <div class="card-body">
+            <a href="#" class="btn btn-primary">Edit</a>
+        </div>
       </div>
     </div>
-
+    
      <div id="companys" class="card" >
       <h5 class="card-header">
         Companys
@@ -69,18 +70,6 @@
         <h5 class="card-title text-start">{{ getSkils }}</h5>
       </div>
     </div>
-</div>
-    
-  
-
-   
-
-    
-
-    
-
-    
-
 </div>
 </template>
 
