@@ -4,16 +4,16 @@ import conf from '@/conf'
 var apis = {
     UploadFiles:async function(type,files) {
         console.log(files)
-        let filePath
+        let respData
         var data = new FormData()
         data.append('type',type)
         data.append('files',files)
         await client.post(conf.urlUpload, data, {headers: {'Content-Type': 'multipart/form-data'}})
         .then(res => {
             console.log(res)
-            filePath = res.data.data
+            respData = res.data.data
         });
-        return filePath
+        return respData
     },
     FileDownload:async function(imagePath) {
         let base64Data
