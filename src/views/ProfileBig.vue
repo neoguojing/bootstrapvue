@@ -21,15 +21,15 @@
         <div class="row row-cols-1 row-cols-md-1 g-2">
           <div  class="card text-white bg-primary" >
             <div class="card-body">
-              <h5 class="card-title">{{ people.name }}</h5>
-              <p class="card-text">{{ people.total_experience }} year</p>
+              <h5 class="card-title">{{ profile.name }}</h5>
+              <p class="card-text">{{ profile.total_experience }} year</p>
             </div>
           </div>
 
           <div  class="card text-white bg-success" >
             <div class="card-body">
-              <p class="card-text">Phone: {{ people.mobile_number }}</p>
-              <p class="card-text">E-mail: {{ people.email }}</p>
+              <p class="card-text">Phone: {{ profile.mobile_number }}</p>
+              <p class="card-text">E-mail: {{ profile.email }}</p>
             </div>
           </div>
 
@@ -48,7 +48,7 @@
         Companys
       </h5>
       <ul class="list-group list-group-flush">
-        <li v-for="(company,i) in people.company_names" v-bind:key="i" class="list-group-item text-dark bg-light"> {{ company }}</li>
+        <li v-for="(company,i) in profile.company_names" v-bind:key="i" class="list-group-item text-dark bg-light"> {{ company }}</li>
       </ul>
     </div>
 
@@ -57,7 +57,7 @@
         Designation
       </h5>
       <ul class="list-group list-group-flush">
-        <li v-for="(d,i) in people.designation" v-bind:key="i" class="list-group-item text-dark bg-light">{{ d }}</li>
+        <li v-for="(d,i) in profile.designation" v-bind:key="i" class="list-group-item text-dark bg-light">{{ d }}</li>
       </ul>
     </div>
 
@@ -66,7 +66,23 @@
         Colleges
       </h5>
       <ul class="list-group list-group-flush">
-        <li v-for="(c,i) in people.college_name" v-bind:key="i" class="list-group-item text-dark bg-light"> {{ c }}</li>
+        <li v-for="(c,i) in profile.college_name" v-bind:key="i" class="list-group-item text-dark bg-light"> {{ c }}</li>
+      </ul>
+    </div>
+    <div id="degree" class="card text-dark bg-light" >
+      <h5 class="card-header">
+        Degree
+      </h5>
+      <ul class="list-group list-group-flush">
+        <li v-for="(c,i) in profile.degree" v-bind:key="i" class="list-group-item text-dark bg-light"> {{ c }}</li>
+      </ul>
+    </div>
+    <div id="experience" class="card text-dark bg-light" >
+      <h5 class="card-header">
+        Experience
+      </h5>
+      <ul class="list-group list-group-flush">
+        <li v-for="(c,i) in profile.experience" v-bind:key="i" class="list-group-item text-dark bg-light"> {{ c }}</li>
       </ul>
     </div>
   </div>
@@ -122,7 +138,8 @@ export default {
   },
   data(){
     return {
-      portal:require('@/assets/test.jpg')
+      portal:require('@/assets/test.jpg'),
+      profile : this.people
     }
   },
   computed:{
@@ -145,7 +162,7 @@ export default {
     onUpload(e) {
       apis.UploadFiles("resume",e.target.files[0])
       .then(profile =>{
-        console.log(profile)
+        this.profile = profile
       })
     },
   }
