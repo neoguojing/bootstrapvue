@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <div id="more" class="row row-cols-1 row-cols-md-3 g-3">
+    <div id="more" class="row row-cols-1 row-cols-md-2 g-3">
       
      <div id="companys" class="card text-dark bg-light" >
       <h5 class="card-header">
@@ -77,14 +77,13 @@
         <li v-for="(c,i) in profile.degree" v-bind:key="i" class="list-group-item text-dark bg-light"> {{ c }}</li>
       </ul>
     </div>
-    <div id="experience" class="card text-dark bg-light" >
-      <h5 class="card-header">
-        Experience
-      </h5>
-      <ul class="list-group list-group-flush">
-        <li v-for="(c,i) in profile.experience" v-bind:key="i" class="list-group-item text-dark bg-light"> {{ c }}</li>
-      </ul>
-    </div>
+  </div>
+
+  <div id="experience" class="card text-dark bg-light" >
+    <h5 class="card-header">
+      Experience
+    </h5>
+    <p class="card-text">{{ profile.experience }}</p>
   </div>
 </div>
 </template>
