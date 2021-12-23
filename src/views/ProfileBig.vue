@@ -16,7 +16,7 @@
   <div class="row gy-3">
     <div class="col-3">
 
-      <div class="card my-3 shadow-sm rounded " style="max-width: 540px;">
+      <div class="card my-3 shadow-sm rounded text-start" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
             <img :src="portal" class="img-fluid rounded-start" alt="...">
@@ -24,9 +24,9 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">{{ profile.name }}</h5>
-              <p class="card-text">{{ profile.mobile_number }}</p>
-              <p class="card-text">{{ profile.email }}</p>
-              <p class="card-text"><small class="text-muted">{{ profile.total_experience }} years</small></p>
+              <p class="card-text"><i class="bi bi-phone"></i> {{ profile.mobile_number }}</p>
+              <p class="card-text"><i class="bi bi-envelope"></i> {{ profile.email }}</p>
+              <p class="card-text"><small class="text-muted"><span class="badge bg-secondary">{{ profile.total_experience }}</span> years</small></p>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
 
       <div class="card my-3 shadow-sm rounded" style="max-width: 540px;">
         <div class="card-header">
-          Companys
+         <i class="bi bi-building"></i> Companys
         </div>
         <ul class="list-group list-group-flush">
             <li v-for="(company,i) in profile.company_names" v-bind:key="i" class="list-group-item"> {{ company }}</li>
@@ -43,7 +43,7 @@
 
       <div class="card my-3 shadow-sm rounded" style="max-width: 540px;">
         <div class="card-header">
-          Designation
+          <i class="bi bi-person-badge"></i> Designation
         </div>
         <ul class="list-group list-group-flush">
            <li v-for="(d,i) in profile.designation" v-bind:key="i" class="list-group-item">{{ d }}</li>
@@ -52,7 +52,7 @@
 
       <div class="card my-3 shadow-sm rounded" style="max-width: 540px;">
         <div class="card-header">
-          Colleges
+         <i class="bi bi-house-door"></i> Colleges
         </div>
         <ul class="list-group list-group-flush">
           <li v-for="(c,i) in profile.college_name" v-bind:key="i" class="list-group-item"> {{ c }}</li>
@@ -61,7 +61,7 @@
 
       <div class="card my-3 shadow-sm rounded" style="max-width: 540px;">
         <div class="card-header">
-          Degree
+         <i class="bi bi-card-heading"></i> Degree
         </div>
         <ul class="list-group list-group-flush">
           <li v-for="(c,i) in profile.degree" v-bind:key="i" class="list-group-item"> {{ c }}</li>
@@ -73,7 +73,7 @@
         <div data-bs-spy="scroll" data-bs-target="#profile-scrollspy" data-bs-offset="0" class="g-3" tabindex="0">
     
           <div id="skills" class="card my-3 shadow-sm rounded">
-            <h5 class="card-header">Skills</h5>
+            <h5 class="card-header"><i class="bi bi-terminal"></i> Skills</h5>
             <div class="card-body">
               <p class="card-text">{{ getSkils }}</p>
             </div>
@@ -81,10 +81,10 @@
           
           <div id="experience" class="card my-3 shadow-sm rounded" >
             <h5 class="card-header">
-              Experience
+              <i class="bi bi-list-check"></i> Experience
             </h5>
             <ul class="list-group list-group-flush">
-              <li v-for="(c,i) in profile.experience" v-bind:key="i" class="list-group-item"> {{ c }}</li>
+              <li v-for="(c,i) in profile.experience" v-bind:key="i" class="list-group-item border-0"> {{ c }}</li>
             </ul>
           </div>
 
