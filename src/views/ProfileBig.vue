@@ -143,7 +143,7 @@ export default {
   },
   data(){
     return {
-      portal:require('@/assets/test.jpg'),
+      portal:require('@/assets/logo.png'),
       profile : this.people
     }
   },
