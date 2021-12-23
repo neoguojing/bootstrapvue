@@ -1,91 +1,97 @@
 <template>
+<div class="row">
   <nav id="profile-scrollspy" class="navbar navbar-light bg-light px-3">
   <a class="navbar-brand" href="#">Profile</a>
    <input id="fileUpload"  @change="onUpload" ref="file" type="file" class="nav" aria-label="file upload" required>
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <a class="nav-link" href="#basic">Basic</a>
+      <a class="nav-link" href="#skills">Skills</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#companys">More</a>
+      <a class="nav-link" href="#experience">Experience</a>
     </li>
   </ul>
   </nav>
-<div data-bs-spy="scroll" data-bs-target="#profile-scrollspy" data-bs-offset="0" class="g-3" tabindex="0">
-    <div id="basic" class="row">
-      <div class="col-3">
-         <img :src="portal" class="img-thumbnail" alt="..." style="width:200px;height:250px;">
-      </div>
+</div>
+  <div class="row gy-3">
+    <div class="col-3">
 
-      <div class="col-6 g-2">
-        <div class="row row-cols-1 row-cols-md-1 g-2">
-          <div  class="card text-white bg-primary" >
+      <div class="card my-3 shadow-sm rounded " style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img :src="portal" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">{{ profile.name }}</h5>
-              <p class="card-text">{{ profile.total_experience }} year</p>
+              <p class="card-text">{{ profile.mobile_number }}</p>
+              <p class="card-text">{{ profile.email }}</p>
+              <p class="card-text"><small class="text-muted">{{ profile.total_experience }} years</small></p>
             </div>
-          </div>
-
-          <div  class="card text-white bg-success" >
-            <div class="card-body">
-              <p class="card-text">Phone: {{ profile.mobile_number }}</p>
-              <p class="card-text">E-mail: {{ profile.email }}</p>
-            </div>
-          </div>
-
-          <div  class="card text-dark bg-info" >
-            <h5 class="card-title">Skills</h5>
-            <p class="card-text">{{ getSkils }}</p>
           </div>
         </div>
       </div>
-    </div>
 
-    <div id="more" class="row row-cols-1 row-cols-md-2 g-3">
-      
-     <div id="companys" class="card text-dark bg-light" >
-      <h5 class="card-header">
-        Companys
-      </h5>
-      <ul class="list-group list-group-flush">
-        <li v-for="(company,i) in profile.company_names" v-bind:key="i" class="list-group-item text-dark bg-light"> {{ company }}</li>
-      </ul>
-    </div>
+      <div class="card my-3 shadow-sm rounded" style="max-width: 540px;">
+        <div class="card-header">
+          Companys
+        </div>
+        <ul class="list-group list-group-flush">
+            <li v-for="(company,i) in profile.company_names" v-bind:key="i" class="list-group-item"> {{ company }}</li>
+        </ul>
+      </div>
 
-    <div id="designation" class="card text-dark bg-light">
-      <h5 class="card-header">
-        Designation
-      </h5>
-      <ul class="list-group list-group-flush">
-        <li v-for="(d,i) in profile.designation" v-bind:key="i" class="list-group-item text-dark bg-light">{{ d }}</li>
-      </ul>
-    </div>
+      <div class="card my-3 shadow-sm rounded" style="max-width: 540px;">
+        <div class="card-header">
+          Designation
+        </div>
+        <ul class="list-group list-group-flush">
+           <li v-for="(d,i) in profile.designation" v-bind:key="i" class="list-group-item">{{ d }}</li>
+        </ul>
+      </div>
 
-    <div id="colleges" class="card text-dark bg-light" >
-      <h5 class="card-header">
-        Colleges
-      </h5>
-      <ul class="list-group list-group-flush">
-        <li v-for="(c,i) in profile.college_name" v-bind:key="i" class="list-group-item text-dark bg-light"> {{ c }}</li>
-      </ul>
-    </div>
-    <div id="degree" class="card text-dark bg-light" >
-      <h5 class="card-header">
-        Degree
-      </h5>
-      <ul class="list-group list-group-flush">
-        <li v-for="(c,i) in profile.degree" v-bind:key="i" class="list-group-item text-dark bg-light"> {{ c }}</li>
-      </ul>
-    </div>
-  </div>
+      <div class="card my-3 shadow-sm rounded" style="max-width: 540px;">
+        <div class="card-header">
+          Colleges
+        </div>
+        <ul class="list-group list-group-flush">
+          <li v-for="(c,i) in profile.college_name" v-bind:key="i" class="list-group-item"> {{ c }}</li>
+        </ul>
+      </div>
 
-  <div id="experience" class="card text-dark bg-light" >
-    <h5 class="card-header">
-      Experience
-    </h5>
-    <p class="card-text">{{ profile.experience }}</p>
-  </div>
+      <div class="card my-3 shadow-sm rounded" style="max-width: 540px;">
+        <div class="card-header">
+          Degree
+        </div>
+        <ul class="list-group list-group-flush">
+          <li v-for="(c,i) in profile.degree" v-bind:key="i" class="list-group-item"> {{ c }}</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="col-7">
+        <div data-bs-spy="scroll" data-bs-target="#profile-scrollspy" data-bs-offset="0" class="g-3" tabindex="0">
+    
+          <div id="skills" class="card my-3 shadow-sm rounded">
+            <h5 class="card-header">Skills</h5>
+            <div class="card-body">
+              <p class="card-text">{{ getSkils }}</p>
+            </div>
+          </div>
+          
+          <div id="experience" class="card my-3 shadow-sm rounded" >
+            <h5 class="card-header">
+              Experience
+            </h5>
+            <ul class="list-group list-group-flush">
+              <li v-for="(c,i) in profile.experience" v-bind:key="i" class="list-group-item"> {{ c }}</li>
+            </ul>
+          </div>
+
+        </div>
+    </div>
 </div>
+  
 </template>
 
 <script>
