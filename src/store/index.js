@@ -17,6 +17,9 @@ export default createStore({
         message :"",
         type:"danger",
         isHide:true
+      },
+      dataCache:{
+
       }
     },
     mutations: {
@@ -28,6 +31,9 @@ export default createStore({
       },
       upAlertStatus(state,status){
         state.alertStatus = status
+      },
+      upDataCache(state,key,value){
+        state.dataCache[key] = value
       }
     },
     actions:{},
@@ -40,6 +46,9 @@ export default createStore({
       },
       getAlertStatus:state => {
         return state.alertStatus
+      },
+      getDataCache:(state,key) => {
+        return state.dataCache[key]
       }
     },
     plugins: [createPersistedState({

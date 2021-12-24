@@ -2,41 +2,33 @@
 <template>
 
 <div class="row">
-    <div class="table-responsive">
-        <table class="table caption-top">
-            <caption v-if="title != ''">List of users</caption>
-            <thead v-if="heads.length">
-                <tr>
-                <th v-for="(head) in heads" v-bind:key="head" scope="col"> {{ head }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in items" v-bind:key="item">
-                    <td v-for="elem in item" v-bind:key="elem"> {{ elem }}</td>
-                </tr>
-            </tbody>
-            
-        </table>
+    <div class="table">
+        <slot></slot>
     </div>
 </div>
 <div class="row">
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-            <a class="page-link text-dark" :class="previousClass" @click="onPrevious"  href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-            </li>
-            <li v-for="(idx,i) in pageBtnCount" v-bind:key="i" @click="onNumBtnClick(idx-1)" :class="{'active':curPage==i}" class="page-item">
-                <a class="page-link text-dark" href="#">{{ idx }}</a>
-            </li>
-            <li class="page-item">
-            <a class="page-link text-dark" :class="nextClass" @click="onNext"  href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-            </li>
-        </ul>
-    </nav>
+    <div class="col-1">
+    <span class="badge rounded-pill bg-primary">{{curPage+1}}/{{totalPage}}</span>
+    </div>
+    <div class="col">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                <a class="page-link text-dark" :class="previousClass" @click="onPrevious"  href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+                </li>
+                <li v-for="(idx,i) in pageBtnCount" v-bind:key="i" @click="onNumBtnClick(idx-1)" :class="{'active':curPage==i}" class="page-item">
+                    <a class="page-link text-dark" href="#">{{ idx }}</a>
+                </li>
+                <li class="page-item">
+                <a class="page-link text-dark" :class="nextClass" @click="onNext"  href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+                </li>
+            </ul>
+        </nav>
+     </div>
 </div>
 </template>
 
@@ -57,26 +49,6 @@ export default {
         id:{
             type: String,
             default:"pageTable"
-        },
-        title:{
-            type: String,
-            default:"List of users"
-        },
-        heads:{
-            type: Array,
-            default:function(){
-                return ['#','First','Last','Handle']
-            }
-        },
-        items:{  //每次只传一页数据
-            type: Array,
-            default:function(){
-                return [
-                        ['1','Mark','Otto','@mdo'],
-                        ['2','Mark','Otto','@mdo'],
-                        ['3','Mark','Otto','@mdo'],
-                    ]
-            }
         },
         numOfPerPage:{
             type: Number,

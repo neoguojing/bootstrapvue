@@ -15,7 +15,7 @@ const config = {
     urlUpload:"/api/v1/admin/Upload",
     // resume
     urlGetResume :"/api/v1/resume/QueryResume",
-    urlGetResums :"/api/v1/resume/QueryResumes",
+    urlGetResumes :"/api/v1/resume/QueryResumes",
     urlAddResume :"/api/v1/resume/AddResume",
     urlDeleteResume :"/api/v1/resume/DeleteResume",
     urlUpdateResume :"/api/v1/resume/UpdateResume",
