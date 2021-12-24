@@ -14,7 +14,7 @@
   </nav>
 </div>
   <div class="row gy-3">
-    <div class="col-3 col-sm-4">
+    <div class="col-3">
 
       <div class="card my-3 shadow-sm rounded text-start" style="max-width: 540px;">
         <div class="row g-0">
