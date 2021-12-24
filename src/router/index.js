@@ -9,6 +9,7 @@ import Blog from '../views/Blog.vue'
 import Product from '../views/Product.vue'
 import UserForm from '../views/UserForm.vue'
 import Profile from '../views/Profile.vue'
+import ProfileBig from '../views/ProfileBig.vue'
 import Settings from '../views/Settings.vue'
 import Dashboard from '../views/Dashboard.vue'
 
@@ -57,6 +58,11 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/profilebig',
+    name: 'ProfileBig',
+    component: ProfileBig
   },
   {
     path: '/settings',

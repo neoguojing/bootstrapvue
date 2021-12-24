@@ -84,16 +84,22 @@ export default {
         
     },
     computed:{
-        cacheKey(offset){
-            return "resumes"+offset
-        }
+        
     },
     methods:{
+        cacheKey(offset){
+            return "resumes"+offset.toString()
+        },
         onPageChange(offset,limit) {
             this.getResumes(offset,limit)
         },
         onRowClick(data){
-             this.$router.push("/profilebig?data="+data);
+            this.$router.push({
+                path :"/profilebig",
+                query:{
+                    resume:data
+                }
+            });
         },
         onEditClick(data) {
             this.$router.push("/userForm?data="+data);
@@ -102,7 +108,9 @@ export default {
             this.$router.push("/userForm?data="+id);
         },
         getResumes(offset,limit){
+             console.log(this.$store.getters.getDataCache)
             var cacheResume = this.$store.getters.getDataCache[this.cacheKey(offset)]
+           
             if (cacheResume) {
                 this.totalRows = cacheResume.total
                 this.items = cacheResume.elems
@@ -123,7 +131,7 @@ export default {
                 
                 this.totalRows = res.data.total
                 this.items = res.data.elems
-                this.$store.commit('upDataCache',this.cacheKey(offset)+offset,res.data)
+                this.$store.commit('upDataCache',{key:this.cacheKey(offset)+offset,value:res.data})
             })
         }
     }

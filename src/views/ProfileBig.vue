@@ -140,6 +140,8 @@ export default {
     if(!this.loginStatus()) {
       return
     }
+    this.profile = this.$router.currentRoute.query.resume
+    console.log(this.profile)
   },
   data(){
     return {
