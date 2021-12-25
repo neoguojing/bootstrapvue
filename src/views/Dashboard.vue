@@ -31,11 +31,11 @@
                     </thead>
                     <tbody>
                         <tr @click="onRowClick(item)" v-for="item in items" v-bind:key="item">
-                            <td > {{ item.name }}</td>
-                            <td > {{ item.mobilenumber }}</td>
-                            <td > {{ item.email }}</td>
-                            <td > {{ item.totalexperience }}</td>
-                            <td > {{ item.skills }}</td>
+                            <td > {{ item.Name }}</td>
+                            <td > {{ item.MobileNumber }}</td>
+                            <td > {{ item.Email }}</td>
+                            <td > {{ item.TotalExperience }}</td>
+                            <td > {{ item.Skills }}</td>
                             <td > <div class="btn-group">
                                 <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Operation
@@ -68,7 +68,7 @@ export default {
                 {name:'1',mobilenumber:'Mark',email:'Otto',totalexperience:'@mdo',skills:[]},
                 {name:'1',mobilenumber:'Mark',email:'Otto',totalexperience:'@mdo',skills:[]},
             ],
-            rowsPerPage: 10,
+            rowsPerPage: 1,
             totalRows : 0,
 
         }
@@ -97,7 +97,7 @@ export default {
             this.$router.push({
                 path :"/profilebig",
                 query:{
-                    resume:data
+                    resume:JSON.stringify(data)
                 }
             });
         },
@@ -108,12 +108,12 @@ export default {
             this.$router.push("/userForm?data="+id);
         },
         getResumes(offset,limit){
-             console.log(this.$store.getters.getDataCache)
+            console.log(this.$store.getters.getDataCache)
             var cacheResume = this.$store.getters.getDataCache[this.cacheKey(offset)]
            
             if (cacheResume) {
-                this.totalRows = cacheResume.total
-                this.items = cacheResume.elems
+                this.totalRows = cacheResume.Total
+                this.items = cacheResume.Elems
                 return 
             }
 
@@ -128,10 +128,11 @@ export default {
                     console.log("获取resume列表失败")
                     return
                 }
-                
-                this.totalRows = res.data.total
-                this.items = res.data.elems
+               
+                this.totalRows = res.data.data.Total
+                this.items = res.data.data.Elems
                 this.$store.commit('upDataCache',{key:this.cacheKey(offset)+offset,value:res.data})
+                console.log(this.totalRows,this.items)
             })
         }
     }

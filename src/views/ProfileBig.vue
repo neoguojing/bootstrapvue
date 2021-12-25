@@ -23,10 +23,10 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{{ profile.name }}</h5>
-              <p class="card-text"><i class="bi bi-phone"></i> {{ profile.mobile_number }}</p>
-              <p class="card-text"><i class="bi bi-envelope"></i> {{ profile.email }}</p>
-              <p class="card-text"><small class="text-muted"><span class="badge bg-secondary">{{ profile.total_experience }}</span> years</small></p>
+              <h5 class="card-title">{{ profile.Name }}</h5>
+              <p class="card-text"><i class="bi bi-phone"></i> {{ profile.MobileNumber }}</p>
+              <p class="card-text"><i class="bi bi-envelope"></i> {{ profile.Email }}</p>
+              <p class="card-text"><small class="text-muted"><span class="badge bg-secondary">{{ profile.TotalExperience }}</span> years</small></p>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
          <i class="bi bi-building"></i> Companys
         </div>
         <ul class="list-group list-group-flush">
-            <li v-for="(company,i) in profile.company_names" v-bind:key="i" class="list-group-item"> {{ company }}</li>
+            <li v-for="(company,i) in profile.CompanyNames" v-bind:key="i" class="list-group-item"> {{ company }}</li>
         </ul>
       </div>
 
@@ -46,7 +46,7 @@
           <i class="bi bi-person-badge"></i> Designation
         </div>
         <ul class="list-group list-group-flush">
-           <li v-for="(d,i) in profile.designation" v-bind:key="i" class="list-group-item">{{ d }}</li>
+           <li v-for="(d,i) in profile.Designation" v-bind:key="i" class="list-group-item">{{ d }}</li>
         </ul>
       </div>
 
@@ -55,7 +55,7 @@
          <i class="bi bi-house-door"></i> Colleges
         </div>
         <ul class="list-group list-group-flush">
-          <li v-for="(c,i) in profile.college_name" v-bind:key="i" class="list-group-item"> {{ c }}</li>
+          <li v-for="(c,i) in profile.CollegeName" v-bind:key="i" class="list-group-item"> {{ c }}</li>
         </ul>
       </div>
 
@@ -64,7 +64,7 @@
          <i class="bi bi-card-heading"></i> Degree
         </div>
         <ul class="list-group list-group-flush">
-          <li v-for="(c,i) in profile.degree" v-bind:key="i" class="list-group-item"> {{ c }}</li>
+          <li v-for="(c,i) in profile.Degree" v-bind:key="i" class="list-group-item"> {{ c }}</li>
         </ul>
       </div>
 
@@ -84,7 +84,7 @@
               <i class="bi bi-list-check"></i> Experience
             </h5>
             <ul class="list-group list-group-flush">
-              <li v-for="(c,i) in profile.experience" v-bind:key="i" class="list-group-item border-0"> {{ c }}</li>
+              <li v-for="(c,i) in profile.Experience" v-bind:key="i" class="list-group-item border-0"> {{ c }}</li>
             </ul>
           </div>
 
@@ -109,17 +109,17 @@ export default {
       type: Object,
       default: function() {
         return {
-          'college_name': ['Marathwada Mitra Mandal’s College of Engineering'],
-          'company_names': ['Bell','Tencent','YIN'],
-          'degree': ['B.E. IN COMPUTER ENGINEERING'],
-          'designation': ['Manager',
+          'CollegeName': ['Marathwada Mitra Mandal’s College of Engineering'],
+          'CompanyNames': ['Bell','Tencent','YIN'],
+          'Degree': ['B.E. IN COMPUTER ENGINEERING'],
+          'Designation': ['Manager',
                           'TECHNICAL CONTENT WRITER',
                           'DATA ENGINEER'],
-          'email': 'omkarpathak27@gmail.com',
-          'mobile_number': '8087996634',
-          'name': 'Omkar Pathak',
+          'Email': 'omkarpathak27@gmail.com',
+          'MobileNumber': '8087996634',
+          'Name': 'Omkar Pathak',
           'no_of_pages': 3,
-          'skills': ['Linux',
+          'Skills': ['Linux',
                     'Github',
                     'Testing',
                     'Content',
@@ -131,7 +131,7 @@ export default {
                     'Opencv',
                     'Programming',
                     'C'],
-          'total_experience': 1.83
+          'TotalExperience': 1.83
         }
       }
     }
@@ -140,7 +140,7 @@ export default {
     if(!this.loginStatus()) {
       return
     }
-    this.profile = this.$router.currentRoute.query.resume
+    this.profile = JSON.parse(this.$route.query.resume)
     console.log(this.profile)
   },
   data(){
@@ -155,8 +155,8 @@ export default {
     },
     getSkils() {
       var ret = ""
-      for (var i in this.people.skills) {
-        ret += this.people.skills[i] + ","
+      for (var i in this.profile.Skills) {
+        ret += this.profile.Skills[i] + ","
       }
       console.log(ret)
       return ret
@@ -169,7 +169,9 @@ export default {
     onUpload(e) {
       apis.UploadFiles("resume",e.target.files[0])
       .then(profile =>{
+        
         this.profile = profile
+        console.log(this.profile)
       })
     },
   }
