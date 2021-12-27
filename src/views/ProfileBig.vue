@@ -100,6 +100,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import apis from '@/utils/apis.js'
+import config from '@/conf'
 export default {
   name: 'ProfileBig',
   components: {
@@ -140,8 +141,10 @@ export default {
     if(!this.loginStatus()) {
       return
     }
-    this.profile = JSON.parse(this.$route.query.resume)
-    console.log(this.profile)
+    if (this.$route.query.resume) {
+      this.getResume(this.$route.query.resume)
+    }
+    
   },
   data(){
     return {
@@ -174,6 +177,21 @@ export default {
         console.log(this.profile)
       })
     },
+    getResume(id){
+          var req = {
+              ID:parseInt(id)
+          }
+          this.$http.post(config.urlGetResume,req)
+          .then(res => {
+              console.log(res.data)
+              if(res.data.code!=0){
+                  console.log("获取resume失败")
+                  return
+              }
+              
+              this.profile = res.data.data
+          })
+      }
   }
 }
 </script>

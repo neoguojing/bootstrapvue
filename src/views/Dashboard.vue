@@ -33,8 +33,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr @click="onRowClick(item)" v-for="item in items" v-bind:key="item">
-                                <td > {{ item.Name }}</td>
+                            <tr  v-for="item in items" v-bind:key="item">
+                                <td @click.stop.prevent="onRowClick(item.ID)" > {{ item.Name }}</td>
                                 <td > {{ item.MobileNumber }}</td>
                                 <td > {{ item.Email }}</td>
                                 <td > {{ item.TotalExperience }}</td>
@@ -44,9 +44,9 @@
                                         Operation
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" onRowClick(item)>View</a></li>
-                                        <li><a class="dropdown-item" onEditClick(item)>Edit</a></li>
-                                        <li><a class="dropdown-item" onDelClick(item.id)>Delete</a></li>
+                                        <li><a class="dropdown-item" @click="onRowClick(item.ID)">View</a></li>
+                                        <li><a class="dropdown-item" @click="onEditClick(item)">Edit</a></li>
+                                        <li><a class="dropdown-item" @click="onDelClick(item.id)">Delete</a></li>
                                     </ul>
                                     </div>
                                 </td>
@@ -82,7 +82,7 @@ export default {
     },
     components:{
         Sidebar,
-        PageTable
+        PageTable,
     },
     mounted(){
         this.getResumes(0,this.rowsPerPage)
@@ -100,7 +100,7 @@ export default {
         onPageChange(offset,limit) {
             this.getResumes(offset,limit)
         },
-        onRowClick(data){
+        onRowClick(data){   
             this.$router.push({
                 path :"/profilebig",
                 query:{
