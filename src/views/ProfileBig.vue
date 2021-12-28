@@ -1,5 +1,5 @@
 <template>
-<div class="row">
+<div class="row justify-content-start">
   <nav id="profile-scrollspy" class="navbar navbar-light bg-light px-3">
   <a class="navbar-brand" href="#">Profile</a>
    <input id="fileUpload"  @change="onUpload" ref="file" type="file" class="nav" aria-label="file upload" required>
@@ -13,8 +13,8 @@
   </ul>
   </nav>
 </div>
-  <div class="row gy-3">
-    <div class="col-3">
+  <div class="row justify-content-start gy-3">
+    <div class="col-4">
 
       <div class="card my-3 shadow-sm rounded text-start" style="max-width: 540px;">
         <div class="row g-0">
@@ -69,7 +69,7 @@
       </div>
 
     </div>
-    <div class="col-7">
+    <div class="col-8">
         <div data-bs-spy="scroll" data-bs-target="#profile-scrollspy" data-bs-offset="0" class="g-3" tabindex="0">
     
           <div id="skills" class="card my-3 shadow-sm rounded">
@@ -106,36 +106,7 @@ export default {
   components: {
   },
   props:{
-    people :{
-      type: Object,
-      default: function() {
-        return {
-          'CollegeName': ['Marathwada Mitra Mandal’s College of Engineering'],
-          'CompanyNames': ['Bell','Tencent','YIN'],
-          'Degree': ['B.E. IN COMPUTER ENGINEERING'],
-          'Designation': ['Manager',
-                          'TECHNICAL CONTENT WRITER',
-                          'DATA ENGINEER'],
-          'Email': 'omkarpathak27@gmail.com',
-          'MobileNumber': '8087996634',
-          'Name': 'Omkar Pathak',
-          'no_of_pages': 3,
-          'Skills': ['Linux',
-                    'Github',
-                    'Testing',
-                    'Content',
-                    'Automation',
-                    'Python',
-                    'Css',
-                    'Website',
-                    'Django',
-                    'Opencv',
-                    'Programming',
-                    'C'],
-          'TotalExperience': 1.83
-        }
-      }
-    }
+
   },
   mounted() {
     if(!this.loginStatus()) {
@@ -149,7 +120,7 @@ export default {
   data(){
     return {
       portal:require('@/assets/logo.png'),
-      profile : this.people
+      profile : {}
     }
   },
   computed:{

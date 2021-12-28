@@ -112,12 +112,14 @@
           </div>
 
           <hr class="my-4">
-
+           <h4 class="mb-3">Education</h4>
+           <hr class="my-4">
+           <h4 class="mb-3">Work experiences</h4>
+          <hr class="my-4">
           <h4 class="mb-3">Payment</h4>
 
           <div class="row gy-3">
             <div class="col-md-6  form-floating">
-              
               <input v-model="nameOnCard" type="text" class="form-control" id="cc-name" placeholder="Name on card">
               <label for="cc-name" class="form-label">Name on card</label>
               <small class="text-muted">Full name as displayed on card</small>
@@ -194,6 +196,14 @@ export default{
       email: "",
       tel: "",
       birthday:"",
+
+      colleges :[],
+      degrees :[],
+
+      companys :[],
+      designations :[],
+      experiences :[],
+      skills :[],
       
       country:"",
       state:"",

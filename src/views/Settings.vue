@@ -1,5 +1,6 @@
 <template>
     <div class="row" >
+        <div class="col-3" >
         <Sidebar id="settingsSidebar" title="Settings" :offcanvasClass="[]">
             <ul class="nav nav-pills flex-column mb-auto ">
                 <li class="nav-item ">
@@ -18,7 +19,8 @@
                 </li>    
             </ul>
         </Sidebar>
-        <div class="col tab-content" id="tabContent" >
+        </div>
+        <div class="col-9 tab-content" id="tabContent" >
             <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <ProfileBig/>
             </div>
