@@ -39,15 +39,20 @@
                                 <td > {{ item.Email }}</td>
                                 <td > {{ item.TotalExperience }}</td>
                                 <td > {{ item.Designation }}</td>
-                                <td > <div class="btn-group">
-                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Operation
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" @click="onRowClick(item.ID)">View</a></li>
-                                        <li><a class="dropdown-item" @click="onEditClick(item)">Edit</a></li>
-                                        <li><a class="dropdown-item" @click="onDelClick(item.id)">Delete</a></li>
-                                    </ul>
+                                <td > 
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary btn-sm" @click="onRowClick(item.ID)">View</button>
+                                        <button class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" 
+                                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="visually-hidden">Operation</span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" @click="onEditClick(item)">Edit</a></li>
+                                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#confirm">Delete</a></li>
+                                        </ul>
+                                        <Modal id="confirm" :showFooter='true'  :showSaveBtn='true'  @customerBtnClick="onDelClick(item.ID)">
+                                            <h5> Do you want to delete this record?</h5>
+                                        </Modal>
                                     </div>
                                 </td>
                             </tr>
@@ -65,6 +70,7 @@
 <script>
 import Sidebar from '@/components/Sidebar.vue'
 import PageTable from '@/components/PageTable.vue'
+import Modal from '@/components/Modal.vue'
 import config from '@/conf'
 export default {
     name:"Dashboard",
@@ -83,6 +89,7 @@ export default {
     components:{
         Sidebar,
         PageTable,
+        Modal,
     },
     mounted(){
         this.getResumes(0,this.rowsPerPage)
@@ -112,7 +119,18 @@ export default {
             this.$router.push("/userForm?data="+data);
         },
         onDelClick(id) {
-            this.$router.push("/userForm?data="+id);
+            console.log(id)
+            var req = {
+                ID:id,
+            }
+            this.$http.post(config.urlDeleteResume,req)
+            .then(res => {
+                console.log(res.data)
+                if(res.data.code!=0){
+                    console.log("删除数据失败")
+                    return
+                }
+            })
         },
         getResumes(offset,limit){
             console.log(this.$store.getters.getDataCache)

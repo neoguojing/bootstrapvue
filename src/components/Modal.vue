@@ -7,16 +7,16 @@
 <div class="modal fade" :class="modalClass" :id="id" tabindex="-1" :aria-labelledby="selectId(labelId)" aria-hidden="true">
   <div class="modal-dialog" :class="dialogClass" :style="dialogStyle">
     <div class="modal-content">
-      <div v-if="showHeader" class="modal-header">
+      <div v-if="showHeader==true" class="modal-header">
         <h5 class="modal-title" :id="labelId">{{ title }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <slot></slot>
       </div>
-      <div v-if="showFooter" class="modal-footer">
+      <div v-if="showFooter==true" class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button v-if="showSaveBtn" type="button" class="btn" :class="colorObj" >Save changes</button>
+        <button v-if="showSaveBtn==true" @click="onBtnClick" data-bs-dismiss="modal" type="button" class="btn" :class="colorObj" >{{ btnName }}</button>
       </div>
     </div>
   </div>
@@ -62,6 +62,10 @@ export default{
             type :Boolean,
             default: false
         },
+        btnName:{
+            type :String,
+            default: "Confirm"
+        },
         showHeader:{
             type :Boolean,
             default: false
@@ -102,10 +106,14 @@ export default{
         },
 
     },
+    emits:["customerBtnClick"],
     methods:{
         selectId(name){
             return "#"+name
         },
+        onBtnClick() {
+            this.$emit("customerBtnClick")
+        }
     }
 
 }
