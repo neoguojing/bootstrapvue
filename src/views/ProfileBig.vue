@@ -23,10 +23,10 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{{ profile.Name }}</h5>
-              <p class="card-text"><i class="bi bi-phone"></i> {{ profile.MobileNumber }}</p>
-              <p class="card-text"><i class="bi bi-envelope"></i> {{ profile.Email }}</p>
-              <p class="card-text"><small class="text-muted"><span class="badge bg-secondary">{{ profile.TotalExperience }}</span> years</small></p>
+              <h5 class="card-title">{{ userName }}</h5>
+              <p class="card-text"><i class="bi bi-phone"></i> {{ tel }}</p>
+              <p class="card-text"><i class="bi bi-envelope"></i> {{ email }}</p>
+              <p class="card-text"><small class="text-muted"><span class="badge bg-secondary">{{ totalExp }}</span> years</small></p>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
          <i class="bi bi-building"></i> Companys
         </div>
         <ul class="list-group list-group-flush">
-            <li v-for="(company,i) in profile.CompanyNames" v-bind:key="i" class="list-group-item"> {{ company }}</li>
+            <li v-for="(company,i) in companys" v-bind:key="i" class="list-group-item"> {{ company }}</li>
         </ul>
       </div>
 
@@ -46,7 +46,7 @@
           <i class="bi bi-person-badge"></i> Designation
         </div>
         <ul class="list-group list-group-flush">
-           <li v-for="(d,i) in profile.Designation" v-bind:key="i" class="list-group-item">{{ d }}</li>
+           <li v-for="(d,i) in designations" v-bind:key="i" class="list-group-item">{{ d }}</li>
         </ul>
       </div>
 
@@ -55,7 +55,7 @@
          <i class="bi bi-house-door"></i> Colleges
         </div>
         <ul class="list-group list-group-flush">
-          <li v-for="(c,i) in profile.CollegeName" v-bind:key="i" class="list-group-item"> {{ c }}</li>
+          <li v-for="(c,i) in colleges" v-bind:key="i" class="list-group-item"> {{ c }}</li>
         </ul>
       </div>
 
@@ -64,7 +64,7 @@
          <i class="bi bi-card-heading"></i> Degree
         </div>
         <ul class="list-group list-group-flush">
-          <li v-for="(c,i) in profile.Degree" v-bind:key="i" class="list-group-item"> {{ c }}</li>
+          <li v-for="(c,i) in degrees" v-bind:key="i" class="list-group-item"> {{ c }}</li>
         </ul>
       </div>
 
@@ -84,7 +84,7 @@
               <i class="bi bi-list-check"></i> Experience
             </h5>
             <ul class="list-group list-group-flush">
-              <li v-for="(c,i) in profile.Experience" v-bind:key="i" class="list-group-item border-0"> {{ c }}</li>
+              <li v-for="(c,i) in experiences" v-bind:key="i" class="list-group-item border-0"> {{ c }}</li>
             </ul>
           </div>
 
@@ -114,13 +114,48 @@ export default {
     }
     if (this.$route.query.resume) {
       this.getResume(this.$route.query.resume)
+    } else if (this.userInfo){
+
+      this.userName = this.userInfo.userName
+      this.birthday = this.userInfo.birthDay
+      this.email = this.userInfo.email
+      this.gender = this.userInfo.gender
+      this.portal = this.getPortal(this.userInfo.portal)
+      this.tel = this.userInfo.tel
     }
     
   },
   data(){
     return {
+
+      firstName:"",
+      lastName:"",
+      userName: "",
+      gender: 0,
+      email: "",
+      tel: "",
+      birthday:"",
       portal:require('@/assets/logo.png'),
-      profile : {}
+
+      colleges :[],
+      degrees :[],
+
+      companys :[],
+      designations :[],
+      experiences :[],
+      skills :[],
+      totalExp: 0,
+      
+      country:"",
+      state:"",
+      city:"",
+      address:"",
+      zip:"",
+      
+      nameOnCard:"",
+      cardNum:"",
+      expiration:"",
+      securityCode:"",
     }
   },
   computed:{
@@ -129,8 +164,8 @@ export default {
     },
     getSkils() {
       var ret = ""
-      for (var i in this.profile.Skills) {
-        ret += this.profile.Skills[i] + ","
+      for (var i in this.skills) {
+        ret += this.skills[i] + ","
       }
       console.log(ret)
       return ret
@@ -140,11 +175,21 @@ export default {
     loginStatus() {
         return  this.$store.getters.getLoginStatus != ""
     },
+    getPortal(fileUrl){
+        apis.FileDownload(fileUrl).then(data => {
+          this.portal = data
+        }).catch(err => {
+          if (err == "404"){
+            this.portal = this.logo
+          }
+        })
+      },
     onUpload(e) {
       apis.UploadFiles("resume",e.target.files[0])
       .then(profile =>{
         
         this.profile = profile
+        this.cv2Data(profile)
         console.log(this.profile)
       })
     },
@@ -160,8 +205,39 @@ export default {
                   return
               }
               
-              this.profile = res.data.data
+              this.cv2Data(res.data.data)
+              
           })
+      },
+      cv2Data(cv){
+              this.userName = cv.Name
+              this.firstName=""
+              this.lastName = ""
+              this.gender=  0
+              this.email = cv.Email
+              this.tel= cv.MobileNumber
+              this.birthday=""
+              this.portal=require('@/assets/logo.png')
+
+              this.colleges =cv.CollegeName
+              this.degrees =cv.Degree
+
+              this.companys =cv.CompanyNames
+              this.designations =cv.Designation
+              this.experiences =cv.Experience
+              this.skills =cv.Skills
+              this.totalExp =cv.TotalExperience
+              
+              this.country=""
+              this.state=""
+              this.city=""
+              this.address=""
+              this.zip=""
+              
+              this.nameOnCard=""
+              this.cardNum=""
+              this.expiration=""
+              this.securityCode=""
       }
   }
 }
