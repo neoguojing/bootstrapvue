@@ -18,14 +18,13 @@
       <Profile/>
    </div>
   </div>
-  <div class="row" >
+  <div class="row main" >
     <Sidebar />
     <div class="col" >
       <div class="mx-auto" style="width:500px" z-index="1">
             <Alert @alertClose="onAlertClose"  :message="alertStatus.message" :type="alertStatus.type" :isHide="alertStatus.isHide"/>
       </div>
-      <router-view  class="full-height"/>
-      
+      <router-view class="full-height"/>
     </div>
   </div>
   <div class="row ">
@@ -74,12 +73,18 @@ export default {
 </script>
 
 <style lang="scss">
+html, body {
+  height: 100%;
+  margin: 0;
+  min-height: 980px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
 
 #nav {
@@ -96,14 +101,25 @@ export default {
 }
 
 
+
+
 </style>
 
 <style scoped>
-html, body {
+.container-fluid {
+
   height: 100%;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+
+  flex: 1;
 }
 .full-height {
   height: 100%;
 }
+
+
 </style>

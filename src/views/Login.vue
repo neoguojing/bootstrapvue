@@ -1,5 +1,5 @@
 <template>
- <div class="body">
+ <div class="login">
   <form class="form-signin needs-validation" :class="validateClass" novalidate>
     <img class="mb-4" :src="logo" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
@@ -112,17 +112,8 @@ export default {
 </script>
 
 <style scoped>
-html,
-.body {
-  height: 100%;
-}
-
-.body {
-  display: flex;
-  align-items: center;
-  padding-top: 200px;
-  padding-bottom: 180px;
-  background-color: #f5f5f5;
+.login {
+  position: relative;
 }
 
 .form-signin {
@@ -130,6 +121,10 @@ html,
   max-width: 330px;
   padding: 15px;
   margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .form-signin .checkbox {

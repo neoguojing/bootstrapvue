@@ -1,7 +1,7 @@
 <template>
-  <div class="position-relative top-50">
+  <div class="position-relative top-50" style="margin-top: -30px;">
   <form class="row needs-validation" :class="validateClass" novalidate>
-    <div class="row g-5">
+    <div class="row">
       <div class="col"></div>
       <div class="col">
         <div class="form-floating has-validation">
