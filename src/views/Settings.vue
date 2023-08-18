@@ -25,7 +25,7 @@
                 <ProfileBig/>
             </div>
             <div class="tab-pane fade" id="reset" role="tabpanel" aria-labelledby="reset-tab">
-                hahah
+                <ResetPassword/>
             </div>
         </div>
     </div>
@@ -34,11 +34,13 @@
 <script>
 import Sidebar from '@/components/Sidebar.vue'
 import ProfileBig from '@/views/ProfileBig.vue'
+import ResetPassword from '@/views/ResetPassword.vue'
 export default {
     name:"Settings",
     components:{
         Sidebar,
-        ProfileBig
+        ProfileBig,
+        ResetPassword
     },
     setup() {
         
