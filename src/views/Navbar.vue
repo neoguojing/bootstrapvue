@@ -1,17 +1,17 @@
 <template>
 <nav  class="navbar navbar-expand-lg" :class="colorObj">
   <div class="container">
-    <a class="navbar-brand" data-bs-toggle="offcanvas" :href="selectId(sideBarId)" :aria-controls="sideBarId">
+    <a class="navbar-brand" data-bs-toggle="offcanvas" :href="loginStatus() ? selectId(sideBarId) : undefined" :aria-controls="sideBarId">
       <img :src="brandImage" alt="" width="30" height="24" class="d-inline-block align-text-top">
       {{ brandName }}
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarScroll">
+    <div class="collapse navbar-collapse" id="navbarScroll" @click="onMenuClick">
       <ul class="navbar-nav me-auto mb-2 my-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
         </li>
         <slot></slot>
       </ul>
@@ -23,7 +23,6 @@
       <ul class="navbar-nav" >
         <li class="nav-item">
           <a v-if="loginStatus()==false" class="btn btn-outline-light me-2" aria-current="page" href="/login">Sigin in</a>
-          <!-- <a v-if="loginStatus()==false" class="btn btn-warning" aria-current="page" href="/signup" data-bs-toggle="modal" :data-bs-target="selectId(signUpModalId)">Sign up</a> -->
           <a v-if="loginStatus()==false" class="btn btn-warning" aria-current="page" href="/signup">Sign up</a>
 
         </li>
@@ -129,15 +128,18 @@ export default{
           return "#"+name
       },
       //TODO 页面重载和事件阻塞间的矛盾
-      onMenuClick(event){
-          console.log(event)
-          var activedElem = document.getElementsByClassName("nav-link active");
-          console.log(activedElem)
-          while (activedElem.length) {
-              activedElem[0].classList.remove("active");
-          }
-          event.target.classList.add("active");
-          
+      onMenuClick(){
+          let path = this.$route.path;
+          let links = document.querySelectorAll('.nav-link');
+          links.forEach(link => {
+            if (link.getAttribute('href') === path) {
+              link.classList.add('active');
+              link.setAttribute('aria-current', 'page');
+            } else {
+              link.classList.remove('active');
+              link.removeAttribute('aria-current');
+            }
+          });
       },
       loginStatus() {
           return  this.$store.getters.getLoginStatus != ""

@@ -4,13 +4,13 @@
     <div class="col">
       <Navbar signUpModalId="modalSignin" profileModalId="profileModalId" >
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/album">Album</a>
+          <router-link class="nav-link"  to="/album">Album</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/blog">Blog</a>
+          <router-link class="nav-link"  to="/blog">Blog</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/product">Product</a>
+          <router-link class="nav-link" to="/product">Product</router-link>
         </li>
         <NavDropdown text="Compontent"/>
       </Navbar>
