@@ -20,6 +20,10 @@ const config = {
     urlDeleteResume :"/api/v1/resume/DeleteResume",
     urlUpdateResume :"/api/v1/resume/UpdateResume",
 
+    // admin
+    urlGetRoles :"/api/v1/admin/roles",
+    urlGetPolicies :"/api/v1/admin/policies",
+
 }
 
 export default config;
