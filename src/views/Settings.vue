@@ -53,18 +53,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr  v-for="policy in policies" v-bind:key="policy">
+                            <tr  v-for="(policy,index) in policies" v-bind:key="policy">
                                 <td > 
-                                    <select class="form-select form-select-sm" aria-label="Small select example">
-                                        <option selected>{{ policy[0] }}</option>
-                                        <option v-for="role in roles" v-bind:key="role" value="1" >
+                                    <select class="form-select form-select-sm" aria-label="role-select">
+                                        <option v-for="role in roles" v-bind:key="role" v-bind:value="index" :selected="isSelected(role,policy[0])">
                                              {{ role }}
-                                             <!-- v-if="role = {{ policy[0] }} ? selected : undefine" -->
                                         </option>
                                     </select>
                                 </td>
-                                <td > {{ policy[1] }}</td>
-                                <td > {{ policy[2] }}</td>
+                                <td > 
+                                    <select class="form-select form-select-sm" aria-label="resource-select">
+                                        <option v-for="rsrc in resources" v-bind:key="rsrc" v-bind:value="index" :selected="isSelected(rsrc,policy[1])">
+                                             {{ rsrc }}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td >
+                                    <select class="form-select form-select-sm" aria-label="action-select">
+                                        <option v-for="act in actions" v-bind:key="act" v-bind:value="index" :selected="isSelected(act,policy[2])">
+                                             {{ act }}
+                                        </option>
+                                    </select>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -86,6 +96,8 @@ export default {
         return {
             policies: [],
             roles: [],
+            resources: [],
+            actions: [],
             rowsPerPageForPolicy: 10,
             totalRowsForPolicy : 0,
         }
@@ -99,9 +111,18 @@ export default {
     mounted(){
         this.getRoles()
         this.getPolicies()
+        this.getResources()
+        this.getActions()
     },
     setup() {
         
+    },
+    computed: {
+        isSelected() {
+            return (a, b) => {
+                return a === b 
+            }
+        }
     },
     methods:{
         cacheKey(offset){
@@ -126,7 +147,31 @@ export default {
                     return
                 }
                 this.roles = res.data.data
-                console.log(this.totalRows,this.items)
+                console.log(this.totalRows,this.roles)
+            })
+        },
+        getResources(){
+            this.$http.get(config.urlGetResources)
+            .then(res => {
+                console.log(res.data)
+                if(res.data.code!=0){
+                    console.log("获取资源列表失败")
+                    return
+                }
+                this.resources = res.data.data
+                console.log(this.totalRows,this.resources)
+            })
+        },
+        getActions(){
+            this.$http.get(config.urlGetActions)
+            .then(res => {
+                console.log(res.data)
+                if(res.data.code!=0){
+                    console.log("获取action列表失败")
+                    return
+                }
+                this.actions = res.data.data
+                console.log(this.totalRows,this.actions)
             })
         },
         getPolicies(){
@@ -140,7 +185,7 @@ export default {
                
                 this.totalRowsForPolicy =res.data.data.length
                 this.policies = res.data.data
-                console.log(this.totalRows,this.items)
+                console.log(this.totalRowsForPolicy,this.policies)
             })
         }
     },

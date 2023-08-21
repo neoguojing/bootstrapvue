@@ -23,6 +23,8 @@ const config = {
     // admin
     urlGetRoles :"/api/v1/admin/roles",
     urlGetPolicies :"/api/v1/admin/policies",
+    urlGetResources :"/api/v1/admin/resouces",
+    urlGetActions :"/api/v1/admin/actions",
 
 }
 
