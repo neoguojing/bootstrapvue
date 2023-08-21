@@ -1,6 +1,6 @@
 <template>
   
-   <div :id="id" class="d-flex flex-column flex-shrink-0 p-3 bg-light text-dark vh-100" :class="offcanvasClass" style="width: 280px;">
+   <div :id="id" class="d-flex flex-column flex-shrink-0 p-3 bg-light text-dark" :class="offcanvasClass" style="width: 280px; height: 100%;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
       <i class="bi-bootstrap px-3"  style="font-size: 2rem;"></i>
       <span class="fs-4">{{ title }}</span>

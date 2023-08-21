@@ -1,6 +1,6 @@
 <template>
-<div class="d-flex flex-column h-100">
-  <div class="">
+<div class="container-fluid">
+  <div class="row">
     <div class="col">
       <Navbar signUpModalId="modalSignin" profileModalId="profileModalId" >
         <li class="nav-item">
@@ -18,7 +18,7 @@
       <Profile/>
    </div>
   </div>
-  <div class="flex-grow-1" >
+  <div class="row main" >
     <Sidebar />
     <div class="col" >
       <div class="mx-auto" style="width:500px" z-index="1">
@@ -29,7 +29,7 @@
       
     </div>
   </div>
-  <div class="">
+  <div class="row ">
     <Footer/>
   </div>
 </div>

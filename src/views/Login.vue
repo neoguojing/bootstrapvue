@@ -25,7 +25,8 @@
       </label>
     </div>
     <button  @click.stop.prevent="onSubmit" class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <a class="fs-6" href="/forgetPassword">Forget password?</a>
+    <!-- <a class="fs-6" href="/forgetPassword">Forget password?</a> -->
+    <router-link class="nav-link" to="/forgetPassword">Forget password?</router-link>
   </form>
  </div>
 </template>
@@ -113,7 +114,7 @@ export default {
 
 <style scoped>
 .login {
-  position: relative;
+  /* position: relative; */
 }
 
 .form-signin {

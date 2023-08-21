@@ -42,9 +42,16 @@
                 <ResetPassword/>
             </div>
             <div class="tab-pane fade" id="rbac" role="tabpanel" aria-labelledby="rbac-tab">
+                <nav id="rbac-scrollspy" class="navbar navbar-light bg-light px-3">
+                    <a class="navbar-brand" href="#">RBAC</a>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                        <a class="nav-link" href="#skills" @click="onSave">Save</a>
+                        </li>
+                    </ul>
+                </nav>
                 <PageTable @pageChange="onPageChangeForPolicy" :numOfPerPage="rowsPerPageForPolicy" :total="totalRowsForPolicy" >
                     <table class="table caption-top">
-                        <caption>List of policy</caption>
                         <thead>
                             <tr>
                                 <th  scope="col"> Role </th>
@@ -53,24 +60,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr  v-for="(policy,index) in policies" v-bind:key="policy">
+                            <tr  v-for="policy in policies" v-bind:key="policy">
                                 <td > 
-                                    <select class="form-select form-select-sm" aria-label="role-select">
-                                        <option v-for="role in roles" v-bind:key="role" v-bind:value="index" :selected="isSelected(role,policy[0])">
+                                    <select class="form-select form-select-sm" aria-label="role-select" v-model="policy[0]">
+                                        <option v-for="role in roles" v-bind:key="role" :value="role" :selected="isSelected(role,policy[0])">
                                              {{ role }}
                                         </option>
                                     </select>
                                 </td>
                                 <td > 
-                                    <select class="form-select form-select-sm" aria-label="resource-select">
-                                        <option v-for="rsrc in resources" v-bind:key="rsrc" v-bind:value="index" :selected="isSelected(rsrc,policy[1])">
+                                    <select class="form-select form-select-sm" aria-label="resource-select" v-model="policy[1]">
+                                        <option v-for="rsrc in resources" v-bind:key="rsrc" :value="rsrc" :selected="isSelected(rsrc,policy[1])">
                                              {{ rsrc }}
                                         </option>
                                     </select>
                                 </td>
                                 <td >
-                                    <select class="form-select form-select-sm" aria-label="action-select">
-                                        <option v-for="act in actions" v-bind:key="act" v-bind:value="index" :selected="isSelected(act,policy[2])">
+                                    <select class="form-select form-select-sm" aria-label="action-select" v-model="policy[2]">
+                                        <option v-for="act in actions" v-bind:key="act" :value="act" :selected="isSelected(act,policy[2])">
                                              {{ act }}
                                         </option>
                                     </select>
@@ -125,6 +132,7 @@ export default {
         }
     },
     methods:{
+        
         cacheKey(offset){
             return "resumes"+offset.toString()
         },
@@ -138,6 +146,10 @@ export default {
             }
             
         },
+        onSave() {
+            console.log(this.policies)
+        },
+
         getRoles(){
             this.$http.get(config.urlGetRoles)
             .then(res => {

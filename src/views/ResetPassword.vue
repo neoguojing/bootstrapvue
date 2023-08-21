@@ -1,9 +1,7 @@
 <template>
   <div class="reset-password">
     <nav class="navbar navbar-light bg-light px-3">
-      <div class="container">
         <a class="navbar-brand" href="#">Password Reset</a>
-      </div>
     </nav>
 
     <div class="container mt-5">
