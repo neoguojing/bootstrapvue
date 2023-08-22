@@ -6,7 +6,7 @@
       <span class="fs-4">{{ title }}</span>
     </a>
     <hr>
-      <slot></slot>
+      <slot @click="onMenuClick"></slot>
   </div>
 </template>
 
@@ -38,6 +38,21 @@ export default {
         type : String,
         default:require('@/assets/logo.png'),
       }
+    },
+    methods: {
+      onMenuClick(){
+          let path = this.$route.path;
+          let links = document.querySelectorAll('.nav-link');
+          links.forEach(link => {
+            if (link.getAttribute('href') === path) {
+              link.classList.add('active');
+              link.setAttribute('aria-current', 'page');
+            } else {
+              link.classList.remove('active');
+              link.removeAttribute('aria-current');
+            }
+          });
+      },
     }
 }
 </script>
